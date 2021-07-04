@@ -1,0 +1,82 @@
+%% USPSC-TCC-pre-textual-ICMC.tex
+%% Camandos para definição do tipo de documento (tese ou dissertação), área de concentração, opção, preâmbulo, titulação 
+%% referentes ao Programa de Pós-Graduação o IFSC
+\instituicao{Instituto de Ci\^encias Matem\'aticas e de Computa\c{c}\~ao, Universidade de S\~ao Paulo}
+\unidade{INSTITUTO DE CI\^ENCIAS MATEM\'ATICAS E DE COMPUTA\c{C}\~AO}
+\unidademin{Instituto de Ci\^encias Matem\'aticas e de Computa\c{c}\~ao}
+\universidademin{Universidade de S\~ao Paulo}
+%\notafolharosto{Vers\~ao original}
+%Para versão original em inglês , comente do comando/declaração acima (inclua % antes do comando acima) 
+%                       e tire a % do comando/declaração abaixo no idioma do texto
+%\notafolharosto{Original version} 
+%Para versão revisada, comente do comando/declaração acima (inclua % antes do comando acima) 
+%                       e tire a % do comando/declaração de um dos comandos abaixo em conformidade com o idioma do texto
+%\notafolharosto{Vers\~ao revisada}
+%\notafolharosto{Final version}
+
+% ---
+% dados complementares para CAPA e FOLHA DE ROSTO
+% ---
+\universidade{UNIVERSIDADE DE S\~AO PAULO}
+\titulo{Estudo e Implementação de Modelos para Anotação Celular a partir de Dados de \textit{Single-Cell RNA-seq}}
+\titleabstract{Study and Implementations of Models to Cell Type Annotation from Single-Cell RNA-Seq Data}
+% para a versão em inglês, utilize os comandos abaixo
+%idioma{eng}
+%\titulo{Model for theses and dissertations in LaTeX using the USPSC class to the ICMC}
+%\titleabstract{Modelo para teses e disserta\c{c}\~oes em LaTeX utilizando a classe USPSC para o ICMC}
+
+\autor{Ana Elisa Ribeiro Orsi}
+\autorficha{Orsi, Ana Elisa Ribeiro}
+\autorabr{ORSI, A. E. R.}
+
+\cutter{S856m}
+% Para gerar a ficha catalográfica sem o Código Cutter, basta 
+% incluir uma % na linha acima e tirar a % da linha abaixo
+%\cutter{ }
+
+\local{S\~ao Carlos}
+\data{2021}
+% Quando for Orientador, basta incluir uma % antes do comando abaixo
+%\renewcommand{\orientadorname}{Orientadora:}
+% Quando for Coorientadora, basta tirar a % utilizar o comando abaixo
+%\newcommand{\coorientadorname}{Coorientador:}
+\orientador{Profa. Dra. Gleice da Silva Castro Perdoná}
+\orientadorcorpoficha{orientadora Gleice da Silva Castro Perdoná}
+\orientadorficha{Perdoná, Gleice da Silva Castro, orient}
+%Se houver co-orientador, inclua % antes das duas linhas (antes dos comandos \orientadorcorpoficha e \orientadorficha) 
+%          e tire a % antes dos 3 comandos abaixo
+%\coorientador{Prof. Dr. Jo\~ao Alves Serqueira}
+%\orientadorcorpoficha{orientadora Elisa Gon\c{c}alves Rodrigues ;  co-orientador Jo\~ao Alves Serqueira}
+%\orientadorficha{Rodrigues, Elisa Gon\c{c}alves, orient. II. Serqueira, Jo\~ao Alves, co-orient}
+
+\notaautorizacao{AUTORIZO A REPRODU\c{C}\~AO E DIVULGA\c{C}\~AO TOTAL OU PARCIAL DESTE TRABALHO, POR QUALQUER MEIO CONVENCIONAL OU ELETR\^ONICO PARA FINS DE ESTUDO E PESQUISA, DESDE QUE CITADA A FONTE.}
+\notabib{Ficha catalogr\'afica elaborada pela Biblioteca Prof. Achille Bassi, ICMC/USP, com os dados fornecidos pelo(a) autor(a)}
+
+\newcommand{\programa}[1]{
+
+% MBACD ==========================================================================
+    \ifthenelse{\equal{#1}{MBACD}}{
+     		\tipotrabalho{Monografia (MBA em Ci\^encias de Dados)}
+        \area{Ci\^encias de Dados}
+				%\opcao{Nome da Opção}
+        % O preambulo deve conter o tipo do trabalho, o objetivo, 
+				% o nome da instituição, a área de concentração e opção quando houver
+		\preambulo{Trabalho de conclus\~ao de curso apresentado ao Centro de Ci\^encias Matem\'aticas Aplicadas \`a Ind\'ustria do Instituto de Ci\^encias Matem\'aticas e de Computa\c{c}\~ao, Universidade de S\~ao Paulo, como parte dos requisitos para conclus\~ao do MBA em Ci\^encias de Dados.}
+		\notaficha{Monografia (MBA em Ci\^encias de Dados)}
+	}{
+% Outros
+		\tipotrabalho{Disserta\c{c}\~ao/Tese (Mestrado/Doutorado)}
+		\area{Nome da \'Area}
+		\opcao{Nome da Op\c{c}\~ao}
+        % O preambulo deve conter o tipo do trabalho, o objetivo, 
+				% o nome da instituição, a área de concentração e opção quando houver				
+				\preambulo{Disserta\c{c}\~ao/Tese apresentada ao Instituto de Ci\^encias Matem\'aticas e de Computa\c{c}\~ao, Universidade de S\~ao Paulo - ICMC/USP, como parte dos requisitos para obten\c{c}\~ao do t\'itulo de Mestre/Doutor em Ci\^encias - Programa.}
+				\notaficha{Disserta\c{c}\~ao/Tese (Mestrado/Doutorado - Programa)}
+        }}				
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+
+
+O arquivo TCC.tex determina a estrutura do TCC. É ele o "main document"/"documento principal" do projeto (selecionar essa opção no menu do overleaf).
+
+Se uma seção não aparece no arquivo compilado, ela provavelmente está comentada em TCC.tex. Encontre o trecho relativo (ex.: para a dedicatória, seria a linha "%\include{3-Dedicatoria}"), remova o "%" no início da linha e recompile o arquivo.
+
+É possível mudar o nome de qualquer arquivo, contanto que realize a substituição pelo novo nome em "TCC.tex". 
+Por exemplo: quero que o arquivo "3-Dedicatoria.tex" passe a se chamar "novo_nome.tex". Devo, portanto, identificar as chamadas de "3-Dedicatoria" em TCC.tex (\include{3-Dedicatoria}) e substitui-las por "novo_nome" (\include{novo_nome}).
+A exceção é "0-pre-textual.tex": nesse caso, é necessário realizar a substituição em USPSC.cls e USPSC.cls. 
