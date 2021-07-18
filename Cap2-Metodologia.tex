@@ -3,17 +3,63 @@
 
 \chapter[Revisão Bibliográfica]{Revisão Bibliográfica}
 
-2.1 Fundamentos\par
+    \section{Fundamentos}
     
-    2.1.1 Tratamento de Dados\par\par
-	    2.1.2 Bliblioteca Scikit-learn\par\par
-	    2.1.3 Algoritmos de regressão\par\par
-		    Árvores de decisão\par
-		    Regressão logística\par
-		    Support vector machines\par
-		    Random forest\par
-		    Redes neurais\par
-	2.1.4 Avaliação de algoritmos de regressão\par
+        \subsection{Tratamento de Dados}
+            Em relação às etapas de tratamento de dados necessárias em um projeto de aprendizagem de máquina, vamos nos deter em dois pontos principais: outliers e dados faltantes. 
+        
+            \textbf{Dados espúrios}\par
+            Um outlier "é uma observação que se encontra a uma distância anormal de outros valores em uma amostra aleatória de uma população. (...) Outliers podem distorcer a distribuição sumária de valores de atributos em estatísticas descritivas como média e desvio padrão e em gráficos como histogramas e gráficos de dispersão, comprimindo o corpo dos dados." \cite{portal2018}
+        
+            \textbf{Dados faltantes}\par
+            Durante o desenvolvimento de um modelo, "é comum existirem, dentre as variáveis preditivas, algumas que possuem dados não preenchidos (missings), sendo necessário assim adotar algum procedimento para tratamento destas variáveis." \cite{assuncao2012}
+
+	    \subsection{Bliblioteca Scikit-learn}
+	    O scikit-learn "é uma biblioteca da linguagem Python desenvolvida especificamente para aplicação prática de machine learning. Esta biblioteca dispõe de ferramentas simples e eficientes para análise preditiva de dados, é reutilizável em diferentes situações, possui código aberto, sendo acessível a todos e foi construída sobre os pacotes NumPy, SciPy e matplotilib". \cite{didatica2020}
+
+        \subsection{Algoritmos de regressão}
+	    De acordo com a Oper Data \cite{oper2020}, os problemas de Machine Learning "são divididos em três subáreas principais: classificação, regressão e clustering.". Para esse trabalho, serão de especial interesse os algoritmos de regressão, dentre os quais destacam-se os seguintes grupos:\par
+
+		    \textbf{Árvores de decisão}\par
+		    A árvore de decisão "está entre os métodos mais comuns aplicados ao aprendizado de máquina. Tais algoritmos subdividem progressivamente os dados em conjuntos cada vez menores e mais específicos, em termos de seus atributos, até atingirem um tamanho simplificado o bastante para ser rotulado. Para isso é necessário treinar o modelo com dados previamente rotulados, de modo a aplicá-lo a dados novos." \cite{digitalhouse2021}
+
+		    \textbf{Regressão logística}\par
+		    A regressão logística "é uma técnica estatística que tem como objetivo produzir, a partir de um conjunto de observações, um modelo que permita a predição de valores tomados por uma variável categórica, frequentemente binária, em função de uma ou mais variáveis." \cite{gonzalez2018}
+		    
+		    \textbf{Support vector machines}\par
+		     Algoritmos de máquina de vetores de suporte (em inglês, Support Vector Machines, ou SVM) "têm como objetivo a determinação de limites de decisão que produzam uma separação ótima entre classes por meio da minimização dos erros." \cite{nascimento2009}
+		    
+		    \textbf{Random forest}\par
+		    O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}
+		    
+		    
+		    \textbf{Redes neurais}\par
+		    Redes Neurais "são um formato de estrutura de dados inspirada nas redes de neurônios do cérebro humano (...) organizadas em uma lógica de camadas e nós dentro dos códigos de programação, sugerindo uma estrutura vagamente similar ao que ocorre com os neurônios".\cite{ilumeo2020}
+		    
+	    \subsection{Avaliação de algoritmos de regressão}
+	    Para comparar e selecionar modelos de aprendizagem de máquina, é necessário definir métricas que possam ser utilizadas como critério de avaliação. Entre elas, podemos destacar três:\par
+	
+	        \textbf{R Square (Quadrado de R)}\par
+	        A métrica R Square "mede quanta variabilidade na variável dependente pode ser explicada pelo modelo. É o quadrado do Coeficiente de Correlação (R), e por isso é chamada de R Square". \cite{towards2020} (tradução do autor).
+	
+        	\textbf{Erro médio quadrático}\par
+	        Em oposição à medida R Square, que é "uma medida relativa de quão bem o modelo se ajusta a variáveis dependentes", o Erro Médio Quadrático "é uma medida absoluta da qualidade do ajuste", e pode ser calculado pela soma do quadrado do erro de predição, que é o valor real de uma observação menos o valor previsto, e depois dividido pelo número de observações." \cite{towards2020} (tradução do autor)
+	
+	        \textbf{Erro Médio Absoluto}\par
+	        O Erro Médio Absoluto "é similar ao Erro Médio Quadrático. No entanto, em vez da soma do quadrado do erro no EMQ, EMA utiliza a soma do valor absoluto do erro." \cite{towards2020} (tradução do autor)
+
+    \section{Trabalhos relacionados}
+    
+        \textbf{Árvores de regressão e método de elementos finitos}\par
+    
+        Entre os trabalhos já realizados sobre a aplicação de algoritmos de regressão na criação de modelos de stress, podemos destacar o artigo "Combining regression trees and the finite element method to define stress models of highly non-linear mechanical systems" ("Combinando árvores de regressão e o método de elementos finitos para definir modelos de tensão de sistemas mecânicos altamente não-lineares", tradução do autor). No artigo, Lostado demonstra que "combinar árvores de regressão com o método de elementos finitos (FEM) pode ser uma boa estratégia para modelar sistemas mecânicos altamente não lineares. As árvores de regressão tornam possível modelar mapas não lineares baseados em FEM para campos de tensões, velocidades, temperaturas, etc., de forma mais simples e eficaz do que outras técnicas mais amplamente utilizadas atualmente, como redes neurais artificiais (ANNs), vetor de suporte máquinas (SVMs), técnicas de regressão, etc.". A técnica permite a criação de bons modelos quando "os dados são muito heterogêneos, a densidade é muito irregular, e o número de exemplos é limitado." \cite{lostado2009} (tradução do autor)\par
+        
+        
+        
+        \textbf{Sensores de vibração}\par
+        Em relação à predição de vida útil especificamente em rolamentos, Ali et al destacam a importância dos sensores de vibração no artigo Application of empirical mode decomposition and artificial neural network for automatic bearing fault diagnosis based on vibration signals ("Aplicação de decomposição de modo empírico e rede neural artificial para diagnóstico automático de falha de rolamento com base em sinais de vibração", tradução nossa). Segundos os autores, "Os resultados experimentais indicaram que o método proposto com base em sinais de vibração run-to-break pode categorizar defeitos de rolamento de forma confiável. Usando um índice de saúde proposto (HI), as degradações do REB são perfeitamente detectadas com diferentes tipos e severidades de defeitos." \cite{ali2015} (tradução do autor)
+    
+    
 
 % cola para inserir figura
 % \newpage
