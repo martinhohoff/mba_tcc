@@ -1,7 +1,7 @@
 %% USPSC-Cap2-Desenvolvimento.tex 
 
 
-\chapter[Revisão Bibliográfica]{Revisão Bibliográfica}
+\chapter[Metodologia]{Metodologia}
 
     \section{Fundamentos}
     
@@ -60,7 +60,49 @@
         Em relação à predição de bilheteria para um filme, Quader et al destacam a importância dos metadados no artigo "Performance evaluation of seven machine learning classification techniques for movie box office success prediction" ("Avaliação de desempenho de sete técnicas de classificação de aprendizado de máquina para previsão de sucesso de bilheteria de filmes", tradução nossa). Os autores buscam "realizar uma comparação de desempenho entre vários métodos de aprendizado de máquina. Escolhemos sete técnicas de aprendizado de máquina para esta comparação, como Support Vector Machine (SVM), Regressão Logística, Multilayer Perceptron Neural Network, Gaussian Naive Bayes, Random Forest, AdaBoost e Stochastic Gradient Descent (SGD). Todos esses métodos prevêem um valor aproximado de lucro líquido de um filme, analisando dados históricos de diferentes fontes como IMDb, Rotten Tomatoes, Box Office Mojo e Meta Critic." \cite{quader2017} (tradução do autor)\par
         Entre as conclusões, os autores citam elementos que podem facilitar ou dificultar a análise: "Se a condição econômica e política de um país não é estável, não importa o quão bem o filme seja feito, não haverá ninguém para assisti-lo. Portanto, incluir o PIB de um país como um atributo é uma boa opção para uma análise posterior. Também sugerimos analisar e incluir o número de público para análise. Podemos obter o número de audiência anual usando o total de ingressos vendidos em um determinado ano. Incluir esses atributos tornará a previsão mais precisa."
     
+    \section[Desenvolvimento]{Desenvolvimento}
+
+        \subsection{Considerações iniciais}
+        Este capítulo descreve as etapas de desenvolvimento dos modelos de previsão de chances de indicação e premiação no Oscar, detalhando as escolhas realizadas e os procedimentos adotados no processo. São explicados também os resultados atingidos, os problemas enfrentados e as melhorias que podem ser realizadas em trabalhos futuros.
     
+        \subsection{Atividades realizadas}
+    
+            \textbf{Obtenção dos dados}
+            Foi escolhida como fonte de dados para o trabalho a database "The Movies Dataset", da plataforma Kaggle. Trata-se de um conjunto incluindo "metadados para todos os 45.000 filmes listados no conjunto de dados Full MovieLens. O conjunto de dados consiste em filmes lançados em ou antes de julho de 2017. Os dados incluem elenco, equipe, palavras-chave do enredo, orçamento, receita, pôsteres, datas de lançamento, idiomas, empresas de produção, países, contagens de votos TMDB e médias de votos".\cite{kaggle2017}\par
+            
+            A base de dados "The Oscar Award, 1927 - 2020" foi utilizada para complementar os metadados, adicionando a eles as informações de indicações e vitórias na premiação.\cite{kaggle2019}\par
+
+            \textbf{Limpeza e tratamento dos dados}
+            
+            O primeiro desafio relacionado à limpeza e tratamento dos dados aparece na base \citeonline{kaggle2019}. Embora a base esteja bastante completa em todas os outras colunas, a coluna 'film' - justamente a que traz o nome do filme relacionado àquela premiação - está nula em 304 linhas.
+            
+            \newpage
+            \begin{figure}[htb]
+            	\caption{\label{faltantes_film}Dados faltantes na coluna film}
+            	\begin{center}
+            		\includegraphics[scale=0.5]{faltantes_film.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            Em algumas dessas categorias, nota-se que se trata de prêmios honorários, humanitários ou de conjunto da obra. Esses dados foram desconsiderados, já que não se referem a um filme específico.
+            
+            Já para duas das categorias que apresentam dados faltantes - "SPECIAL FOREIGN LANGUAGE FILM AWARD"
+            e "HONORARY FOREIGN LANGUAGE FILM AWARD" -, é possível perceber que o nome se encontra na coluna 'name', precisando apenas de tratamento em alguns casos, podendo então ser transferido para a coluna 'film'.
+            
+            Alguns dados 
+    
+            \textbf{Arcabouço de análise exploratória}
+    
+            \textbf{Criação de modelos}
+    
+            \textbf{Avaliação comparativa dos resultados}
+    
+            \textbf{Avaliação de importância dos metadados}
+    
+            \textbf{Interpretação dos resultados}
+
+        \subsection{Resultados obtidos}
 
 % cola para inserir figura
 % \newpage
