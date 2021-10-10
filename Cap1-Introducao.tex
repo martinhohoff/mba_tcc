@@ -7,19 +7,20 @@
 Mesmo sofrendo uma forte queda por conta da pandemia de Covid-19, a indústria de cinema e vídeo gerou uma receita mundial de US\$ 60.4 bilhões em 2021 \cite{indiantelevision2021}. A importância e tamanho dessa atividade fazem das premiações tradicionais um local de destaque para a produção e amostragem de tendências para o setor.\par
 Dentro das cerimônias existentes, a premiação da Academia de Artes e Ciências Cinematográficas, popularmente conhecida como "o Oscar", mantém lugar de destaque. Filmes vencedores do Oscar, e até mesmo os indicados, costumam ter seu desempenho de bilheteria alavancado pela premiação. \cite{hdsr2020}.
 
-Detectar e prever falhas nos rolos é essencial para garantir a continuidade e estabilidade da produção, evitando acidente e a paralisação da produção. Com isso, têm se destacado no setor os rolos inteligentes, também chamados de instrumentados, com sensores de medição e conectados à internet por meio de dispositivos de internet das coisas (IoT). Tais sensores permitem a medição da temperatura, carga, velocidade, e vibração, e da análise cumulativa desses dados. Desta maneira, o objetivo desta pesquisa é descobrir quais medições podem prever, com o máximo de antecedência, falhas e o fim da vida útil de um rolo de transportador.\par
+Detectar e prever tendências de mercado pode ser essencial para aumentar as chances de sucesso de uma produção em premiações, e, consequentemente, o reflexo desse sucesso nas bilheterias. Para isso, podem-se analisar diversos fatores relacionados a cada produção.\par
 
-Esse trabalho tem como objetivo principal investigar como as medições de temperatura, velocidade, vibração, e carga em rolos de transporte de minério, além de posição no transportador e fatores externos como umidade e temperatura, se relacionam com a vida útil esperada para os equipamentos. Especificamente, objetiva-se:\par
+Esse trabalho tem como objetivo principal investigar como os dados de orçamento, receita, data de lançamento, linguagens, país de produção e empresas produtoras, palavras-chave da trama, créditos de elenco e equipe influenciam nas chances de premiação no Oscar. Especificamente, objetiva-se:\par
 
-- detectar quais fatores são os mais preditivos com relação à necessidade de troca ou à possibilidade de falha de um rolo, e com qual antecedência é possível fazer essa previsão;\par
-- prever quais os tipos prováveis de falhas, e quais trocas devem ser priorizadas em um mecanismo;\par
-- considerar medições que possam complementar a atividade preditiva, como o tipo do minério, o peso da carga, o regime de chuvas, a temperatura média, entre outros;\par
-- análise da importância individual dos fatores no que se refere à ocorrência de falhas;\par
-- extrapolar as conclusões, se possível, para fatores que influenciam e permitem o cálculo de vida útil em outros equipamentos industriais ligados à mineração.\par
+- detectar quais fatores são os mais preditivos com relação à chance de nomeação ou vitória de um filme no Oscar, e com qual grau de certeza é possível fazer essa previsão;\par
+- prever quais as categorias mais prováveis de premiação;\par
+- considerar dados adicionais que possam complementar a atividade preditiva;\par
+- análise da importância individual dos fatores nas indicações e premiações;\par
+- extrapolar as conclusões, se possível, para fatores que influenciam e permitem o cálculo de chances de indicações e vitórias em outras premiações.\par
 \par
+
 A metodologia para fazer essa investigação seguirá os seguintes passos:\par
 
-1. extração de histórico de dados de rolos instrumentados, considerando as medições já existentes e as ocorrências de falha e/ou fim da vida útil;\par
+1. utilização de histórico de metadados de filmes obtidos na plataforma Kaggle;\par
 2. limpeza e tratamento dos dados, verificando-se por dados faltantes, espúrios, e extremos indicados por meio de análises de distribuição;\par
 3. criação de um arcabouço de análise exploratória em ambiente Python fazendo-se uso dos pacotes Pandas, Numpy, e Scikit Learn;\par
 4. criação de modelos de regressão para o tempo de falha, considerando-se diferentes algoritmos como árvores de decisão, regressão logística, support vector machines, random forest, redes neurais, dentre outros;\par
@@ -27,9 +28,10 @@ A metodologia para fazer essa investigação seguirá os seguintes passos:\par
 6. avaliação da importância de cada fator (medição) baseando-se no feedback dos algoritmos testados;\par
 7. interpretação dos resultados para elaboração das conclusões com indicação das técnicas mais promissoras.\par
 \par
-Entre os resultados esperados, pode-se destacar a descoberta dos melhores modelos de predição de vida útil de rolos que ajudem a gerar eficiência e prevenir acidentes na indústria de mineração e a
-obtenção de um ou mais modelos a partir da data de instalação, velocidade, tempo de uso, temperatura, carga e vibração de um rolo, e fatores externos, como temperatura e umidade, para inferir:\par
-a) o tempo de vida restante esperado para um rolo;\par
-b) o próximo rolo de que se espera uma falha em um mecanismo;\par
-c) o tipo de falha esperado;\par
-d) interpretação da importância de cada fator (medição) no processo de desgaste e falha dos rolos.\par
+
+Entre os resultados esperados, pode-se destacar a descoberta dos melhores modelos de predição de indicações e vitórias que ajudem a gerar previsibilidade do desempenho de um filme em premiações, e a obtenção de um ou mais modelos a partir dos dados de orçamento, receita, data de lançamento, linguagens, país de produção e empresas produtoras, palavras-chave da trama, créditos de elenco e equipe, para inferir:\par
+
+a) a chance de que um filme seja indicado para o Oscar em alguma categoria;\par
+b) a categoria (ou categorias) mais prováveis;\par
+c) a chance de que o filme, se indicado, ganhe naquela categoria;\par
+d) interpretação da importância de cada fator (metadado) nas chances de indicação e premiação.\par
