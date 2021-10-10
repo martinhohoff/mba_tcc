@@ -1,0 +1,73 @@
+%% USPSC-Cap2-Desenvolvimento.tex 
+
+
+\chapter[Revisão Bibliográfica]{Revisão Bibliográfica}
+
+    \section{Fundamentos}
+    
+        \subsection{Tratamento de Dados}
+            Em relação às etapas de tratamento de dados necessárias em um projeto de aprendizagem de máquina, vamos nos deter em dois pontos principais: outliers e dados faltantes. 
+        
+            \textbf{Dados espúrios}\par
+            Um outlier "é uma observação que se encontra a uma distância anormal de outros valores em uma amostra aleatória de uma população. (...) Outliers podem distorcer a distribuição sumária de valores de atributos em estatísticas descritivas como média e desvio padrão e em gráficos como histogramas e gráficos de dispersão, comprimindo o corpo dos dados." \cite{portal2018}
+        
+            \textbf{Dados faltantes}\par
+            Durante o desenvolvimento de um modelo, "é comum existirem, dentre as variáveis preditivas, algumas que possuem dados não preenchidos (missings), sendo necessário assim adotar algum procedimento para tratamento destas variáveis." \cite{assuncao2012}
+
+	    \subsection{Bliblioteca Scikit-learn}
+	    O scikit-learn "é uma biblioteca da linguagem Python desenvolvida especificamente para aplicação prática de machine learning. Esta biblioteca dispõe de ferramentas simples e eficientes para análise preditiva de dados, é reutilizável em diferentes situações, possui código aberto, sendo acessível a todos e foi construída sobre os pacotes NumPy, SciPy e matplotilib". \cite{didatica2020}
+
+        \subsection{Algoritmos de regressão}
+	    De acordo com a Oper Data \cite{oper2020}, os problemas de Machine Learning "são divididos em três subáreas principais: classificação, regressão e clustering.". Para esse trabalho, serão de especial interesse os algoritmos de regressão, dentre os quais destacam-se os seguintes grupos:\par
+
+		    \textbf{Árvores de decisão}\par
+		    A árvore de decisão "está entre os métodos mais comuns aplicados ao aprendizado de máquina. Tais algoritmos subdividem progressivamente os dados em conjuntos cada vez menores e mais específicos, em termos de seus atributos, até atingirem um tamanho simplificado o bastante para ser rotulado. Para isso é necessário treinar o modelo com dados previamente rotulados, de modo a aplicá-lo a dados novos." \cite{digitalhouse2021}
+
+		    \textbf{Regressão logística}\par
+		    A regressão logística "é uma técnica estatística que tem como objetivo produzir, a partir de um conjunto de observações, um modelo que permita a predição de valores tomados por uma variável categórica, frequentemente binária, em função de uma ou mais variáveis." \cite{gonzalez2018}
+		    
+		    \textbf{Support vector machines}\par
+		     Algoritmos de máquina de vetores de suporte (em inglês, Support Vector Machines, ou SVM) "têm como objetivo a determinação de limites de decisão que produzam uma separação ótima entre classes por meio da minimização dos erros." \cite{nascimento2009}
+		    
+		    \textbf{Random forest}\par
+		    O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}
+		    
+		    
+		    \textbf{Redes neurais}\par
+		    Redes Neurais "são um formato de estrutura de dados inspirada nas redes de neurônios do cérebro humano (...) organizadas em uma lógica de camadas e nós dentro dos códigos de programação, sugerindo uma estrutura vagamente similar ao que ocorre com os neurônios".\cite{ilumeo2020}
+		    
+	    \subsection{Avaliação de algoritmos de regressão}
+	    Para comparar e selecionar modelos de aprendizagem de máquina, é necessário definir métricas que possam ser utilizadas como critério de avaliação. Entre elas, podemos destacar três:\par
+	
+	        \textbf{R Square (Quadrado de R)}\par
+	        A métrica R Square "mede quanta variabilidade na variável dependente pode ser explicada pelo modelo. É o quadrado do Coeficiente de Correlação (R), e por isso é chamada de R Square". \cite{towards2020} (tradução do autor).
+	
+        	\textbf{Erro médio quadrático}\par
+	        Em oposição à medida R Square, que é "uma medida relativa de quão bem o modelo se ajusta a variáveis dependentes", o Erro Médio Quadrático "é uma medida absoluta da qualidade do ajuste", e pode ser calculado pela soma do quadrado do erro de predição, que é o valor real de uma observação menos o valor previsto, e depois dividido pelo número de observações." \cite{towards2020} (tradução do autor)
+	
+	        \textbf{Erro Médio Absoluto}\par
+	        O Erro Médio Absoluto "é similar ao Erro Médio Quadrático. No entanto, em vez da soma do quadrado do erro no EMQ, EMA utiliza a soma do valor absoluto do erro." \cite{towards2020} (tradução do autor)
+
+    \section{Trabalhos relacionados}
+    
+        \textbf{Popularidade de filmes}\par
+
+        Entre os trabalhos já realizados sobre a aplicação de algoritmos de aprendizagem de máquina na predição de popularidade de filmes, podemos destacar o artigo "Prediction of Movies popularity Using Machine Learning Techniques" ("Previsão da popularidade de filmes usando técnicas de aprendizado de máquina", tradução do autor).\par
+        A metodologia utilizada pelo autor é descrita da seguinte forma: "criamos um conjunto de dados e, em seguida, o transformamos e aplicamos abordagens de aprendizado de máquina para construir modelos eficientes que podem prever a popularidade dos filmes." \cite{afzal2016} (tradução do autor)\par
+        Entre os resultados obtidos, o autor destaca: "Depois de fazer a classificação, descobrimos que nossos melhores resultados são alcançados por meio de regressão logística. Os atributos que mais contribuíram para a informação são o metascore e o número de votos de cada filme, os Oscars conquistados pelos filmes e a quantidade de telas que o filme vai passar." \cite{afzal2016}
+
+        \textbf{Predição de bilheteria}\par
+        Em relação à predição de bilheteria para um filme, Quader et al destacam a importância dos metadados no artigo "Performance evaluation of seven machine learning classification techniques for movie box office success prediction" ("Avaliação de desempenho de sete técnicas de classificação de aprendizado de máquina para previsão de sucesso de bilheteria de filmes", tradução nossa). Os autores buscam "realizar uma comparação de desempenho entre vários métodos de aprendizado de máquina. Escolhemos sete técnicas de aprendizado de máquina para esta comparação, como Support Vector Machine (SVM), Regressão Logística, Multilayer Perceptron Neural Network, Gaussian Naive Bayes, Random Forest, AdaBoost e Stochastic Gradient Descent (SGD). Todos esses métodos prevêem um valor aproximado de lucro líquido de um filme, analisando dados históricos de diferentes fontes como IMDb, Rotten Tomatoes, Box Office Mojo e Meta Critic." \cite{quader2017} (tradução do autor)\par
+        Entre as conclusões, os autores citam elementos que podem facilitar ou dificultar a análise: "Se a condição econômica e política de um país não é estável, não importa o quão bem o filme seja feito, não haverá ninguém para assisti-lo. Portanto, incluir o PIB de um país como um atributo é uma boa opção para uma análise posterior. Também sugerimos analisar e incluir o número de público para análise. Podemos obter o número de audiência anual usando o total de ingressos vendidos em um determinado ano. Incluir esses atributos tornará a previsão mais precisa."
+    
+    
+
+% cola para inserir figura
+% \newpage
+% \begin{figure}[htb]
+% 	\caption{\label{fig_EstruturaTrabAcad}Estrutura do trabalho acadêmico}
+% 	\begin{center}
+% 		\includegraphics[scale=0.5]{USPSC-EstruturaTrabAcad.jpg}
+% 	\end{center}
+% 	\legend{Fonte: \citeonline{nbr14724}}
+% \end{figure}
