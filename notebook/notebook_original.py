@@ -1,36 +1,23 @@
 # importação das bibliotecas utilizadas
-import numpy as np
-import os
 import pandas as pd
-
-from datetime import datetime
 from difflib import SequenceMatcher
 
 
-
 # carregando os filmes indicados ou vencedores do Oscar em um dataframe
-oscar_movies = pd.read_csv('/kaggle/input/the-oscar-award/the_oscar_award.csv')
-
-# examinando as características do dataframe
+# e examinando as características do dataframe
+oscar_movies = pd.read_csv('kaggle/input/the-oscar-award/the_oscar_award.csv')
 oscar_movies.info()
 oscar_movies.describe()
-
-
-
 
 # A única coluna com itens faltantes é a coluna film.
 # Vamos explorar as linhas em que faltam esses dados para entender o porquê,
 # e em quais categorias isso está ocorrendo
-
 print(oscar_movies[oscar_movies['film'].isnull()]['category'].unique())
 oscar_movies[oscar_movies['film'].isnull()].head()
 
 
-
-
 # Alguns desses casos se tratam de prêmios honorários, humanitários e memoriais -
 # ou seja, não relacionados a filmes específicos. Podemos desconsiderar essas linhas
-
 rows_to_drop = oscar_movies[
     (oscar_movies['category'] == 'HONORARY AWARD') |
     (oscar_movies['category'] == 'SPECIAL AWARD') |
@@ -43,8 +30,6 @@ oscar_movies = oscar_movies.drop(rows_to_drop)
 
 print(oscar_movies[oscar_movies['film'].isnull()]['category'].unique())
 oscar_movies[oscar_movies['film'].isnull()].head()
-
-
 
 
 # As linhas restantes com dados faltantes na coluna filme são de categorias
@@ -63,31 +48,23 @@ for row in oscar_movies[
 # seguido de hífen. Podemos aplicar a mesma regra para todos os casos, e transpor o nome do
 # filme para a coluna film
 oscar_movies['film'] = oscar_movies.apply(
-    lambda row: row['name'].split('-')[0] if row['category'] in ('SPECIAL FOREIGN LANGUAGE FILM AWARD', 'HONORARY FOREIGN LANGUAGE FILM AWARD')
-    else row['film'],
+    lambda x: x['name'].split('-')[0] if x['category'] in (
+        'SPECIAL FOREIGN LANGUAGE FILM AWARD', 'HONORARY FOREIGN LANGUAGE FILM AWARD'
+    )
+    else x['film'],
     axis=1
 )
 
-# validando que as alterações foram feitas corretamente
-oscar_movies[(oscar_movies['category'] == 'SPECIAL FOREIGN LANGUAGE FILM AWARD') | (oscar_movies['category'] == 'HONORARY FOREIGN LANGUAGE FILM AWARD')]
-
-
-
-
 # Com os dados dessas categorias corrigidos,
-# é hora de checar os dados faltantes que ainda restam
-
+# é hora de checar os dados que ainda são faltantes
 print(oscar_movies[oscar_movies['film'].isnull()]['category'].unique())
 oscar_movies[oscar_movies['film'].isnull()].head()
-
-
 
 
 # Outras linhas com dados faltantes na coluna 'film' são de obtenção difícil ou imprecisa:
 # um assistente de direção, por exemplo, pode ter tido mais de um filme lançado num mesmo
 # ano, o que faria a checagem dos dados restantes muito trabalhosa.
 # Essas colunas serão ignoradas.
-
 rows_to_drop = oscar_movies[
     (
         (oscar_movies['category'] == 'ENGINEERING EFFECTS') |
@@ -100,8 +77,6 @@ rows_to_drop = oscar_movies[
 oscar_movies = oscar_movies.drop(rows_to_drop)
 
 oscar_movies.info()
-
-
 
 
 # Um fato que pode ser observado analisando esses dados restantes é que algumas das
@@ -123,9 +98,6 @@ oscar_movies = oscar_movies.drop(rows_to_drop)
 list(oscar_movies['category'].unique())
 
 
-
-
-
 # Algumas dessas categorias também precisaram de consolidação, já que seus nomes
 # aparecem de formas diferentes. Foram utilizados os nomes mais recentes.
 
@@ -139,9 +111,9 @@ category_renaming = {
 }
 
 oscar_movies['category'] = oscar_movies.apply(
-    lambda row: category_renaming[row['category']]
-    if row['category'] in category_renaming
-    else row['category'],
+    lambda x: category_renaming[x['category']]
+    if x['category'] in category_renaming
+    else x['category'],
     axis=1
 )
 
@@ -149,15 +121,11 @@ oscar_movies['category'] = oscar_movies.apply(
 list(oscar_movies['category'].unique())
 
 
-
-
-
-
 # Agora precisamos unir os dados do dataset do Oscar ao dataset de metadados de filmes.
 
 # carregando os metadados de todos os filmes
 movies_metadata = pd.read_csv(
-    '/kaggle/input/the-movies-dataset/movies_metadata.csv',
+    'kaggle/input/the-movies-dataset/movies_metadata.csv',
 )
 
 # converter coluna release_date para datetime
@@ -171,16 +139,10 @@ movies_metadata.describe()
 movies_metadata.head()
 
 
-
-
-
 # Adicionando uma coluna com o ano de lançamento do filme, que será útil em outras análises
 movies_metadata['release_year'] = movies_metadata['release_date'].apply(
     lambda x: x.year
 )
-
-
-
 
 
 # Precisamos retirar os filmes pós 2017 do dataset do oscar, já que não estão presentes no The Movie Dataset
@@ -193,16 +155,29 @@ oscar_movies['year_film'].describe()
 # Normalização de nomes para comparação entre os dois datasets
 def normalize(name):
     normalized_name = name
-    for character in [':', '!', '?', ' - ', '...', '/', ')', '(', "'", '.']:
-        normalized_name = normalized_name.replace(character, '')
+    try:
+        for character in [':', '!', '?', ' -', '...', '/', ')', '(', "'", '.', '-', '·']:
+            normalized_name = normalized_name.replace(character, '')
+        normalized_name = normalized_name.lower()
 
-    return normalized_name.lower()
+    except:
+        pass
+
+    return normalized_name
 
 
-metadata_normalized_titles = {
-    normalize(
-        movie[1]['original_title']
-    ): (movie[1]['original_title'], movie[1]['release_year'])
+movies_metadata['title'] = movies_metadata['title'].apply(normalize)
+movies_metadata['original_title'] = movies_metadata['original_title'].apply(normalize)
+oscar_movies['film'] = oscar_movies['film'].apply(normalize)
+
+
+metadata_english_titles = {
+    movie[1]['title']: movie[1]['release_year']
+    for movie in movies_metadata.iterrows()
+}
+
+metadata_original_titles = {
+    movie[1]['original_title']: (movie[1]['release_year'], movie[1]['title'])
     for movie in movies_metadata.iterrows()
 }
 
@@ -210,7 +185,7 @@ metadata_normalized_titles = {
 not_in_metadata_database = {}
 in_metadata_database = {}
 
-oscar_normalized_titles = {
+oscar_titles = {
     normalize(
         movie[1]['film']
     ): (movie[1]['film'], movie[1]['year_film'])
@@ -218,19 +193,20 @@ oscar_normalized_titles = {
 }
 
 # Consertar nomes que estão levemente diferentes nas duas databases
-for normalized_title, (original_title, year) in oscar_normalized_titles.items():
+for title, year in oscar_titles.items():
     # adicionar à lista se o nome normalizado não estiver na lista de nomes normalizados
-    not_found = False
-    if normalized_title not in metadata_normalized_titles:
-        not_found = True
+    if title in metadata_english_titles and metadata_english_titles[title] == year:
+        in_metadata_database[title] = year
 
-    elif year != metadata_normalized_titles[normalized_title][1]:
-        not_found = True
+    elif title in metadata_original_titles and metadata_original_titles[title][0] == year:
+        english_title = metadata_original_titles[title][1]
+        oscar_movies.loc[
+            (oscar_movies['film'] == title) & (oscar_movies['year_film'] == year)
+        ]['film'] = english_title
+        in_metadata_database[english_title] = year
 
-    if not_found:
-        not_in_metadata_database[normalized_title] = original_title, year
     else:
-        in_metadata_database[normalized_title] = original_title, year
+        not_in_metadata_database[title] = year
 
 print(len(in_metadata_database), 'found')
 print(len(not_in_metadata_database), 'not found')
@@ -242,33 +218,35 @@ SIMILARITY_THRESHOLD = 0.7
 
 
 def similarity(a, b):
-    return SequenceMatcher(None, a, b).ratio()
+    try:
+        return SequenceMatcher(None, a, b).ratio()
+    except:
+        return 0
 
 
 i = 0
 possibly_found = {}
-for normalized_title, (original_title, year) in not_in_metadata_database.items():
+for title, year in not_in_metadata_database.items():
     best_match = 0
 
-    for other_normalized_title, (other_original_title, other_year) in metadata_normalized_titles.items():
-        title_similarity = similarity(normalized_title, other_normalized_title)
+    for other_title, other_year in metadata_english_titles.items():
+        title_similarity = similarity(title, other_title)
+
         if title_similarity >= SIMILARITY_THRESHOLD \
                 and year == other_year \
                 and title_similarity > best_match:
-            possibly_found[normalized_title] = other_normalized_title, year
+
+            best_match = title_similarity
+            possibly_found[title] = other_title, year, title_similarity
 
     i += 1
 
     possibly_found_formatted = sorted(
         [
-            (title_oscar, title_metadata, data)
-            for title_oscar, (title_metadata, data)
+            (title_oscar, title_metadata, year, title_similarity)
+            for title_oscar, (title_metadata, year, title_similarity)
             in possibly_found.items()
-        ]
+        ],
+        key=lambda x: x[3]
     )
-    print('Analysed', i, 'not found movies', possibly_found, end='\r')
-
-
-
-
-
+    print('Analysed', i, 'not found movies:', possibly_found, end='\r')
