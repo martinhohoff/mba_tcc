@@ -245,14 +245,14 @@ for title, year in not_in_metadata_database.items():
             best_match = title_similarity
             possibly_found[title] = other_title, year, title_similarity
 
-    possibly_found_formatted = sorted(
-        [
-            (title_oscar, title_metadata, year, title_similarity)
-            for title_oscar, (title_metadata, year, title_similarity)
-            in possibly_found.items()
-        ],
-        key=lambda x: x[3]
-    )
+possibly_found_formatted = sorted(
+    [
+        (title_oscar, title_metadata, year, title_similarity)
+        for title_oscar, (title_metadata, year, title_similarity)
+        in possibly_found.items()
+    ],
+    key=lambda x: x[3]
+)
 
 print('Not found movies:', possibly_found, end='\n\n')
 
