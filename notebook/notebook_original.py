@@ -255,3 +255,6 @@ for title, year in not_in_metadata_database.items():
     )
 
 print('Not found movies:', possibly_found, end='\n\n')
+
+with open('possibly_found', 'w') as file:
+    file.write(str(possibly_found_formatted))
