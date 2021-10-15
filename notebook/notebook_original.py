@@ -9,6 +9,8 @@ oscar_movies = pd.read_csv('kaggle/input/the-oscar-award/the_oscar_award.csv')
 oscar_movies.info()
 oscar_movies.describe()
 
+
+
 # A única coluna com itens faltantes é a coluna film.
 # Vamos explorar as linhas em que faltam esses dados para entender o porquê,
 # e em quais categorias isso está ocorrendo
@@ -30,6 +32,7 @@ oscar_movies = oscar_movies.drop(rows_to_drop)
 
 print(oscar_movies[oscar_movies['film'].isnull()]['category'].unique())
 oscar_movies[oscar_movies['film'].isnull()].head()
+
 
 
 # As linhas restantes com dados faltantes na coluna filme são de categorias
@@ -77,6 +80,12 @@ rows_to_drop = oscar_movies[
 oscar_movies = oscar_movies.drop(rows_to_drop)
 
 oscar_movies.info()
+
+
+
+print(oscar_movies[oscar_movies['film'].str.contains('Glen Campbell')])
+quit()
+
 
 
 # Um fato que pode ser observado analisando esses dados restantes é que algumas das
@@ -157,14 +166,14 @@ def normalize(name):
     normalized_name = name
     try:
         for character in [
-            ':', '!', '?', ' -', '...', '/', ')', '(', "'", '.', '-', '·'
+            ':', '!', '?', ' -', '-', '... ', '...', '/', ')', '(', "'", '.', '·', ',', '"'
         ]:
             normalized_name = normalized_name.replace(character, '')
 
         for foreign_character, replacement in {
             'ž': 'z',
             'ń': 'n',
-        }:
+        }.items():
             normalized_name = normalized_name.replace(foreign_character, replacement)
 
         normalized_name = normalized_name.lower()
@@ -180,6 +189,7 @@ movies_metadata['original_title'] = movies_metadata['original_title'].apply(norm
 oscar_movies['film'] = oscar_movies['film'].apply(normalize)
 
 
+
 metadata_english_titles = {
     movie[1]['title']: movie[1]['release_year']
     for movie in movies_metadata.iterrows()
@@ -189,6 +199,8 @@ metadata_original_titles = {
     movie[1]['original_title']: (movie[1]['release_year'], movie[1]['title'])
     for movie in movies_metadata.iterrows()
 }
+
+
 
 # checar filmes do Oscar que não estão no dataset de metadados
 not_in_metadata_database = {}
@@ -254,10 +266,14 @@ possibly_found_formatted = sorted(
     key=lambda x: x[3]
 )
 
-print('Not found movies:', possibly_found, end='\n\n')
+print('Not found movies:', possibly_found_formatted, end='\n\n')
 
-with open('possibly_found', 'w') as file:
-    file.write(str(possibly_found_formatted))
+
+
+# with open('possibly_found', 'w') as file:
+#     file.write(str(possibly_found_formatted))
+
+
 
 
 # Filmes que podem ser reconhecidos nas duas listas:
