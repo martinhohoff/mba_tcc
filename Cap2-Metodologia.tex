@@ -98,16 +98,31 @@
 
             Algumas dessas categorias também precisaram de consolidação, já que seus nomes apareciam de formas diferentes. Foram utilizados os nomes mais recentes.
 
-            O passo seguinte é adicionar as informações de premiação ao dataset principal a ser analisado. Para isso, vamos ver se todos os filmes do dataset dos Oscars estão contidos no dataset The Movies Dataset, e criar colunas no formato one-hot encoding para inserir as informações de nomeação e vitória em cada categoria para cada filme.
+            O passo seguinte é adicionar as informações de premiação ao dataset principal a ser analisado. Consideramos que um filme é o mesmo nos dois datasets caso seu nome e ano de lançamento seja o mesmo nas duas tabelas.
 
-            Para fazer essa união entre as duas tabelas, foi também necessário normalizar nomes nas duas tabelas. Alguns dos desafios encontrados nesse estágio foram:
+            Mas para fazer essa união entre as duas tabelas, foi também necessário normalizar nomes nas duas tabelas. Alguns dos desafios encontrados nesse estágio foram:
+
             - remoção de caracteres especiais e capitalização;
             - existência, na tabela do Oscar, de filmes com título em inglês ou no original em outra língua;
             - títulos estilizados (geralmente com pontuação no nome).
 
-            Após essas etapas, já é possível relacionar entre as tabelas 615 dos 939 filmes no dataset do Oscar. Mas dois desafios especiais se deram por conta de:\par
+            Após essas etapas, já é possível relacionar entre as tabelas 620 dos 939 filmes no dataset do Oscar. Mas dois desafios especiais se deram por conta de:\par
             - títulos em inglês diferentes de acordo com o país - por exemplo, o filme "Harry Potter e a Pedra Filosofal", lançado nos Estados Unidos e Índia como "Harry Potter and the Sorcerer's Stone" e nos outros países de língua inglesa "Harry Potter and the Philosopher's Stone" \cite{yahoo2000};\par
-            - títulos divergentes entre as duas tabelas (como "Mt. Head" na tabela do Oscar, que consta como "Mount head" na tabela de metadados de filmes). Para esses casos, foi realizada uma análise de similaridade entre os títulos não encontrados nas duas tabelas, utilizando a biblioteca nativa difflib do Python, e uma análise caso a caso.\newline
+            - títulos divergentes entre as duas tabelas (como "Mt. Head" na tabela do Oscar, que consta como "Mount head" na tabela de metadados de filmes).\par
+            Para esses casos, foi realizada uma análise de similaridade entre os títulos não encontrados nas duas tabelas, utilizando a biblioteca nativa difflib do Python, e uma análise caso a caso. Foram encontrados\newline
+            - Filmes com anos de lançamento divergente entre os datasets (por exemplo, data de lançamento
+
+
+
+
+
+
+
+
+            Para isso, vamos ver se todos os filmes do dataset dos Oscars estão contidos no dataset The Movies Dataset, e criar colunas no formato one-hot encoding para inserir as informações de nomeação e vitória em cada categoria para cada filme.
+
+
+
 
             \textbf{Arcabouço de análise exploratória}\par
             Após unificados os dados, será realizada análise exploratória com Pandas, Numpy, e Scikit Learn para conferir a natureza dos dados, a existência de dados faltantes ou inconsistentes e a existência de tendências que auxiliem na construção dos modelos.\newline
