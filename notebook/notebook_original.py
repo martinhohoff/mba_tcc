@@ -156,8 +156,11 @@ oscar_movies['year_film'].describe()
 def normalize(name):
     normalized_name = name
     try:
-        for character in [':', '!', '?', ' -', '...', '/', ')', '(', "'", '.', '-', '·']:
+        for character in [
+            ':', '!', '?', ' -', '...', '/', ')', '(', "'", '.', '-', '·'
+        ]:
             normalized_name = normalized_name.replace(character, '')
+
         normalized_name = normalized_name.lower()
 
     except:
