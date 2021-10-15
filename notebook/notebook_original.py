@@ -163,7 +163,7 @@ def normalize(name):
     normalized_name = name
     try:
         for character in [
-            ':', '!', '?', ' -', '- ', '-', '... ', '...', '/', ')', '(', "'", '.', '·', ',', '"'
+            ':', '!', '?', ' -', '- ', '-', '... ', '...', '/', "'", '.', '·', ',', '"'
         ]:
             normalized_name = normalized_name.replace(character, '')
 
@@ -208,21 +208,48 @@ oscar_titles = {
     for movie in oscar_movies.iterrows()
 }
 
-# Consertar nomes que estão levemente diferentes nas duas databases
-for title, year in oscar_titles.items():
-    # adicionar à lista se o nome normalizado não estiver na lista de nomes normalizados
-    if title in metadata_english_titles and metadata_english_titles[title] == year:
-        in_metadata_database[title] = year
+# Considerar títulos originais e em inglês no dataset do Oscar
+for complete_title, year in oscar_titles.items():
+    found = False
 
-    elif title in metadata_original_titles and metadata_original_titles[title][0] == year:
-        english_title = metadata_original_titles[title][1]
+    if complete_title in metadata_english_titles and metadata_english_titles[complete_title] == year:
+        in_metadata_database[complete_title] = year
+        found = True
+
+    elif complete_title in metadata_original_titles and metadata_original_titles[complete_title][0] == year:
+        english_title = metadata_original_titles[complete_title][1]
         oscar_movies.loc[
-            (oscar_movies['film'] == title) & (oscar_movies['year_film'] == year)
-        ]['film'] = english_title
+            (oscar_movies['film'] == complete_title) & (oscar_movies['year_film'] == year)
+            ]['film'] = english_title
         in_metadata_database[english_title] = year
+        found = True
 
-    else:
-        not_in_metadata_database[title] = year
+    if not found:
+        # Se não encontrado, considerar caso especial: filmes com os dois títulos no nome, separados por parênteses
+        titles = [
+            title for title in
+            complete_title.replace('(', '*****').replace(')', '*****').split('*****')
+            if title
+        ]
+        for title in titles:
+            if title in metadata_english_titles and metadata_english_titles[title] == year:
+                in_metadata_database[title] = year
+                found = True
+                break
+
+            elif title in metadata_original_titles and metadata_original_titles[title][0] == year:
+                english_title = metadata_original_titles[title][1]
+                oscar_movies.loc[
+                    (oscar_movies['film'] == title) & (oscar_movies['year_film'] == year)
+                ]['film'] = english_title
+                in_metadata_database[english_title] = year
+                found = True
+                break
+
+    # se ainda não encontrado, adicionar à lista de filmes não encontrados
+    if not found:
+        not_in_metadata_database[complete_title] = year
+
 
 print(len(in_metadata_database), 'found')
 print(len(not_in_metadata_database), 'not found')
