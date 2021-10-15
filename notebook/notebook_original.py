@@ -164,7 +164,7 @@ def normalize(name):
         for foreign_character, replacement in {
             'ž': 'z',
             'ń': 'n',
-        }
+        }:
             normalized_name = normalized_name.replace(foreign_character, replacement)
 
         normalized_name = normalized_name.lower()
@@ -232,8 +232,12 @@ def similarity(a, b):
 
 
 i = 0
+total = len(not_in_metadata_database)
 possibly_found = {}
+
 for title, year in not_in_metadata_database.items():
+    i += 1
+    print(f'Movie {i} of {total}')
     best_match = 0
 
     for other_title, other_year in metadata_english_titles.items():
@@ -256,4 +260,5 @@ for title, year in not_in_metadata_database.items():
         ],
         key=lambda x: x[3]
     )
-    print('Analysed', i, 'not found movies:', possibly_found, end='\n\n')
+
+print('Not found movies:', possibly_found, end='\n\n')
