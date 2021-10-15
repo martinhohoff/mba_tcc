@@ -258,3 +258,12 @@ print('Not found movies:', possibly_found, end='\n\n')
 
 with open('possibly_found', 'w') as file:
     file.write(str(possibly_found_formatted))
+
+
+# Filmes que podem ser reconhecidos nas duas listas:
+movies_to_rename = {
+    'harry potter and the sorcerers stone': 'harry potter and the philosophers stone',
+    'wallace & gromit in the curse of the wererabbit': 'the curse of the wererabbit',
+    'mt head': 'mount head',
+    'wardance': 'war dance',
+}
