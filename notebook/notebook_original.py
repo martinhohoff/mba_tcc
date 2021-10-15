@@ -186,9 +186,7 @@ not_in_metadata_database = {}
 in_metadata_database = {}
 
 oscar_titles = {
-    normalize(
-        movie[1]['film']
-    ): (movie[1]['film'], movie[1]['year_film'])
+    movie[1]['film']: movie[1]['year_film']
     for movie in oscar_movies.iterrows()
 }
 
