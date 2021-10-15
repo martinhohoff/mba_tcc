@@ -83,10 +83,6 @@ oscar_movies.info()
 
 
 
-print(oscar_movies[oscar_movies['film'].str.contains('Glen Campbell')])
-quit()
-
-
 
 # Um fato que pode ser observado analisando esses dados restantes é que algumas das
 # categorias tiveram mudanças de nomes - como foi o caso na premiação de filme de língua
@@ -161,12 +157,13 @@ oscar_movies = oscar_movies.drop(rows_to_drop)
 oscar_movies['year_film'].describe()
 
 
+
 # Normalização de nomes para comparação entre os dois datasets
 def normalize(name):
     normalized_name = name
     try:
         for character in [
-            ':', '!', '?', ' -', '-', '... ', '...', '/', ')', '(', "'", '.', '·', ',', '"'
+            ':', '!', '?', ' -', '- ', '-', '... ', '...', '/', ')', '(', "'", '.', '·', ',', '"'
         ]:
             normalized_name = normalized_name.replace(character, '')
 
