@@ -282,10 +282,13 @@ for title, year in not_in_metadata_database.items():
             best_match = title_similarity
             possibly_found[title, year] = other_title, other_year, title_similarity
 
+with open('possibly_found', 'w') as file:
+    file.write(str(possibly_found_formatted))
+
 possibly_found_formatted = sorted(
     [
         (title_oscar, oscar_year, title_metadata, metadata_year, title_similarity)
-        for title_oscar, oscar_year, (title_metadata, metadata_year, title_similarity)
+        for (title_oscar, oscar_year), (title_metadata, metadata_year, title_similarity)
         in possibly_found.items()
     ],
     key=lambda x: x[4]
