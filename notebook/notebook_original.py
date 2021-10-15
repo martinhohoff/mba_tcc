@@ -161,6 +161,12 @@ def normalize(name):
         ]:
             normalized_name = normalized_name.replace(character, '')
 
+        for foreign_character, replacement in {
+            'ž': 'z',
+            'ń': 'n',
+        }
+            normalized_name = normalized_name.replace(foreign_character, replacement)
+
         normalized_name = normalized_name.lower()
 
     except:
@@ -250,4 +256,4 @@ for title, year in not_in_metadata_database.items():
         ],
         key=lambda x: x[3]
     )
-    print('Analysed', i, 'not found movies:', possibly_found, end='\r')
+    print('Analysed', i, 'not found movies:', possibly_found, end='\n\n')
