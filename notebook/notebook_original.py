@@ -218,14 +218,9 @@ for title, year in oscar_titles.items():
 print(len(in_metadata_database), 'found')
 print(len(not_in_metadata_database), 'not found')
 
+
 # Checar filmes que podem estar com nomes levemente diferentes nas duas plataformas,
-# realizando uma análise de similaridade entre os títulos normalizados, aplicando um threshold
-# arbitrário para conferência manual da identidade entre os filmes
-
-
-
-# SIMILARITY_THRESHOLD = 0.7
-
+# realizando uma análise de similaridade entre os títulos normalizados
 
 def similarity(a, b):
     try:
@@ -247,11 +242,6 @@ for title, year in not_in_metadata_database.items():
         title_similarity = similarity(title, other_title)
 
         if year == other_year and title_similarity > best_match:
-
-        # if title_similarity >= SIMILARITY_THRESHOLD \
-        #         and year == other_year \
-        #         and title_similarity > best_match:
-
             best_match = title_similarity
             possibly_found[title] = other_title, year, title_similarity
 
