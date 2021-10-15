@@ -277,25 +277,26 @@ for title, year in not_in_metadata_database.items():
     for other_title, other_year in metadata_english_titles.items():
         title_similarity = similarity(title, other_title)
 
-        if year == other_year and title_similarity > best_match:
+        # checar similaridade e anos ligeiramentes distintos entre os datasets
+        if title_similarity > best_match and other_year - 1 <= year <= other_year + 1:
             best_match = title_similarity
-            possibly_found[title] = other_title, year, title_similarity
+            possibly_found[title, year] = other_title, other_year, title_similarity
 
 possibly_found_formatted = sorted(
     [
-        (title_oscar, title_metadata, year, title_similarity)
-        for title_oscar, (title_metadata, year, title_similarity)
+        (title_oscar, oscar_year, title_metadata, metadata_year, title_similarity)
+        for title_oscar, oscar_year, (title_metadata, metadata_year, title_similarity)
         in possibly_found.items()
     ],
-    key=lambda x: x[3]
+    key=lambda x: x[4]
 )
 
 print('Not found movies:', possibly_found_formatted, end='\n\n')
 
 
 
-# with open('possibly_found', 'w') as file:
-#     file.write(str(possibly_found_formatted))
+with open('possibly_found', 'w') as file:
+    file.write(str(possibly_found_formatted))
 
 
 
