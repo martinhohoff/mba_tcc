@@ -107,16 +107,21 @@
             \begin{itemize}
                 \item remoção de caracteres especiais e capitalização;
                 \item existência, na tabela do Oscar, de filmes com título em inglês ou no original em outra língua;
-                \item títulos estilizados (geralmente com pontuação no nome).
+                \item títulos estilizados (geralmente com pontuação no nome);
+                \item filmes com anos diferentes nos dois datasets.
             \end{itemize}
 
+            Esse último item diz respeito à observação de filmes com ano de lançamento ('release\_year') diferentes do ano na tabela do Oscar (coluna 'year\_film'). Um exemplo é o filme 'Y tu mamá también', cuja coluna 'year\_film' tem valor 2002 no dataset do Oscar e 2001 no dataset de metadados. Nesses casos, a coluna 'year\_film' será corrigida para o valor presente na tabela de metadados.
 
-            Com essas informações, é possível relacionar entre as tabelas 664 dos 942 filmes no dataset do Oscar. Mas dois desafios especiais se deram por conta de:\par
-            
-            - títulos em inglês diferentes de acordo com o país - por exemplo, o filme "Harry Potter e a Pedra Filosofal", lançado nos Estados Unidos e Índia como "Harry Potter and the Sorcerer's Stone" e nos outros países de língua inglesa "Harry Potter and the Philosopher's Stone" \cite{yahoo2000};\par
-            - títulos divergentes entre as duas tabelas (como "Mt. Head" na tabela do Oscar, que consta como "Mount head" na tabela de metadados de filmes).\par
-            Para esses casos, foi realizada uma análise de similaridade entre os títulos não encontrados nas duas tabelas, utilizando a biblioteca nativa difflib do Python, e uma análise caso a caso, e dando margem de erro para o ano de cada filme de um ano para mais ou para menos.
-            
+
+            Com essas informações, já é possível relacionar entre as tabelas 753 dos 942 filmes existentes no dataset do Oscar. Para os restantes 189 filmes, dois desafios especiais se deram:\par
+
+            \begin{itemize}
+                \item títulos em inglês diferentes de acordo com o país - por exemplo, o filme "Harry Potter e a Pedra Filosofal", lançado nos Estados Unidos e Índia como "Harry Potter and the Sorcerer's Stone" e nos outros países de língua inglesa "Harry Potter and the Philosopher's Stone"; \cite{yahoo2000};\par
+                \item títulos divergentes entre as duas tabelas (como "Mt. Head" na tabela do Oscar, que consta como "Mount head" na tabela de metadados de filmes).\par
+            \end{itemize}
+
+            Para esses casos, foi realizada uma análise de similaridade entre os títulos não encontrados nas duas tabelas, utilizando a biblioteca nativa difflib do Python, e uma análise caso a caso.
             
             Nessa análise, foram considerados como o mesmo filme:\newline
             
