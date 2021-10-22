@@ -133,7 +133,103 @@
             	\legend{Fonte: trabalho nosso}
             \end{figure}
             
-            Para adicionar as informações dos Oscars ao The Movies Dataset, vamos criar colunas no formato one-hot encoding para inserir as informações de nomeação e vitória em cada categoria para cada filme.\newline
+            Após essa normalização e integração de instâncias, conseguimos localizar na tabela de metadados 774 dos 942 filmes do Oscar. As informações dos demais 168 serão ignoradas.
+
+            Podemos finalmente adicionar as informações dos Oscars ao The Movies Dataset. Para isso, vamos criar colunas no formato one-hot encoding para inserir as informações de nomeação e vitória em cada categoria para cada filme, seguindo a codificação da figura \ref{cat_cods}.
+
+            Para cada um desses códigos, foram criadas duas colunas: '{codigo}\_nominated' e '{codigo}\_won', para designar indicação e vitória na categoria. Também foi adicionada uma coluna para indicar o ano da cerimônia em que participou o filme, com valor None como padrão.
+
+            \begin{figure}[htb]
+            	\caption{\label{cat_cods}Codificação das categorias}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{categ_codes.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+
+% tabela de esquema
+
+% \begin{table}[]
+% \begin{tabular}{||c c c c||}
+%  \hline
+% \# & Column                                & Non-Null Count & Dtype              \\
+% 0  & adult                                 & 45466 non-null & object             \\
+% 1  & belongs\_to\_collection               & 4494 non-null  & object             \\
+% 2  & budget                                & 45466 non-null & object             \\
+% 3  & genres                                & 45466 non-null & object             \\
+% 4  & homepage                              & 7782 non-null  & object             \\
+% 5  & id                                    & 45466 non-null & object             \\
+% 6  & imdb\_id                              & 45449 non-null & object             \\
+% 7  & original\_language                    & 45455 non-null & object             \\
+% 8  & original\_title                       & 45466 non-null & object             \\
+% 9  & overview                              & 44512 non-null & object             \\
+% 10 & popularity                            & 45461 non-null & object             \\
+% 11 & poster\_path                          & 45080 non-null & object             \\
+% 12 & production\_companies                 & 45463 non-null & object             \\
+% 13 & production\_countries                 & 45463 non-null & object             \\
+% 14 & release\_date                         & 45376 non-null & datetime64{[}ns{]} \\
+% 15 & revenue                               & 45460 non-null & float64            \\
+% 16 & runtime                               & 45203 non-null & float64            \\
+% 17 & spoken\_languages                     & 45460 non-null & object             \\
+% 18 & status                                & 45379 non-null & object             \\
+% 19 & tagline                               & 20412 non-null & object             \\
+% 20 & title                                 & 45460 non-null & object             \\
+% 21 & video                                 & 45460 non-null & object             \\
+% 22 & vote\_average                         & 45460 non-null & float64            \\
+% 23 & vote\_count                           & 45460 non-null & float64            \\
+% 24 & release\_year                         & 45376 non-null & float64            \\
+% 25 & normalized\_title                     & 45460 non-null & object             \\
+% 26 & normalized\_original\_title           & 45466 non-null & object             \\
+% 27 & leading\_actor\_nominated             & 45466 non-null & int64              \\
+% 28 & leading\_actor\_won                   & 45466 non-null & int64              \\
+% 29 & supporting\_actor\_nominated          & 45466 non-null & int64              \\
+% 30 & supporting\_actor\_won                & 45466 non-null & int64              \\
+% 31 & leading\_actress\_nominated           & 45466 non-null & int64              \\
+% 32 & leading\_actress\_won                 & 45466 non-null & int64              \\
+% 33 & supporting\_actress\_nominated        & 45466 non-null & int64              \\
+% 34 & supporting\_actress\_won              & 45466 non-null & int64              \\
+% 35 & animated\_feature\_nominated          & 45466 non-null & int64              \\
+% 36 & animated\_feature\_won                & 45466 non-null & int64              \\
+% 37 & production\_design\_nominated         & 45466 non-null & int64              \\
+% 38 & production\_design\_won               & 45466 non-null & int64              \\
+% 39 & cinematography\_nominated             & 45466 non-null & int64              \\
+% 40 & cinematography\_won                   & 45466 non-null & int64              \\
+% 41 & costume\_design\_nominated            & 45466 non-null & int64              \\
+% 42 & costume\_design\_won                  & 45466 non-null & int64              \\
+% 43 & directing\_nominated                  & 45466 non-null & int64              \\
+% 44 & directing\_won                        & 45466 non-null & int64              \\
+% 45 & documentary\_feature\_nominated       & 45466 non-null & int64              \\
+% 46 & documentary\_feature\_won             & 45466 non-null & int64              \\
+% 47 & documentary\_short subject\_nominated & 45466 non-null & int64              \\
+% 48 & documentary\_short subject\_won       & 45466 non-null & int64              \\
+% 49 & editing\_nominated                    & 45466 non-null & int64              \\
+% 50 & editing\_won                          & 45466 non-null & int64              \\
+% 51 & international\_feature\_nominated     & 45466 non-null & int64              \\
+% 52 & international\_feature\_won           & 45466 non-null & int64              \\
+% 53 & makeup\_nominated                     & 45466 non-null & int64              \\
+% 54 & makeup\_won                           & 45466 non-null & int64              \\
+% 55 & original\_score\_nominated            & 45466 non-null & int64              \\
+% 56 & original\_score\_won                  & 45466 non-null & int64              \\
+% 57 & original\_song\_nominated             & 45466 non-null & int64              \\
+% 58 & original\_song\_won                   & 45466 non-null & int64              \\
+% 59 & best\_picture\_nominated              & 45466 non-null & int64              \\
+% 60 & best\_picture\_won                    & 45466 non-null & int64              \\
+% 61 & animated\_short\_nominated            & 45466 non-null & int64              \\
+% 62 & animated\_short\_won                  & 45466 non-null & int64              \\
+% 63 & live\_action\_short\_nominated        & 45466 non-null & int64              \\
+% 64 & live\_action\_short\_won              & 45466 non-null & int64              \\
+% 65 & sound\_nominated                      & 45466 non-null & int64              \\
+% 66 & sound\_won                            & 45466 non-null & int64              \\
+% 67 & visual\_effects\_nominated            & 45466 non-null & int64              \\
+% 68 & visual\_effects\_won                  & 45466 non-null & int64              \\
+% 69 & writing\_adapted\_nominated           & 45466 non-null & int64              \\
+% 70 & writing\_adapted\_won                 & 45466 non-null & int64              \\
+% 71 & writing\_original\_nominated          & 45466 non-null & int64              \\
+% 72 & writing\_original\_won                & 45466 non-null & int64              \\
+% 73 & year\_ceremony                        & 766 non-null   & object
+% \end{tabular}
+% \end{table}
+
             
             \textbf{Arcabouço de análise exploratória}\par
             Após unificados os dados, será realizada análise exploratória com Pandas, Numpy, e Scikit Learn para conferir a natureza dos dados, a existência de dados faltantes ou inconsistentes e a existência de tendências que auxiliem na construção dos modelos.\newline
