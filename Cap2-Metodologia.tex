@@ -137,8 +137,6 @@
 
             Podemos finalmente adicionar as informações dos Oscars ao The Movies Dataset. Para isso, vamos criar colunas no formato one-hot encoding para inserir as informações de nomeação e vitória em cada categoria para cada filme, seguindo a codificação da figura \ref{cat_cods}.
 
-            Para cada um desses códigos, foram criadas duas colunas: '{codigo}\_nominated' e '{codigo}\_won', para designar indicação e vitória na categoria. Também foi adicionada uma coluna para indicar o ano da cerimônia em que participou o filme, com valor None como padrão.\newline
-
             \begin{figure}[htb]
             	\caption{\label{cat_cods}Codificação das categorias}
             	\begin{center}
@@ -147,7 +145,12 @@
             	\legend{Fonte: trabalho nosso}
             \end{figure}
 
-            A partir de agora, removeremos colunas que não foram consideradas relevantes na análise, ou quantificáveis. A saber:
+            Para cada um desses códigos, foram criadas duas colunas: '{codigo}\_nominated' e '{codigo}\_won', para designar indicação e vitória na categoria. Também foi adicionada uma coluna para indicar o ano da cerimônia em que participou o filme, com valor None como padrão.\newline
+
+            \textbf{Arcabouço de análise exploratória}\par
+            Após unificados os dados, pôde ser realizada análise exploratória com Pandas, Numpy, e Scikit Learn para conferir a natureza dos dados, a existência de dados faltantes ou inconsistentes e a existência de tendências que auxiliem na construção dos modelos.\newline
+
+            Algumas das colunas analisadas não foram consideradas relevantes na análise, ou quantificáveis. A saber:
 
             \begin{itemize}
                 \item 'belongs\_to\_collection', uma representação da coleção a que supostamente pertence o filme - esse dado está representado de forma bastante subjetiva no dataset;
@@ -160,10 +163,9 @@
             \end{itemize}
 
             A coluna 'genres' foi convertida em one-hot encoding, levando-se em consideração apenas gêneros que aparecem mais de uma vez na tabela, a saber: 'animation', 'comedy', 'family', 'adventure', 'fantasy', 'romance', 'drama', 'action', 'crime', 'thriller', 'horror', 'history', 'science\_fiction', 'mystery', 'war', 'foreign', 'music', 'documentary', 'western' e 'tv\_movie'.
-            
-            \textbf{Arcabouço de análise exploratória}\par
-            Após unificados os dados, será realizada análise exploratória com Pandas, Numpy, e Scikit Learn para conferir a natureza dos dados, a existência de dados faltantes ou inconsistentes e a existência de tendências que auxiliem na construção dos modelos.\newline
-    
+
+            A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 22900 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.
+
             \textbf{Criação de modelos}\par
             Serão criados modelos de regressão para inferir a chance de premiação utilizando diferentes algoritmos, entre os quais árvores de decisão, regressão logística, support vector machines, random forest e redes neurais.\newline
     
