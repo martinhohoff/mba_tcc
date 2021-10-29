@@ -194,14 +194,6 @@
             \end{figure}
 
             \begin{figure}[htb]
-            	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4}
-            	\begin{center}
-            		\includegraphics[scale=0.7]{corrs0.4.png}
-            	\end{center}
-            	\legend{Fonte: trabalho nosso}
-            \end{figure}
-
-            \begin{figure}[htb]
             	\caption{\label{colunas_influentes}Colunas que mais aparecem nas correlações altas}
             	\begin{center}
             		\includegraphics[scale=0.7]{colunas_influentes.png}
@@ -209,11 +201,17 @@
             	\legend{Fonte: trabalho nosso}
             \end{figure}
 
-            Também ignoramos as correlações entre países de produção. Mesmo as altas entre elas não acrescentavam dados à nossa análise. A coluna que indica filmes produzidos nas Antilhas Holandesas (country\_AN), por exemplo, tem correlação perfeita com a coluna que marca filmes produzidos na Polinésia Francesa (country\_FP).\par
+            \begin{figure}[htb]
+            	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4 - lista completa}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{corrs0.4.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
 
-            Experimentamos analisar apenas as 10 correlações maiores que 0.5, mas era possível notar que, mesmo na borda inferior da tabela, onde estavam as correlações menores, ainda era possível ver relações muito relevantes (por exemplo, de indicações em categorias técnicas, por meio das colunas 'nominated\_sound', e 'nominated\_editing, que apresentam uma correlação de 0.5021.\par
+            Também ignoramos as correlações entre países de produção. Mesmo as altas entre elas não acrescentavam dados à nossa análise. A coluna que indica filmes produzidos nas Antilhas Holandesas ('country\_AN'), por exemplo, tem correlação perfeita com a coluna que marca filmes produzidos na Polinésia Francesa ('country\_FP').\par
 
-            Por conta da viabilidade da análise, decidimos nos limitar às 57 correlações maiores do que 0.4. Correlações maiores do que 0.3 já gerariam uma lista com mais de 100 itens (ver figuras \ref{corrs_graph} e \ref{corrs0.4}). \par
+            Levando em conta a viabilidade da análise, decidimos nos limitar às 57 correlações maiores do que 0.4. Correlações maiores do que 0.3 já gerariam uma lista com mais de 100 itens (ver figuras \ref{corrs_graph} e \ref{corrs0.4}). \par
             
             Algumas das correlações interessantes reveladas por essa análise, e que podem ajudar na construção dos modelos, ou indicar parâmetros importantes:
             
