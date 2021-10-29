@@ -201,9 +201,22 @@
             Algumas das correlações interessantes reveladas por essa análise, e que podem ajudar na construção dos modelos, ou indicar parâmetros importantes:
 
             \begin{itemize}
-            \item 'vote\_count', o número total de votos que um filme recebeu no site MovieLens tem correlação de 0.81, a mais alta encontrada. Pode indicar que filmes muito assistidos recebem muitos votos no site;
-            \item 'vote\_count', o número total de votos que um filme recebeu no site MovieLens tem correlação de 0.81, a mais alta encontrada. Pode indicar que filmes muito assistidos recebem muitos votos no site.
+
+            \item 'vote\_count', o número total de votos que um filme recebeu no site MovieLens tem correlação de 0.81 com a arrecadação do filme ('revenue'), a mais alta encontrada. Parece indicar que filmes muito assistidos recebem muitos votos no site;
+
+            \item A segunda maior correlação envolvendo a arrecadação de um filme é a de indicação na categoria de efeitos visuais ('nominated\_visual\_effects', 0.40). Reforçamos a existência dessa relação entre arrecadação e efeitos visuais ao ver que 12 dos 16 vencedores do oscar de efeitos visuais no nosso dataset final não estão na lista de 200 maiores bilheterias da história (ver \citeonline{mojo2021} e figura \ref{vencedores_efeitos});
+
+            \item 9 das 35 correlações envolvem a coluna 'nominated\_best\_picture'. Outras 5 envolvem a coluna 'won\_best\_picture'. Há uma grande relação entre filmes indicados e vencedores do Oscar de melhor filme, a principal categoria da premiação, e a indicação e vitória em outras categorias.
+
             \end{itemize}
+
+            \begin{figure}[htb]
+            	\caption{\label{vencedores_efeitos}Filmes vencedores do Oscar de Efeitos Visuais no dataset analisado}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{vencedores_efeitos.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
 
             \textbf{Criação de modelos}\par
             Serão criados modelos de regressão para inferir a chance de premiação utilizando diferentes algoritmos, entre os quais árvores de decisão, regressão logística, support vector machines, random forest e redes neurais.\newline
