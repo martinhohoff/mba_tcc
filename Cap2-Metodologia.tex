@@ -166,7 +166,21 @@
             A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 22900 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.\newline
 
             \textbf{Arcabouço de análise exploratória}\par
-            Como primeiro ponto da análise exploratória dos dados, foram analisadas as correlações entre as colunas do dataframe. Por se tratar de um grande número de atributos - n =~ 240, gerando um número de correlações de n\^2 ~= 60000 -, foi necessário experimentar valores mínimos arbitrários para as correlações. Experimentamos analisar apenas as correlações maiores que 0.5.
+            Como primeiro ponto da análise exploratória dos dados, foram analisadas as correlações entre as colunas do dataframe. Por se tratar de um grande número de atributos - n =~ 240, gerando um número de correlações de n\^2 ~= 60000 -, foi necessário experimentar valores mínimos arbitrários para as correlações.\newline
+
+            Também ignoramos as correlações entre países de produção. Mesmo as altas entre elas não acrescentavam dados à nossa análise. A coluna que indica filmes produzidos nas Antilhas Holandesas (country\_AN), por exemplo, têm correlação perfeita com a coluna que marca filmes produzidos na Polinésia Francesa (country\_FP).\newline
+
+            Experimentamos analisar apenas as 13 correlações maiores que 0.5, mas era possível notar que, mesmo na borda inferior da tabela, onde estavam as correlações menores, ainda era possível ver relações relevantes (por exemplo, de indicações em categorias técnicas, por meio das colunas 'nominated\_sound', e 'nominated\_editing, que apresentam uma correlação de 0.5021.\newline
+
+            \begin{figure}[htb]
+            	\caption{\label{corrs0.5}Correlação entre colunas com valor mínimo de 0.5}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{corrs0.5.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+
+            Por conta da viabilidade da análise, decidimos nos limitar às 57 correlações maiores do que 0.4. Correlações maiores do que 0.3 \newline
 
             \textbf{Criação de modelos}\par
             Serão criados modelos de regressão para inferir a chance de premiação utilizando diferentes algoritmos, entre os quais árvores de decisão, regressão logística, support vector machines, random forest e redes neurais.\newline
