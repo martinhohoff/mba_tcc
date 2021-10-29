@@ -180,19 +180,30 @@
             	\legend{Fonte: trabalho nosso}
             \end{figure}
 
-            Por conta da viabilidade da análise, decidimos nos limitar às 57 correlações maiores do que 0.4. Correlações maiores do que 0.3 já gerariam uma lista com mais de 100 itens (ver figuras \ref{corrs0.5} e \ref{corrs_graph}). \par
+            Por conta da viabilidade da análise, decidimos nos limitar às 57 correlações maiores do que 0.4. Correlações maiores do que 0.3 já gerariam uma lista com mais de 100 itens (ver figuras \ref{corrs0.5}, \ref{corrs_graph} e \ref{corrs0.4}). \par
 
             \begin{figure}[htb]
-            	\caption{\label{corrs_graph}Número de correlações maiores que o threshold para cada threshold}
+            	\caption{\label{corrs_graph}Número de correlações maiores que cada valor de threshold}
             	\begin{center}
-            		\includegraphics[scale=0.7]{corrs_graph.png}
+            		\includegraphics[scale=0.8]{corrs_graph.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+
+            \begin{figure}[htb]
+            	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{corrs0.4.png}
             	\end{center}
             	\legend{Fonte: trabalho nosso}
             \end{figure}
 
             Algumas das correlações interessantes reveladas por essa análise, e que podem ajudar na construção dos modelos, ou indicar parâmetros importantes:
 
-
+            \begin{itemize}
+            \item 'vote\_count', o número total de votos que um filme recebeu no site MovieLens tem correlação de 0.81, a mais alta encontrada. Pode indicar que filmes muito assistidos recebem muitos votos no site;
+            \item 'vote\_count', o número total de votos que um filme recebeu no site MovieLens tem correlação de 0.81, a mais alta encontrada. Pode indicar que filmes muito assistidos recebem muitos votos no site.
+            \end{itemize}
 
             \textbf{Criação de modelos}\par
             Serão criados modelos de regressão para inferir a chance de premiação utilizando diferentes algoritmos, entre os quais árvores de decisão, regressão logística, support vector machines, random forest e redes neurais.\newline
