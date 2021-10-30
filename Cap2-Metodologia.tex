@@ -4,13 +4,13 @@
 \chapter[Metodologia]{Metodologia}
 
     \section{Fundamentos}
-    
+
         \subsection{Tratamento de Dados}
             Em relação às etapas de tratamento de dados necessárias em um projeto de aprendizagem de máquina, vamos nos deter a dois pontos principais: outliers e dados faltantes.\newline 
-        
+
             \textbf{Dados espúrios}\par
             Um outlier "é uma observação que se encontra a uma distância anormal de outros valores em uma amostra aleatória de uma população. (...) Outliers podem distorcer a distribuição sumária de valores de atributos em estatísticas descritivas como média e desvio padrão e em gráficos como histogramas e gráficos de dispersão, comprimindo o corpo dos dados." \cite{portal2018}\newline
-        
+
             \textbf{Dados faltantes}\par
             Durante o desenvolvimento de um modelo, "é comum existirem, dentre as variáveis preditivas, algumas que possuem dados não preenchidos (missings), sendo necessário assim adotar algum procedimento para tratamento destas variáveis." \cite{assuncao2012}\newline
 
@@ -25,17 +25,17 @@
 
 		    \textbf{Regressão logística}\par
 		    A regressão logística "é uma técnica estatística que tem como objetivo produzir, a partir de um conjunto de observações, um modelo que permita a predição de valores tomados por uma variável categórica, frequentemente binária, em função de uma ou mais variáveis." \cite{gonzalez2018}\newline
-		    
+
 		    \textbf{Support vector machines}\par
 		     Algoritmos de máquina de vetores de suporte (em inglês, Support Vector Machines, ou SVM) "têm como objetivo a determinação de limites de decisão que produzam uma separação ótima entre classes por meio da minimização dos erros." \cite{nascimento2009}\newline
-		    
+
 		    \textbf{Random forest}\par
 		    O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}\newline
-		    
-		    
+
+		
 		    \textbf{Redes neurais}\par
 		    Redes Neurais "são um formato de estrutura de dados inspirada nas redes de neurônios do cérebro humano (...) organizadas em uma lógica de camadas e nós dentro dos códigos de programação, sugerindo uma estrutura vagamente similar ao que ocorre com os neurônios".\cite{ilumeo2020}\newline
-		    
+
 	    \subsection{Avaliação de algoritmos de regressão}
 	    Para comparar e selecionar modelos de aprendizagem de máquina, é necessário definir métricas que possam ser utilizadas como critério de avaliação. Entre elas, podemos destacar três:\newline
 	
@@ -49,7 +49,7 @@
 	        O Erro Médio Absoluto "é similar ao Erro Médio Quadrático. No entanto, em vez da soma do quadrado do erro no EMQ, EMA utiliza a soma do valor absoluto do erro." \cite{towards2020} (tradução do autor)
 
     \section{Trabalhos relacionados}
-    
+
         \textbf{Popularidade de filmes}\par
 
         Entre os trabalhos já realizados sobre a aplicação de algoritmos de aprendizagem de máquina na predição de popularidade de filmes, podemos destacar o artigo "Prediction of Movies popularity Using Machine Learning Techniques" ("Previsão da popularidade de filmes usando técnicas de aprendizado de máquina", tradução do autor).\par
@@ -59,24 +59,24 @@
         \textbf{Predição de bilheteria}\par
         Em relação à predição de bilheteria para um filme, Quader et al destacam a importância dos metadados no artigo "Performance evaluation of seven machine learning classification techniques for movie box office success prediction" ("Avaliação de desempenho de sete técnicas de classificação de aprendizado de máquina para previsão de sucesso de bilheteria de filmes", tradução nossa). Os autores buscam "realizar uma comparação de desempenho entre vários métodos de aprendizado de máquina. Escolhemos sete técnicas de aprendizado de máquina para esta comparação, como Support Vector Machine (SVM), Regressão Logística, Multilayer Perceptron Neural Network, Gaussian Naive Bayes, Random Forest, AdaBoost e Stochastic Gradient Descent (SGD). Todos esses métodos prevêem um valor aproximado de lucro líquido de um filme, analisando dados históricos de diferentes fontes como IMDb, Rotten Tomatoes, Box Office Mojo e Meta Critic." \cite{quader2017} (tradução do autor)\par
         Entre as conclusões, os autores citam elementos que podem facilitar ou dificultar a análise: "Se a condição econômica e política de um país não é estável, não importa o quão bem o filme seja feito, não haverá ninguém para assisti-lo. Portanto, incluir o PIB de um país como um atributo é uma boa opção para uma análise posterior. Também sugerimos analisar e incluir o número de público para análise. Podemos obter o número de audiência anual usando o total de ingressos vendidos em um determinado ano. Incluir esses atributos tornará a previsão mais precisa."
-    
+
     \section[Desenvolvimento]{Desenvolvimento}
 
         \subsection{Considerações iniciais}
         Este capítulo descreve as etapas de desenvolvimento dos modelos de previsão de chances de indicação e premiação no Oscar, detalhando as escolhas realizadas e os procedimentos adotados no processo. São explicados também os resultados atingidos, os problemas enfrentados e as melhorias que podem ser realizadas em trabalhos futuros.
-    
+
         \subsection{Atividades realizadas}
-    
+
             \textbf{Obtenção dos dados}\par
 
             Foi escolhida como fonte de dados para o trabalho a database "The Movies Dataset", da plataforma Kaggle. Trata-se de um conjunto incluindo "metadados para todos os 45.000 filmes listados no conjunto de dados Full MovieLens. O conjunto de dados consiste em filmes lançados em ou antes de julho de 2017. Os dados incluem elenco, equipe, palavras-chave do enredo, orçamento, receita, pôsteres, datas de lançamento, idiomas, empresas de produção, países, contagens de votos TMDB e média de votos".\cite{kaggle2017}\par
-            
+
             A base de dados 'The Oscar Award, 1927 - 2020' foi utilizada para complementar os metadados, adicionando a eles as informações de indicações e vitórias na premiação.\cite{kaggle2019}\newline
 
             \textbf{Limpeza e tratamento dos dados}\par
-            
+
             O primeiro desafio relacionado à limpeza e tratamento dos dados aparece na base \citeonline{kaggle2019}. Embora a base esteja bastante completa em todas os outras colunas, a coluna 'film' - justamente a que traz o nome do filme relacionado àquela premiação - está nula em 304 linhas.
-            
+
             \begin{figure}[htb]
             	\caption{\label{faltantes_film}Dados faltantes na coluna film}
             	\begin{center}
@@ -84,24 +84,24 @@
             	\end{center}
             	\legend{Fonte: trabalho nosso}
             \end{figure}
-            
+
             Em algumas dessas categorias, nota-se que se trata de prêmios honorários, humanitários ou de conjunto da obra. Esses dados foram desconsiderados, já que não se referem a um filme específico.
-            
+
             Já para duas das categorias que apresentam dados faltantes - "SPECIAL FOREIGN LANGUAGE FILM AWARD"
             e "HONORARY FOREIGN LANGUAGE FILM AWARD" -, é possível perceber que o nome se encontra na coluna 'name', precisando apenas de tratamento em alguns casos, podendo então ser transferido para a coluna "film".
-            
+
             Outras linhas com dados faltantes na coluna 'film' são de obtenção difícil ou imprecisa: um assistente de direção, por exemplo, pode ter tido mais de um filme lançado num mesmo ano, o que faria a checagem dos dados restantes muito trabalhosa. Essas colunas serão ignoradas, nos deixando ao final com 10098 linhas completas no dataset.
-            
+
             Um fato que pode ser observado analisando-se esses dados restantes é que algumas das categorias tiveram mudanças de nomes - como foi o caso na premiação de filme de língua estrangeira. Já outras categorias desapareceram da premiação ("melhor filme em preto e branco") ou foram incluídas. A categoria mais recente incluída na premiação é a de melhor filme de animação, criada em 2002. \cite{usatoday2002}.
-            
+
             Por esse fator, iremos desconsiderar filmes anteriores a essa data. Essa abordagem tem ainda a vantade de delimitar um recorte cronológico mais coeso, permitindo a visualisação de tendências, o que seria improvável na análise total de quase 100 anos de premiação. Iremos desconsiderar ainda a premiação de edição de som (sound editing), que foi descontinuada em 2019, a única removida após o ano de 2002.\cite{deadline2020}
-            
+
             Algumas dessas categorias também precisaram de consolidação, já que seus nomes apareciam de formas diferentes. Foram utilizados os nomes mais recentes.
-            
+
             O passo seguinte é integrar os esquemas dos dois datasets. Para isso, vamos considerar que um filme é o mesmo nos dois datasets caso seu nome e ano apresentem correspondência. Para a análise de nome, serão observadas as colunas 'title' (em alguns casos, também a 'original\_title') do dataset de metadados, e a coluna 'film' do dataset do Oscar. 
-            
+
             Para análise dos anos, foi criada no dataset de metadados uma coluna 'release\_year', extraindo o ano da coluna 'release\_date'. Esse valor será comparado com a coluna 'year\_film' do dataset do Oscar.
-            
+
             Mas para fazer essa união entre as duas tabelas, foi também necessário normalizar nomes nas duas tabelas, adicionando-se as colunas "normalized\_title" e "normalized\_original\_title". Alguns dos desafios encontrados nesse estágio foram:
 
             \begin{itemize}
@@ -110,21 +110,21 @@
                 \item títulos estilizados (geralmente com pontuação no nome);
                 \item filmes com anos diferentes nos dois datasets.
             \end{itemize}
-            
+
             Esse último item diz respeito à observação de filmes com ano de lançamento ('release\_year') diferentes do ano na tabela do Oscar (coluna 'year\_film'). Um exemplo é o filme 'Y tu mamá también', cuja coluna 'year\_film' tem valor 2002 no dataset do Oscar e 2001 no dataset de metadados. Foram observadas desigualdades entre os anos de até 2 anos, fato que pode estar relacionado à confusão entre as datas de produção e lançamento de um filme. Nesses casos, a coluna 'year\_film' será corrigida para o valor presente na tabela de metadados.
 
-            
+
             Com essas informações, já é possível relacionar entre as tabelas 763 dos 942 filmes existentes no dataset do Oscar. Para os restantes 179 filmes, dois desafios especiais se deram:\par
-            
+
             \begin{itemize}
                 \item títulos em inglês diferentes de acordo com o país - por exemplo, o filme "Harry Potter e a Pedra Filosofal", lançado nos Estados Unidos e Índia como "Harry Potter and the Sorcerer's Stone" e nos outros países de língua inglesa "Harry Potter and the Philosopher's Stone"; \cite{yahoo2000};\par
                 \item títulos divergentes entre as duas tabelas (como "Mt. Head" na tabela do Oscar, que consta como "Mount head" na tabela de metadados de filmes).\par
             \end{itemize}
-            
+
             Para esses casos, foi realizada uma análise de similaridade entre os títulos não encontrados nas duas tabelas, utilizando a biblioteca nativa difflib do Python, e uma análise caso a caso.
-            
+
             Nessa análise, foram encontradas outras 11 correspondências, que tiveram seus anos e nomes ajustados na tabela do Oscar. São os títulos abaixo:\newline
-            
+
             \begin{figure}[htb]
             	\caption{\label{corresp}Correspondências inexatas encontradas}
             	\begin{center}
@@ -132,11 +132,11 @@
             	\end{center}
             	\legend{Fonte: trabalho nosso}
             \end{figure}
-            
+
             Após essa normalização e integração de instâncias, conseguimos localizar na tabela de metadados 774 dos 942 filmes do Oscar. As informações dos demais 168 serão ignoradas.
 
             Podemos finalmente adicionar as informações dos Oscars ao The Movies Dataset. Para isso, vamos criar colunas no formato one-hot encoding para inserir as informações de nomeação e vitória em cada categoria para cada filme, seguindo a codificação da figura \ref{cat_cods}.
-            
+
             \begin{figure}[htb]
             	\caption{\label{cat_cods}Codificação das categorias}
             	\begin{center}
@@ -144,11 +144,11 @@
             	\end{center}
             	\legend{Fonte: trabalho nosso}
             \end{figure}
-            
+
             Para cada um desses códigos, foram criadas duas colunas: '{codigo}\_nominated' e '{codigo}\_won', para designar indicação e vitória na categoria. Também foi adicionada uma coluna para indicar o ano da cerimônia em que participou o filme, com valor None como padrão.\newline
-            
+
             Após unificados os dados, pôde ser realizada análise exploratória com Pandas, Numpy, e Scikit Learn para conferir a natureza dos dados, a existência de dados faltantes ou inconsistentes e a existência de tendências que auxiliem na construção dos modelos.\newline
-    
+
             Algumas das colunas analisadas não foram consideradas relevantes na análise, ou quantificáveis. A saber:
 
             \begin{itemize}
@@ -160,11 +160,13 @@
                 \item 'poster\_path': url do poster do filme;
                 \item 'tagline': frase curta utilizada na publicidade do filme;
             \end{itemize}
-            
+
             A coluna 'genres' foi convertida em one-hot encoding, levando-se em consideração apenas gêneros que aparecem mais de uma vez na tabela, a saber: 'animation', 'comedy', 'family', 'adventure', 'fantasy', 'romance', 'drama', 'action', 'crime', 'thriller', 'horror', 'history', 'science\_fiction', 'mystery', 'war', 'foreign', 'music', 'documentary', 'western' e 'tv\_movie'. A coluna original foi removida após esse processo.
-            
+
+            O mesmo processo foi aplicado na coluna spoken\_languages, mas levando em consideração todas as linguagens existentes na tabela. A coluna original também foi removida após esse processo.
+
             A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 22900 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.\newline
-            
+
             \textbf{Arcabouço de análise exploratória}\par
 
             Como primeiro ponto da análise exploratória dos dados, foram analisadas as correlações entre as colunas do dataframe. Por se tratar de um grande número de atributos - aproximadamente 240, gerando um número de correlações n**2 de aproximadamente 60000 -, foi necessário experimentar valores mínimos arbitrários para as correlações.
@@ -212,32 +214,32 @@
             Também ignoramos as correlações entre países de produção. Mesmo as altas entre elas não acrescentavam dados à nossa análise. A coluna que indica filmes produzidos nas Antilhas Holandesas ('country\_AN'), por exemplo, tem correlação perfeita com a coluna que marca filmes produzidos na Polinésia Francesa ('country\_FP').\par
 
             Levando em conta a viabilidade da análise, decidimos nos limitar às 35 correlações maiores do que 0.4. Correlações maiores do que 0.3 já gerariam uma lista com quase de 100 itens (ver figuras \ref{corrs_graph} e \ref{corrs0.4}). \par
-            
+
             Algumas das correlações interessantes reveladas por essa análise, e que podem ajudar na construção dos modelos, ou indicar parâmetros importantes:
-            
+
             \begin{itemize}
 
             \item 'vote\_count', o número total de votos que um filme recebeu no site MovieLens tem correlação de 0.81 com a arrecadação do filme ('revenue'), a mais alta encontrada. Parece indicar que filmes muito assistidos recebem muitos votos no site;
 
             \item A segunda maior correlação envolvendo a arrecadação de um filme é a de indicação na categoria de efeitos visuais ('nominated\_visual\_effects', 0.40). Reforçamos a existência dessa relação entre arrecadação e efeitos visuais ao ver que 12 dos 16 vencedores do oscar de efeitos visuais no nosso dataset final não estão na lista de 200 maiores bilheterias da história (ver \citeonline{mojo2021} e figura \ref{vencedores_efeitos});
-            
+
             \item 9 das 35 correlações envolvem a coluna 'nominated\_best\_picture'. Outras 5 envolvem a coluna 'won\_best\_picture'. Há uma grande relação entre filmes indicados e vencedores do Oscar de melhor filme, a principal categoria da premiação, e a indicação e vitória em outras categorias.
-            
+
             \item 10 correlações envolvem as colunas relacionadas ao prêmio de melhor direção ('nominated\_directing' e 'won\_directing').
-            
+
             \item 15 colunas podem ser consideradas as mais "influentes" nas correlações (figura \ref{vencedores_efeitos}). Para realisar essa análise, desconsideramos as colunas de vitória em categorias ('won\_***'), que serão usadas sempre como classe e nunca como atributo.
 
             \end{itemize}
-            
+
             \textbf{Criação de modelos}\par
             Serão criados modelos de regressão para inferir a chance de premiação utilizando diferentes algoritmos, entre os quais árvores de decisão, regressão logística, support vector machines, random forest e redes neurais.\newline
-    
+
             \textbf{Avaliação comparativa dos resultados}\par
             Avaliação comparativa dos resultados usando as métricas de mean squared error, root mean squared error, e mean absolute error.\newline
-    
+
             \textbf{Avaliação de importância dos metadados}\par
             Avaliação da importância de cada fator (metadado) na previsão, baseando-se no feedback dos algoritmos testados.\newline
-    
+
             \textbf{Interpretação dos resultados}\par
             Interpretação dos resultados para elaboração das conclusões com indicação das técnicas mais promissoras.\newline
 
