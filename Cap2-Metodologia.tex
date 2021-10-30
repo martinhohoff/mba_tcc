@@ -163,7 +163,7 @@
 
             A coluna 'genres' foi convertida em one-hot encoding, levando-se em consideração apenas gêneros que aparecem mais de uma vez na tabela, a saber: 'animation', 'comedy', 'family', 'adventure', 'fantasy', 'romance', 'drama', 'action', 'crime', 'thriller', 'horror', 'history', 'science\_fiction', 'mystery', 'war', 'foreign', 'music', 'documentary', 'western' e 'tv\_movie'. A coluna original foi removida após esse processo.
 
-            O mesmo processo foi aplicado nas colunas 'spoken\_languages' e 'original\_language', mas levando em consideração todas as linguagens existentes na tabela. Após convertidas em colunas de hot encoding no formato 'original\_language_XX' e 'spoken\_language\_XX', as colunas originais também foi removida após esse processo.
+            O mesmo processo foi aplicado nas colunas 'spoken\_languages' e 'original\_language', mas levando em consideração todas as linguagens existentes na tabela. Após convertidas em colunas de hot encoding no formato 'original\_language\_XX' e 'spoken\_language\_XX', as colunas originais também foi removida após esse processo.
 
             A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 22900 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.\newline
 
