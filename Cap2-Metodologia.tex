@@ -31,8 +31,8 @@
 
 		    \textbf{Random forest}\par
 		    O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}\newline
-
 		
+
 		    \textbf{Redes neurais}\par
 		    Redes Neurais "são um formato de estrutura de dados inspirada nas redes de neurônios do cérebro humano (...) organizadas em uma lógica de camadas e nós dentro dos códigos de programação, sugerindo uma estrutura vagamente similar ao que ocorre com os neurônios".\cite{ilumeo2020}\newline
 
@@ -163,9 +163,11 @@
 
             A coluna 'genres' foi convertida em one-hot encoding, levando-se em consideração apenas gêneros que aparecem mais de uma vez na tabela, a saber: 'animation', 'comedy', 'family', 'adventure', 'fantasy', 'romance', 'drama', 'action', 'crime', 'thriller', 'horror', 'history', 'science\_fiction', 'mystery', 'war', 'foreign', 'music', 'documentary', 'western' e 'tv\_movie'. A coluna original foi removida após esse processo.
 
-            O mesmo processo foi aplicado na coluna spoken\_languages, mas levando em consideração todas as linguagens existentes na tabela. A coluna original também foi removida após esse processo.
+            O mesmo processo foi aplicado nas colunas 'spoken\_languages' e 'original\_language', mas levando em consideração todas as linguagens existentes na tabela. Após convertidas em colunas de hot encoding no formato 'original\_language_XX' e 'spoken\_language\_XX', as colunas originais também foi removida após esse processo.
 
             A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 22900 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.\newline
+
+            Por fim, a coluna 'adult', que indica se um filme \newline
 
             \textbf{Arcabouço de análise exploratória}\par
 
