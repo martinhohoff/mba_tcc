@@ -101,6 +101,8 @@
 
             Para análise dos anos, foi criada no dataset de metadados uma coluna 'release\_year', extraindo o ano da coluna 'release\_date'. Esse valor será comparado com a coluna 'year\_film' do dataset do Oscar.
 
+            A coluna release\_date também será eliminada em favor de uma coluna com um valor inteiro: release\_day, o número de dias desde o começo do ano até o dia em que o filme foi lançado (indo de 1 a 366). O motivo dessa transformação é o conceito corrente no senso comum (e confirmado na análise de \citeonline{hdsr2020}) que filmes lançados perto do final do ano têm maiores chances de indicação às premiações.
+
             Mas para fazer essa união entre as duas tabelas, foi também necessário normalizar nomes nas duas tabelas, adicionando-se as colunas "normalized\_title" e "normalized\_original\_title". Alguns dos desafios encontrados nesse estágio foram:
 
             \begin{itemize}
@@ -148,28 +150,31 @@
 
             Após unificados os dados, pôde ser realizada análise exploratória com Pandas, Numpy, e Scikit Learn para conferir a natureza dos dados, a existência de dados faltantes ou inconsistentes e a existência de tendências que auxiliem na construção dos modelos.\newline
 
-            Algumas das colunas analisadas não foram consideradas relevantes na análise, ou quantificáveis. A saber:
-
-            \begin{itemize}
-                \item 'belongs\_to\_collection', uma representação da coleção a que supostamente pertence o filme - esse dado está representado de forma bastante subjetiva no dataset;
-                \item 'homepage': link para a página oficial do filme;
-                \item 'imdb\_id': identificador do filme na plataforma IMDB;
-                \item 'original\_title': título original do filme;
-                \item 'overview': descrição da trama;
-                \item 'poster\_path': url do poster do filme;
-                \item 'tagline': frase curta utilizada na publicidade do filme;
-            \end{itemize}
-
             A coluna 'genres' foi convertida em one-hot encoding, levando-se em consideração apenas gêneros que aparecem mais de uma vez na tabela, a saber: 'animation', 'comedy', 'family', 'adventure', 'fantasy', 'romance', 'drama', 'action', 'crime', 'thriller', 'horror', 'history', 'science\_fiction', 'mystery', 'war', 'foreign', 'music', 'documentary', 'western' e 'tv\_movie'. A coluna original foi removida após esse processo.
 
             O mesmo processo foi aplicado nas colunas 'spoken\_languages' e 'original\_language', mas levando em consideração todas as linguagens existentes na tabela. Após convertidas em colunas de hot encoding no formato 'original\_language\_XX' e 'spoken\_language\_XX', as colunas originais também foi removida após esse processo.
 
             A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 22900 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.\newline
 
-            Por fim, alguns tratamentos simples:
+            Alguns tratamentos pontuais realizados:
             \begin{itemize}
-                \item a coluna 'adult', que indica se um filme é adulto, é convertida para booleano;
-                \item a coluna 'budget' é transformada em float.\newline
+                \item as colunas 'adult' (que indica se um filme é adulto) e 'video' (que aponta lançamentos feitos direto para o video) são convertidas para booleano;
+                \item as colunas 'budget' (orçamento) e 'popularity' (a mátrica de popularidade do MovieLens) são transformadas em float.\newline
+            \end{itemize}
+            
+            Foram localizados também 6 filmes com valores float (NaN) na coluna 'title'. Nesses casos, o título original foi transposto para a coluna title. Nesse processo, foram localizados também três filmes com valores espúrios no título:
+            
+            Ao final do processo, algumas das colunas existentes não foram consideradas relevantes na análise e foram removidas. A saber:
+
+            \begin{itemize}
+                \item 'belongs\_to\_collection', uma representação da coleção a que supostamente pertence o filme - esse dado está representado de forma bastante subjetiva no dataset;
+                \item 'homepage': link para a página oficial do filme;
+                \item 'imdb\_id': identificador do filme na plataforma IMDB;
+                \item 'id': identificador do filme na plataforma MovieLens;
+                \item 'original\_title': título original do filme;
+                \item 'overview': descrição da trama;
+                \item 'poster\_path': url do poster do filme;
+                \item 'tagline': frase curta utilizada na publicidade do filme;
             \end{itemize}
 
             \textbf{Arcabouço de análise exploratória}\par
