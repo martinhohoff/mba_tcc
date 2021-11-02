@@ -115,7 +115,7 @@
             Esse último item diz respeito à observação de filmes com ano de lançamento ('release\_year') diferentes do ano na tabela do Oscar (coluna 'year\_film'). Um exemplo é o filme 'Y tu mamá también', cuja coluna 'year\_film' tem valor 2002 no dataset do Oscar e 2001 no dataset de metadados. Foram observadas desigualdades entre os anos de até 2 anos, fato que pode estar relacionado à confusão entre as datas de produção e lançamento de um filme. Nesses casos, a coluna 'year\_film' será corrigida para o valor presente na tabela de metadados.
 
 
-            Com essas informações, já é possível relacionar entre as tabelas 763 dos 942 filmes existentes no dataset do Oscar. Para os restantes 179 filmes, dois desafios especiais se deram:\par
+            Com essas informações, já é possível relacionar entre as tabelas 760 dos 942 filmes existentes no dataset do Oscar. Para os restantes 182 filmes, dois desafios especiais se deram:\par
 
             \begin{itemize}
                 \item títulos em inglês diferentes de acordo com o país - por exemplo, o filme "Harry Potter e a Pedra Filosofal", lançado nos Estados Unidos e Índia como "Harry Potter and the Sorcerer's Stone" e nos outros países de língua inglesa "Harry Potter and the Philosopher's Stone"; \cite{yahoo2000};\par
@@ -134,7 +134,7 @@
             	\legend{Fonte: trabalho nosso}
             \end{figure}
 
-            Após essa normalização e integração de instâncias, conseguimos localizar na tabela de metadados 774 dos 942 filmes do Oscar. As informações dos demais 168 serão ignoradas.
+            Após essa normalização e integração de instâncias, conseguimos localizar na tabela de metadados 771 dos 942 filmes do Oscar. As informações dos demais 168 serão ignoradas.
 
             Podemos finalmente adicionar as informações dos Oscars ao The Movies Dataset. Para isso, vamos criar colunas no formato one-hot encoding para inserir as informações de nomeação e vitória em cada categoria para cada filme, seguindo a codificação da figura \ref{cat_cods}.
 
@@ -154,7 +154,7 @@
 
             O mesmo processo foi aplicado nas colunas 'spoken\_languages' e 'original\_language', mas levando em consideração todas as linguagens existentes na tabela.
 
-            A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 22900 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.\newline
+            A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 15336 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.\newline
 
             Alguns tratamentos pontuais realizados:
             \begin{itemize}
@@ -213,9 +213,9 @@
             \end{figure}
 
             \begin{figure}[htb]
-            	\caption{\label{colunas_influentes}Colunas que mais aparecem nas correlações altas}
+            	\caption{\label{colunas_influentes_1}Colunas que mais aparecem nas correlações altas (inclui indicações)}
             	\begin{center}
-            		\includegraphics[scale=0.7]{colunas_influentes.png}
+            		\includegraphics[scale=0.7]{colunas_influentes_1.png}
             	\end{center}
             	\legend{Fonte: trabalho nosso}
             \end{figure}
@@ -236,15 +236,17 @@
 
             \begin{itemize}
 
-            \item 'vote\_count', o número total de votos que um filme recebeu no site MovieLens tem correlação de 0.81 com a arrecadação do filme ('revenue'), a mais alta encontrada. Parece indicar que filmes muito assistidos recebem muitos votos no site;
+            \item a mais alta correlação encontrada é entre os atributos 'vote\_count' (o número total de votos que um filme recebeu no site MovieLens) e a arrecadação do filme ('revenue'). Pode indicar que filmes muito assistidos recebem muitos votos no site;
+            
+            \item A correlação entre orçamento de um filme e a renda gerada por ele também é muito alta.
 
-            \item A segunda maior correlação envolvendo a arrecadação de um filme é a de indicação na categoria de efeitos visuais ('nominated\_visual\_effects', 0.40). Reforçamos a existência dessa relação entre arrecadação e efeitos visuais ao ver que 12 dos 16 vencedores do oscar de efeitos visuais no nosso dataset final não estão na lista de 200 maiores bilheterias da história (ver \citeonline{mojo2021} e figura \ref{vencedores_efeitos});
+            \item Existe grande correlação envolvendo a arrecadação de um filme é a indicação na categoria de efeitos visuais ('nominated\_visual\_effects'). Reforçamos a existência dessa relação entre arrecadação e efeitos visuais ao ver que 12 dos 16 vencedores do oscar de efeitos visuais no nosso dataset final estão na lista de 200 maiores bilheterias da história (ver \citeonline{mojo2021} e figura \ref{vencedores_efeitos});
 
-            \item 9 das 35 correlações envolvem a coluna 'nominated\_best\_picture'. Outras 5 envolvem a coluna 'won\_best\_picture'. Há uma grande relação entre filmes indicados e vencedores do Oscar de melhor filme, a principal categoria da premiação, e a indicação e vitória em outras categorias.
+            \item O atributo mais presente nas altas correlações é a coluna 'nominated\_best\_picture'. Há uma grande relação entre filmes indicados ao Oscar de melhor filme, a principal categoria da premiação, e a indicação e vitória em outras categorias.
 
             \item 10 correlações envolvem as colunas relacionadas ao prêmio de melhor direção ('nominated\_directing' e 'won\_directing').
 
-            \item 15 colunas podem ser consideradas as mais "influentes" nas correlações (figura \ref{vencedores_efeitos}). Para realisar essa análise, desconsideramos as colunas de vitória em categorias ('won\_***'), que serão usadas sempre como classe e nunca como atributo.
+            \item 17 colunas podem ser consideradas as mais "influentes" nas correlações (figura \ref{colunas_influentes_1}). Para realizar essa análise, desconsideramos as colunas de vitória em categorias ('won\_***'), que serão usadas sempre como classe e nunca como atributo.
 
             \end{itemize}
 
