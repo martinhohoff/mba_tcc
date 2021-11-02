@@ -150,9 +150,9 @@
 
             Após unificados os dados, pôde ser realizada análise exploratória com Pandas, Numpy, e Scikit Learn para conferir a natureza dos dados, a existência de dados faltantes ou inconsistentes e a existência de tendências que auxiliem na construção dos modelos.\newline
 
-            A coluna 'genres' foi convertida em one-hot encoding, levando-se em consideração apenas gêneros que aparecem mais de uma vez na tabela, a saber: 'animation', 'comedy', 'family', 'adventure', 'fantasy', 'romance', 'drama', 'action', 'crime', 'thriller', 'horror', 'history', 'science\_fiction', 'mystery', 'war', 'foreign', 'music', 'documentary', 'western' e 'tv\_movie'. A coluna original foi removida após esse processo.
+            A coluna 'genres' foi convertida em one-hot encoding, levando-se em consideração apenas gêneros que aparecem mais de uma vez na tabela, a saber: 'animation', 'comedy', 'family', 'adventure', 'fantasy', 'romance', 'drama', 'action', 'crime', 'thriller', 'horror', 'history', 'science\_fiction', 'mystery', 'war', 'foreign', 'music', 'documentary', 'western' e 'tv\_movie'.
 
-            O mesmo processo foi aplicado nas colunas 'spoken\_languages' e 'original\_language', mas levando em consideração todas as linguagens existentes na tabela. Após convertidas em colunas de hot encoding no formato 'original\_language\_XX' e 'spoken\_language\_XX', as colunas originais também foi removida após esse processo.
+            O mesmo processo foi aplicado nas colunas 'spoken\_languages' e 'original\_language', mas levando em consideração todas as linguagens existentes na tabela.
 
             A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 22900 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.\newline
 
@@ -162,7 +162,9 @@
                 \item as colunas 'budget' (orçamento) e 'popularity' (a mátrica de popularidade do MovieLens) são transformadas em float.\newline
             \end{itemize}
             
-            Foram localizados também 6 filmes com valores float (NaN) na coluna 'title'. Nesses casos, o título original foi transposto para a coluna title. Nesse processo, foram localizados também três filmes com valores espúrios no título:
+            Foram localizados também 3 filmes com valores float (NaN) na coluna 'title'. Essas três instâncias parecem ter o mesmo problema: colunas desalinhadas pela falta de algum valor. Na impossibilidade de confirmar exatamente quais dados pertencem a quais colunas, vamos eliminá-las.
+            
+            Havia também filmes marcados no dataset como especulados, em produção, etc. Como apenas podem ser considerados ao Oscar filmes que efetivamente tenham sido lançados, checamos se algum dos filmes especulados, em produção, etc, recebeu alguma indicação ou prêmio e está com o status errado. Os outros foram descartados.
             
             Ao final do processo, algumas das colunas existentes não foram consideradas relevantes na análise e foram removidas. A saber:
 
@@ -175,6 +177,11 @@
                 \item 'overview': descrição da trama;
                 \item 'poster\_path': url do poster do filme;
                 \item 'tagline': frase curta utilizada na publicidade do filme;
+                \item 'original\_language' (convertida em one-hot encoding)
+                \item 'spoken\_languages' (convertida em one-hot encoding)
+                \item 'normalized\_title' (utilizada apenas para linkar os dois datasets)
+                \item 'normalized\_original\_title' (utilizada apenas para linkar os dois datasets)
+                \item 'status' - diz se o filme está em pré-produção, foi finalizado, etc.
             \end{itemize}
 
             \textbf{Arcabouço de análise exploratória}\par
