@@ -100,7 +100,7 @@
             O passo seguinte é integrar os esquemas dos dois datasets. Para isso, vamos considerar que um filme é o mesmo nos dois datasets caso seu nome e ano apresentem correspondência. Para a análise de nome, serão observadas as colunas 'title' (em alguns casos, também a 'original\_title') do dataset de metadados, e a coluna 'film' do dataset do Oscar. 
 
             Para análise dos anos, foi criada no dataset de metadados uma coluna 'release\_year', extraindo o ano da coluna 'release\_date'. Esse valor será comparado com a coluna 'year\_film' do dataset do Oscar.
-
+            
             A coluna release\_date também será eliminada em favor de uma coluna com um valor inteiro: release\_day, o número de dias desde o começo do ano até o dia em que o filme foi lançado (indo de 1 a 366). O motivo dessa transformação é o conceito corrente no senso comum (e confirmado na análise de \citeonline{hdsr2020}) que filmes lançados perto do final do ano têm maiores chances de indicação às premiações.
 
             Mas para fazer essa união entre as duas tabelas, foi também necessário normalizar nomes nas duas tabelas, adicionando-se as colunas "normalized\_title" e "normalized\_original\_title". Alguns dos desafios encontrados nesse estágio foram:
@@ -154,12 +154,13 @@
 
             O mesmo processo foi aplicado nas colunas 'spoken\_languages' e 'original\_language', mas levando em consideração todas as linguagens existentes na tabela.
 
-            A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações\cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 15336 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.\newline
+            A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações \cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 15336 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.
 
-            Alguns tratamentos pontuais realizados:
+            Alguns tratamentos pontuais foram realizados para modificar e padronizar os valores de algumas colunas:
+
             \begin{itemize}
                 \item as colunas 'adult' (que indica se um filme é adulto) e 'video' (que aponta lançamentos feitos direto para o video) são convertidas para booleano;
-                \item as colunas 'budget' (orçamento) e 'popularity' (a mátrica de popularidade do MovieLens) são transformadas em float.\newline
+                \item as colunas 'budget' (orçamento) e 'popularity' (a métrica de popularidade do MovieLens) são transformadas em float.
             \end{itemize}
             
             Foram localizados também 3 filmes com valores float (NaN) na coluna 'title'. Essas três instâncias parecem ter o mesmo problema: colunas desalinhadas pela falta de algum valor. Na impossibilidade de confirmar exatamente quais dados pertencem a quais colunas, vamos eliminá-las.
@@ -221,7 +222,23 @@
             \end{figure}
 
             \begin{figure}[htb]
-            	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4 - lista completa}
+            	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4 - inclui indicações}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{corrs0.4.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{colunas_influentes_2}Colunas que mais aparecem nas correlações altas (inclui indicações)}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{colunas_influentes_2.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+
+            \begin{figure}[htb]
+            	\caption{\label{corrs0.15}Correlação entre colunas com valor mínimo de 0.15 - não inclui indicações}
             	\begin{center}
             		\includegraphics[scale=0.7]{corrs0.4.png}
             	\end{center}
@@ -246,9 +263,19 @@
 
             \item 10 correlações envolvem as colunas relacionadas ao prêmio de melhor direção ('nominated\_directing' e 'won\_directing').
 
-            \item 17 colunas podem ser consideradas as mais "influentes" nas correlações (figura \ref{colunas_influentes_1}). Para realizar essa análise, desconsideramos as colunas de vitória em categorias ('won\_***'), que serão usadas sempre como classe e nunca como atributo.
-
+            \item 17 colunas podem ser consideradas as mais "influentes" nas correlações (figuras \ref{colunas_influentes_1} e \ref{corrs0.4}). Para realizar essa análise, desconsideramos as colunas de vitória em categorias ('won\_***'), que serão usadas sempre como classe e nunca como atributo.
+            
             \end{itemize}
+            
+            Como se pode ver, as colunas que representam indicações ('nominated\_*') foram dominantes nessa análise. Mas é preciso levar em consideração que elas serão utilizadas como classe em uma das versões definidas do problema. Por isso, foi feita uma segunda versão da análise, desconsiderando essas colunas, para entender quais são as outras colunas que apresentam grande correlação com os outros atributos.
+            
+            Nessa versão, para limitar o número de correlações, foram analisadas as correlações superiores a 0.15 (ver figura . Dessa vez, as colunas relativas a gêneros ('genre\_*') foram predominantes (ver figuras \ref{colunas_influentes_2} e \ref{corrs0.15})).\newline
+
+            Realizamos também projeções, em duas e três dimensões, dos objetos do dataset, utilizando a técnica de Principal Component Analysis (PCA), classificando os filmes vitoriosos ou não. As cores utilizadas para indicar 
+            
+            A 
+            
+            
 
             \textbf{Criação de modelos}\par
             Serão criados modelos de regressão para inferir a chance de premiação utilizando diferentes algoritmos, entre os quais árvores de decisão, regressão logística, support vector machines, random forest e redes neurais.\newline
