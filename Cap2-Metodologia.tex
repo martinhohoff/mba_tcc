@@ -18,34 +18,34 @@
 	    O scikit-learn "é uma biblioteca da linguagem Python desenvolvida especificamente para aplicação prática de machine learning. Esta biblioteca dispõe de ferramentas simples e eficientes para análise preditiva de dados, é reutilizável em diferentes situações, possui código aberto, sendo acessível a todos e foi construída sobre os pacotes NumPy, SciPy e matplotilib". \cite{didatica2020}
 
         \subsection{Algoritmos de regressão}
-	    De acordo com a Oper Data \cite{oper2020}, os problemas de Machine Learning "são divididos em três subáreas principais: classificação, regressão e clustering.". Para esse trabalho, serão de especial interesse os algoritmos de regressão, dentre os quais destacam-se os seguintes grupos:\newline
+	    De acordo com a Oper Data \cite{oper2020}, os problemas de Machine Learning "são divididos em três subáreas principais: classificação, regressão e clustering.". Para esse trabalho, serão de especial interesse os algoritmos de classificação, dentre os quais destacaremos as redes neurais:\newline
 
-		    \textbf{Árvores de decisão}\par
-		    A árvore de decisão "está entre os métodos mais comuns aplicados ao aprendizado de máquina. Tais algoritmos subdividem progressivamente os dados em conjuntos cada vez menores e mais específicos, em termos de seus atributos, até atingirem um tamanho simplificado o bastante para ser rotulado. Para isso é necessário treinar o modelo com dados previamente rotulados, de modo a aplicá-lo a dados novos." \cite{digitalhouse2021}\newline
+		  %  \textbf{Árvores de decisão}\par
+		  %  A árvore de decisão "está entre os métodos mais comuns aplicados ao aprendizado de máquina. Tais algoritmos subdividem progressivamente os dados em conjuntos cada vez menores e mais específicos, em termos de seus atributos, até atingirem um tamanho simplificado o bastante para ser rotulado. Para isso é necessário treinar o modelo com dados previamente rotulados, de modo a aplicá-lo a dados novos." \cite{digitalhouse2021}\newline
 
-		    \textbf{Regressão logística}\par
-		    A regressão logística "é uma técnica estatística que tem como objetivo produzir, a partir de um conjunto de observações, um modelo que permita a predição de valores tomados por uma variável categórica, frequentemente binária, em função de uma ou mais variáveis." \cite{gonzalez2018}\newline
+		  %  \textbf{Regressão logística}\par
+		  %  A regressão logística "é uma técnica estatística que tem como objetivo produzir, a partir de um conjunto de observações, um modelo que permita a predição de valores tomados por uma variável categórica, frequentemente binária, em função de uma ou mais variáveis." \cite{gonzalez2018}\newline
 
-		    \textbf{Support vector machines}\par
-		     Algoritmos de máquina de vetores de suporte (em inglês, Support Vector Machines, ou SVM) "têm como objetivo a determinação de limites de decisão que produzam uma separação ótima entre classes por meio da minimização dos erros." \cite{nascimento2009}\newline
+		  %  \textbf{Support vector machines}\par
+		  %   Algoritmos de máquina de vetores de suporte (em inglês, Support Vector Machines, ou SVM) "têm como objetivo a determinação de limites de decisão que produzam uma separação ótima entre classes por meio da minimização dos erros." \cite{nascimento2009}\newline
 
-		    \textbf{Random forest}\par
-		    O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}\newline
+		  %  \textbf{Random forest}\par
+		  %  O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}\newline
 
 		    \textbf{Redes neurais}\par
 		    Redes Neurais "são um formato de estrutura de dados inspirada nas redes de neurônios do cérebro humano (...) organizadas em uma lógica de camadas e nós dentro dos códigos de programação, sugerindo uma estrutura vagamente similar ao que ocorre com os neurônios".\cite{ilumeo2020}
 
-	    \subsection{Avaliação de algoritmos de regressão}
-	    Para comparar e selecionar modelos de aprendizagem de máquina, é necessário definir métricas que possam ser utilizadas como critério de avaliação. Entre elas, podemos destacar três:\newline
+	    \subsection{Avaliação de redes neurais}
+	    Para comparar e selecionar modelos de redes neurais, é necessário definir métricas que possam ser utilizadas como critério de avaliação. Entre elas, podemos destacar três:\newline
 
-	        \textbf{R Square (Quadrado de R)}\par
-	        A métrica R Square "mede quanta variabilidade na variável dependente pode ser explicada pelo modelo. É o quadrado do Coeficiente de Correlação (R), e por isso é chamada de R Square". \cite{towards2020} (tradução do autor).\newline
+	       % \textbf{R Square (Quadrado de R)}\par
+	       % A métrica R Square "mede quanta variabilidade na variável dependente pode ser explicada pelo modelo. É o quadrado do Coeficiente de Correlação (R), e por isso é chamada de R Square". \cite{towards2020} (tradução do autor).\newline
 
-        	\textbf{Erro médio quadrático}\par
-	        Em oposição à medida R Square, que é "uma medida relativa de quão bem o modelo se ajusta a variáveis dependentes", o Erro Médio Quadrático "é uma medida absoluta da qualidade do ajuste", e pode ser calculado pela soma do quadrado do erro de predição, que é o valor real de uma observação menos o valor previsto, e depois dividido pelo número de observações." \cite{towards2020} (tradução do autor)\newline
+        % 	\textbf{Erro médio quadrático}\par
+	       % Em oposição à medida R Square, que é "uma medida relativa de quão bem o modelo se ajusta a variáveis dependentes", o Erro Médio Quadrático "é uma medida absoluta da qualidade do ajuste", e pode ser calculado pela soma do quadrado do erro de predição, que é o valor real de uma observação menos o valor previsto, e depois dividido pelo número de observações." \cite{towards2020} (tradução do autor)\newline
 
-	        \textbf{Erro Médio Absoluto}\par
-	        O Erro Médio Absoluto "é similar ao Erro Médio Quadrático. No entanto, em vez da soma do quadrado do erro no EMQ, EMA utiliza a soma do valor absoluto do erro." \cite{towards2020} (tradução do autor)
+	       % \textbf{Erro Médio Absoluto}\par
+	       % O Erro Médio Absoluto "é similar ao Erro Médio Quadrático. No entanto, em vez da soma do quadrado do erro no EMQ, EMA utiliza a soma do valor absoluto do erro." \cite{towards2020} (tradução do autor)
 
     \section{Trabalhos relacionados}
 
@@ -112,6 +112,22 @@
                 \item filmes com anos diferentes nos dois datasets.
             \end{itemize}
 
+            \begin{figure}[htb]
+            	\caption{\label{corresp}Correspondências inexatas encontradas}
+            	\begin{center}
+            		\includegraphics[scale=0.35]{corresp.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{cat_cods}Codificação das categorias}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{categ_codes.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+
             Esse último item diz respeito à observação de filmes com ano de lançamento ('release\_year') diferentes do ano na tabela do Oscar (coluna 'year\_film'). Um exemplo é o filme 'Y tu mamá también', cuja coluna 'year\_film' tem valor 2002 no dataset do Oscar e 2001 no dataset de metadados. Foram observadas desigualdades entre os anos de até 2 anos, fato que pode estar relacionado à confusão entre as datas de produção e lançamento de um filme. Nesses casos, a coluna 'year\_film' será corrigida para o valor presente na tabela de metadados.
 
 
@@ -126,25 +142,9 @@
 
             Nessa análise, foram encontradas outras 11 correspondências, que tiveram seus anos e nomes ajustados na tabela do Oscar. São os títulos abaixo:\newline
 
-            \begin{figure}[htb]
-            	\caption{\label{corresp}Correspondências inexatas encontradas}
-            	\begin{center}
-            		\includegraphics[scale=0.35]{corresp.png}
-            	\end{center}
-            	\legend{Fonte: trabalho nosso}
-            \end{figure}
-
             Após essa normalização e integração de instâncias, conseguimos localizar na tabela de metadados 771 dos 942 filmes do Oscar. As informações dos demais 168 serão ignoradas.
 
             Podemos finalmente adicionar as informações dos Oscars ao The Movies Dataset. Para isso, vamos criar colunas no formato one-hot encoding para inserir as informações de nomeação e vitória em cada categoria para cada filme, seguindo a codificação da figura \ref{cat_cods}.
-
-            \begin{figure}[htb]
-            	\caption{\label{cat_cods}Codificação das categorias}
-            	\begin{center}
-            		\includegraphics[scale=0.7]{categ_codes.png}
-            	\end{center}
-            	\legend{Fonte: trabalho nosso}
-            \end{figure}
 
             Para cada um desses códigos, foram criadas duas colunas: '{codigo}\_nominated' e '{codigo}\_won', para designar indicação e vitória na categoria. Também foi adicionada uma coluna para indicar o ano da cerimônia em que participou o filme, com valor None como padrão.\newline
 
@@ -156,12 +156,7 @@
 
             A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações \cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 15336 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.
 
-            Alguns tratamentos pontuais foram realizados para modificar e padronizar os valores de algumas colunas:
-
-            \begin{itemize}
-                \item as colunas 'adult' (que indica se um filme é adulto) e 'video' (que aponta lançamentos feitos direto para o video) são convertidas para booleano;
-                \item as colunas 'budget' (orçamento) e 'popularity' (a métrica de popularidade do MovieLens) são transformadas em float.
-            \end{itemize}
+            Alguns tratamentos pontuais foram realizados para modificar e padronizar os valores de algumns atributos: as colunas 'adult' (que indica se um filme é adulto), 'video' (que aponta lançamentos feitos direto para o video), 'budget' (orçamento) e 'popularity' (a métrica de popularidade do MovieLens) foram transformadas em float.
             
             Foram localizados também 3 filmes com valores float (NaN) na coluna 'title'. Essas três instâncias parecem ter o mesmo problema: colunas desalinhadas pela falta de algum valor. Na impossibilidade de confirmar exatamente quais dados pertencem a quais colunas, vamos eliminá-las.
             
@@ -186,8 +181,6 @@
             \end{itemize}
 
             \textbf{Arcabouço de análise exploratória}\par
-
-            Como primeiro ponto da análise exploratória dos dados, foram analisadas as correlações entre as colunas do dataframe. Por se tratar de um grande número de atributos - aproximadamente 240, gerando um número de correlações n**2 de aproximadamente 60000 -, foi necessário experimentar valores mínimos arbitrários para as correlações.
 
             \begin{figure}[htb]
             	\caption{\label{corrs_graph}Número de correlações maiores que cada valor de threshold}
@@ -244,6 +237,24 @@
             	\end{center}
             	\legend{Fonte: trabalho nosso}
             \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{pca_2}Análise de componente principal em 2 dimensões - vencedores x não-vencedores}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{pca_2.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{pca_3}Análise de componente principal em 3 dimensões - vencedores x não-vencedores}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{pca_3.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+
+            Como primeiro ponto da análise exploratória dos dados, foram analisadas as correlações entre as colunas do dataframe. Por se tratar de um grande número de atributos - aproximadamente 240, gerando um número de correlações n**2 de aproximadamente 60000 -, foi necessário experimentar valores mínimos arbitrários para as correlações.
 
             Também ignoramos as correlações entre países de produção. Mesmo as altas entre elas não acrescentavam dados à nossa análise. A coluna que indica filmes produzidos nas Antilhas Holandesas ('country\_AN'), por exemplo, tem correlação perfeita com a coluna que marca filmes produzidos na Polinésia Francesa ('country\_FP').\par
 
@@ -269,16 +280,23 @@
             
             Como se pode ver, as colunas que representam indicações ('nominated\_*') foram dominantes nessa análise. Mas é preciso levar em consideração que elas serão utilizadas como classe em uma das versões definidas do problema. Por isso, foi feita uma segunda versão da análise, desconsiderando essas colunas, para entender quais são as outras colunas que apresentam grande correlação com os outros atributos.
             
-            Nessa versão, para limitar o número de correlações, foram analisadas as correlações superiores a 0.15 (ver figura . Dessa vez, as colunas relativas a gêneros ('genre\_*') foram predominantes (ver figuras \ref{colunas_influentes_2} e \ref{corrs0.15})).\newline
+            Nessa versão, para limitar o número de correlações, foram analisadas as correlações superiores a 0.15 (ver figura . Dessa vez, as colunas relativas a gêneros ('genre\_*') foram predominantes (ver figuras \ref{colunas_influentes_2} e \ref{corrs0.15})).
 
-            Realizamos também projeções, em duas e três dimensões, dos objetos do dataset, utilizando a técnica de Principal Component Analysis (PCA), classificando os filmes vitoriosos ou não. As cores utilizadas para indicar 
+            Realizamos também projeções, em duas e três dimensões, dos objetos do dataset, utilizando a técnica de Principal Component Analysis (PCA), utilizando cores para representar os filmes vitoriosos ou não.
             
-            A 
+            A representação em duas dimensões mostra um dado interessante: os filmes vitoriosos parecem se concentrar num ponto do espaço, o que pode significa uma maior chance de êxito na criação de superfícies de decisão que tragam uma resposta para o problema (ver figura \ref{pca_2}).
             
+            No entanto, a imagem em duas dimensões mostra uma superposição das classes de filmes com vitória e sem vitória. A análise em 3 dimensões (figura \ref{pca_3} parece indicar que uma separação é possível num espaço com mais dimensões, com os filmes vencedores de pelo menos um Oscar concentrados majoritariamente em uma mesma parte do espaço, onde há poucos pontos azuis.\newline
             
+            \textbf{Remoção de outliers???????????????}\par
+            ???????????????\par
+            ???????????????\par
+            ???????????????\par
+            ???????????????\par
+            ???????????????\newline
 
             \textbf{Criação de modelos}\par
-            Serão criados modelos de regressão para inferir a chance de premiação utilizando diferentes algoritmos, entre os quais árvores de decisão, regressão logística, support vector machines, random forest e redes neurais.\newline
+            Serão criados modelos de regressão para inferir a chance de premiação utilizando redes neurais.\newline
 
             \textbf{Avaliação comparativa dos resultados}\par
             Avaliação comparativa dos resultados usando as métricas de mean squared error, root mean squared error, e mean absolute error.\newline
@@ -300,3 +318,4 @@
 % 	\end{center}
 % 	\legend{Fonte: \citeonline{nbr14724}}
 % \end{figure}
+% \newline
