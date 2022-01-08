@@ -5,11 +5,17 @@
 % ---
 \chapter[Conclusão]{Conclusão}
 % ---
-
     \section[Dificuldades encontradas]{Dificuldades encontradas}
 
-        \subsection{Relacionamento entre os dois datasets}
+        Alguns dos problemas encontrados disseram respeito ao trabalho com dois datasets separados, um contendo dados da premiação do Oscar e outro com metadados dos filmes. Boa parte do esforço inicial do projeto se concentrou em formas de unir esses dois datasets. Mesmo assim, alguns dos filmes do dataset do Oscar não foram encontrados no dataset de metadados, e por isso foram deixados de fora. É razoável supor que o inverso aconteceu, e filmes no dataset de metadados não tiveram seus dados de premiação adicionados durante a integração de esquemas.
         
-        Imprecisão de anos e nomes, formatos diferentes
+        A imprecisão de anos e nomes dos filmes, que utilizava formatos diferentes em cada dataset, e até mesmo inconsistentes dentro de um mesmo dataset, geraram grande dificuldade de associação entre os dados de um dataset e de outro. Por isso, a melhor hipótese talvez seja a criação e aprimoração de um dataset próprio para essa análise.
         
-        Resultado provavelmente seria melhor - e certamente o tratamento de dados seria mais fácil - caso um único dataset adicionasse ao dataset de metadados as informações sobre o Oscar.
+        No campo da metodologia, um problema recorrente ao longo da pesquisa foi o de definição do problema. Eventualmente, notamos que se tratava de pelo menos dois problemas - chances de indicação e de premiação -, com a grande diferença de que os dados de indicação são classe alvo no primeiro problema e atributos no segundo problema.
+        
+        Como as categorias não são mutuamente excludentes, pretendíamos ainda dividir cada um desses 2 problemas em 23, que é o número de categorias do Oscar, tentando analisar as chances de um filme em cada uma dessas categorias. O tamanho desse problema revelou-se excessivamente desafiador para essa pesquisa, que preferiu manter-se nas chances de indicação e premiação em uma única categoria (Oscar de melhor filme).
+    
+    \section[Próximas etapas da pesquisa]{Próximas etapas}
+        Um subproduto possível da pesquisa é a criação do dataset unificado de metadados e indicações ao Oscar. A validação e consolidação desse dataset, ou a utilização de um dataset de metadados que já traga informações da premiação do Oscar, poderia gerar resultados melhores, e concentraria o esforço da pesquisa na possibilidade ou não de prever indicações, e com quais modelos.
+        
+        Próximos passos possíveis para a pesquisa também incluem a análise da predição com outros algoritmos além dos estudados, e com expansão do problema para as outras categorias além de melhor filme.

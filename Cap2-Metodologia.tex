@@ -18,34 +18,36 @@
 	    O scikit-learn "é uma biblioteca da linguagem Python desenvolvida especificamente para aplicação prática de machine learning. Esta biblioteca dispõe de ferramentas simples e eficientes para análise preditiva de dados, é reutilizável em diferentes situações, possui código aberto, sendo acessível a todos e foi construída sobre os pacotes NumPy, SciPy e matplotilib". \cite{didatica2020}
 
         \subsection{Algoritmos de regressão}
-	    De acordo com a Oper Data \cite{oper2020}, os problemas de Machine Learning "são divididos em três subáreas principais: classificação, regressão e clustering.". Para esse trabalho, serão de especial interesse os algoritmos de classificação, dentre os quais destacaremos as redes neurais:\newline
+	    De acordo com a Oper Data \cite{oper2020}, os problemas de Machine Learning "são divididos em três subáreas principais: classificação, regressão e clustering.".
+	    
+	    Entre os algoritmos de classificação e regressão, podemos destacar:\newline
 
-		  %  \textbf{Árvores de decisão}\par
-		  %  A árvore de decisão "está entre os métodos mais comuns aplicados ao aprendizado de máquina. Tais algoritmos subdividem progressivamente os dados em conjuntos cada vez menores e mais específicos, em termos de seus atributos, até atingirem um tamanho simplificado o bastante para ser rotulado. Para isso é necessário treinar o modelo com dados previamente rotulados, de modo a aplicá-lo a dados novos." \cite{digitalhouse2021}\newline
+		    \textbf{Árvores de decisão}\par
+		    A árvore de decisão "está entre os métodos mais comuns aplicados ao aprendizado de máquina. Tais algoritmos subdividem progressivamente os dados em conjuntos cada vez menores e mais específicos, em termos de seus atributos, até atingirem um tamanho simplificado o bastante para ser rotulado. Para isso é necessário treinar o modelo com dados previamente rotulados, de modo a aplicá-lo a dados novos." \cite{digitalhouse2021}\newline
 
-		  %  \textbf{Regressão logística}\par
-		  %  A regressão logística "é uma técnica estatística que tem como objetivo produzir, a partir de um conjunto de observações, um modelo que permita a predição de valores tomados por uma variável categórica, frequentemente binária, em função de uma ou mais variáveis." \cite{gonzalez2018}\newline
+		    \textbf{Regressão logística}\par
+		    A regressão logística "é uma técnica estatística que tem como objetivo produzir, a partir de um conjunto de observações, um modelo que permita a predição de valores tomados por uma variável categórica, frequentemente binária, em função de uma ou mais variáveis." \cite{gonzalez2018}\newline
 
-		  %  \textbf{Support vector machines}\par
-		  %   Algoritmos de máquina de vetores de suporte (em inglês, Support Vector Machines, ou SVM) "têm como objetivo a determinação de limites de decisão que produzam uma separação ótima entre classes por meio da minimização dos erros." \cite{nascimento2009}\newline
+		    \textbf{Support vector machines}\par
+		     Algoritmos de máquina de vetores de suporte (em inglês, Support Vector Machines, ou SVM) "têm como objetivo a determinação de limites de decisão que produzam uma separação ótima entre classes por meio da minimização dos erros." \cite{nascimento2009}\newline
 
-		  %  \textbf{Random forest}\par
-		  %  O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}\newline
+		    \textbf{Random forest}\par
+		    O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}\newline
 
 		    \textbf{Redes neurais}\par
 		    Redes Neurais "são um formato de estrutura de dados inspirada nas redes de neurônios do cérebro humano (...) organizadas em uma lógica de camadas e nós dentro dos códigos de programação, sugerindo uma estrutura vagamente similar ao que ocorre com os neurônios".\cite{ilumeo2020}
 
-	    \subsection{Avaliação de redes neurais}
-	    Para comparar e selecionar modelos de redes neurais, é necessário definir métricas que possam ser utilizadas como critério de avaliação. Entre elas, podemos destacar três:\newline
+	    \subsection{Avaliação de modelos}
+	    Para comparar e selecionar modelos de aprendizagem de máquina, é necessário definir métricas que possam ser utilizadas como critério de avaliação. Entre elas, podemos destacar três:\newline
 
-	       % \textbf{R Square (Quadrado de R)}\par
-	       % A métrica R Square "mede quanta variabilidade na variável dependente pode ser explicada pelo modelo. É o quadrado do Coeficiente de Correlação (R), e por isso é chamada de R Square". \cite{towards2020} (tradução do autor).\newline
+	        \textbf{R Square (Quadrado de R)}\par
+	        A métrica R Square "mede quanta variabilidade na variável dependente pode ser explicada pelo modelo. É o quadrado do Coeficiente de Correlação (R), e por isso é chamada de R Square". \cite{towards2020} (tradução do autor).\newline
 
-        % 	\textbf{Erro médio quadrático}\par
-	       % Em oposição à medida R Square, que é "uma medida relativa de quão bem o modelo se ajusta a variáveis dependentes", o Erro Médio Quadrático "é uma medida absoluta da qualidade do ajuste", e pode ser calculado pela soma do quadrado do erro de predição, que é o valor real de uma observação menos o valor previsto, e depois dividido pelo número de observações." \cite{towards2020} (tradução do autor)\newline
+        	\textbf{Erro médio quadrático}\par
+	        Em oposição à medida R Square, que é "uma medida relativa de quão bem o modelo se ajusta a variáveis dependentes", o Erro Médio Quadrático "é uma medida absoluta da qualidade do ajuste", e pode ser calculado pela soma do quadrado do erro de predição, que é o valor real de uma observação menos o valor previsto, e depois dividido pelo número de observações." \cite{towards2020} (tradução do autor)\newline
 
-	       % \textbf{Erro Médio Absoluto}\par
-	       % O Erro Médio Absoluto "é similar ao Erro Médio Quadrático. No entanto, em vez da soma do quadrado do erro no EMQ, EMA utiliza a soma do valor absoluto do erro." \cite{towards2020} (tradução do autor)
+	        \textbf{Erro Médio Absoluto}\par
+	        O Erro Médio Absoluto "é similar ao Erro Médio Quadrático. No entanto, em vez da soma do quadrado do erro no EMQ, EMA utiliza a soma do valor absoluto do erro." \cite{towards2020} (tradução do autor)
 
     \section{Trabalhos relacionados}
 
@@ -288,12 +290,9 @@
             
             No entanto, a imagem em duas dimensões mostra uma superposição das classes de filmes com vitória e sem vitória. A análise em 3 dimensões (figura \ref{pca_3} parece indicar que uma separação é possível num espaço com mais dimensões, com os filmes vencedores de pelo menos um Oscar concentrados majoritariamente em uma mesma parte do espaço, onde há poucos pontos azuis.\newline
             
-            \textbf{Remoção de outliers???????????????}\par
-            ???????????????\par
-            ???????????????\par
-            ???????????????\par
-            ???????????????\par
-            ???????????????\newline
+            \textbf{Remoção de outliers}\par
+            Foi analisada a possibilidade de remoção de outliers nos atributos numéricos ('budget', 'popularity', 'revenue', 'runtime', 'vote\_average', 'vote\_count' e 'release\_day').
+            A comparação da proporção de indicados ao Oscar, nossa classe de interesse, entre os outliers em cada um desses atributos mostrou que a remoção de outliers afetaria significativamente a amostragem da classe de interesse, que já é baixa. Por esse motivo, optamos por manter os outliers. \newline
 
             \textbf{Criação de modelos}\par
             Serão criados modelos de regressão para inferir a chance de premiação utilizando redes neurais.\newline
