@@ -20,10 +20,10 @@
         \subsection{Algoritmos de regressão}
 	    De acordo com a Oper Data \cite{oper2020}, os problemas de Machine Learning "são divididos em três subáreas principais: classificação, regressão e clustering.".
 	    
-	    Entre os algoritmos de classificação e regressão, podemos destacar:\newline
+	    Entre os algoritmos de classificação e regressão, podemos destacar, para os fins desse trabalho:\newline
 
-		    \textbf{Árvores de decisão}\par
-		    A árvore de decisão "está entre os métodos mais comuns aplicados ao aprendizado de máquina. Tais algoritmos subdividem progressivamente os dados em conjuntos cada vez menores e mais específicos, em termos de seus atributos, até atingirem um tamanho simplificado o bastante para ser rotulado. Para isso é necessário treinar o modelo com dados previamente rotulados, de modo a aplicá-lo a dados novos." \cite{digitalhouse2021}\newline
+		  %  \textbf{Árvores de decisão}\par
+		  %  A árvore de decisão "está entre os métodos mais comuns aplicados ao aprendizado de máquina. Tais algoritmos subdividem progressivamente os dados em conjuntos cada vez menores e mais específicos, em termos de seus atributos, até atingirem um tamanho simplificado o bastante para ser rotulado. Para isso é necessário treinar o modelo com dados previamente rotulados, de modo a aplicá-lo a dados novos." \cite{digitalhouse2021}\newline
 
 		    \textbf{Regressão logística}\par
 		    A regressão logística "é uma técnica estatística que tem como objetivo produzir, a partir de um conjunto de observações, um modelo que permita a predição de valores tomados por uma variável categórica, frequentemente binária, em função de uma ou mais variáveis." \cite{gonzalez2018}\newline
@@ -31,23 +31,33 @@
 		    \textbf{Support vector machines}\par
 		     Algoritmos de máquina de vetores de suporte (em inglês, Support Vector Machines, ou SVM) "têm como objetivo a determinação de limites de decisão que produzam uma separação ótima entre classes por meio da minimização dos erros." \cite{nascimento2009}\newline
 
-		    \textbf{Random forest}\par
-		    O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}\newline
+		  %  \textbf{Random forest}\par
+		  %  O algoritmo de Random Forest leva esse nome por "criar muitas árvores de decisão, de maneira aleatória, formando o que podemos enxergar como uma floresta, onde cada árvore será utilizada na escolha do resultado final". \cite{didatica2019}\newline
 
-		    \textbf{Redes neurais}\par
-		    Redes Neurais "são um formato de estrutura de dados inspirada nas redes de neurônios do cérebro humano (...) organizadas em uma lógica de camadas e nós dentro dos códigos de programação, sugerindo uma estrutura vagamente similar ao que ocorre com os neurônios".\cite{ilumeo2020}
+		  %  \textbf{Redes neurais}\par
+		  %  Redes Neurais "são um formato de estrutura de dados inspirada nas redes de neurônios do cérebro humano (...) organizadas em uma lógica de camadas e nós dentro dos códigos de programação, sugerindo uma estrutura vagamente similar ao que ocorre com os neurônios".\cite{ilumeo2020}
+
+        \subsection{Seleção de atributos e regressão por stepwise}
+            Dada a existência de um grande número de atributos em um dataset, é necessário escolher aqueles que melhor servirão para treinamento de um modelo.
+        
+            Uma das possibilidades para essa seleção é a regressão por stepwise. Ela é usada "para determinar os recursos mais importantes para um modelo usando a eliminação recursiva".\cite{deepdive2020}, (tradução do autor)
+            
+            "Comece com um modelo vazio (que inclui apenas a interceptação) e, a cada vez, a variável que possui uma estimativa de parâmetro associada com o menor valor de p é adicionada ao modelo (passo de avanço). Depois de adicionar cada nova variável no modelo, o algoritmo irá olhar para os p-valores de todas as outras estimativas de parâmetros que foram adicionadas ao modelo anteriormente e removê-los se o p-valor exceder um certo valor (retrocesso). O algoritmo para quando nenhuma variável pode ser adicionada ou removida dados os valores de limite" \cite{deepdive2020} (tradução do autor).\newline
 
 	    \subsection{Avaliação de modelos}
 	    Para comparar e selecionar modelos de aprendizagem de máquina, é necessário definir métricas que possam ser utilizadas como critério de avaliação. Entre elas, podemos destacar três:\newline
 
-	        \textbf{R Square (Quadrado de R)}\par
-	        A métrica R Square "mede quanta variabilidade na variável dependente pode ser explicada pelo modelo. É o quadrado do Coeficiente de Correlação (R), e por isso é chamada de R Square". \cite{towards2020} (tradução do autor).\newline
+            \textbf{Área sob a curva ROC}\par
+            A curva ROC ajuda a encontrar o melhor threshold na regressão logística, "resumindo a compensação entre a taxa de verdadeiro positivo e a taxa de falso positivo para um modelo preditivo usando diferentes limites de probabilidade." \cite{mastery2021} (tradução do autor)\newline
 
-        	\textbf{Erro médio quadrático}\par
-	        Em oposição à medida R Square, que é "uma medida relativa de quão bem o modelo se ajusta a variáveis dependentes", o Erro Médio Quadrático "é uma medida absoluta da qualidade do ajuste", e pode ser calculado pela soma do quadrado do erro de predição, que é o valor real de uma observação menos o valor previsto, e depois dividido pelo número de observações." \cite{towards2020} (tradução do autor)\newline
+            \textbf{Precisão}\par
+	        A medida de precisão, caracterizada pela divisão dos verdadeiros positivos pelo total de predições positivas, "fala sobre quão preciso é seu modelo em relação aos positivos previstos, quantos deles são realmente positivos. A precisão é uma boa medida para determinar quando os custos do falso positivo são altos." \cite{towards2020} (tradução do autor)\newline
 
-	        \textbf{Erro Médio Absoluto}\par
-	        O Erro Médio Absoluto "é similar ao Erro Médio Quadrático. No entanto, em vez da soma do quadrado do erro no EMQ, EMA utiliza a soma do valor absoluto do erro." \cite{towards2020} (tradução do autor)
+	        \textbf{Revocação}\par
+	        A revocação, que é a razão entre os valores preditos como positivos e o total de valores reais positivos no dataset, "calcula quantos dos positivos reais nosso modelo captura, rotulando-o como positivo (positivo verdadeiro). Aplicando o mesmo entendimento, sabemos que o Recall será a métrica do modelo que usaremos para selecionar nosso melhor modelo quando houver um alto custo associado ao Falso Negativo." \cite{towards2020} (tradução do autor)
+
+	        \textbf{F-1 Score}\par
+	        A pontuação F1 " é necessária quando você deseja buscar um equilíbrio entre precisão e recuperação. (...)A Pontuação F1 pode ser um melhor medida a ser usada se precisarmos buscar um equilíbrio entre precisão e recall e houver uma distribuição de classe desigual (grande número de negativos reais).". \cite{towards2020} (tradução do autor).\newline
 
     \section{Trabalhos relacionados}
 
@@ -64,20 +74,18 @@
     \section[Desenvolvimento]{Desenvolvimento}
 
         \subsection{Considerações iniciais}
-        Este capítulo descreve as etapas de desenvolvimento dos modelos de previsão de chances de indicação e premiação no Oscar, detalhando as escolhas realizadas e os procedimentos adotados no processo. São explicados também os resultados atingidos, os problemas enfrentados e as melhorias que podem ser realizadas em trabalhos futuros.
+        Este capítulo descreve as etapas de desenvolvimento dos modelos de previsão de chances de indicação e premiação no Oscar, detalhando as escolhas realizadas e os procedimentos adotados no processo.
 
         \subsection{Atividades realizadas}
 
             \textbf{Obtenção dos dados}\par
 
-            Foi escolhida como fonte de dados para o trabalho a database "The Movies Dataset", da plataforma Kaggle. Trata-se de um conjunto incluindo "metadados para todos os 45.000 filmes listados no conjunto de dados Full MovieLens. O conjunto de dados consiste em filmes lançados em ou antes de julho de 2017. Os dados incluem elenco, equipe, palavras-chave do enredo, orçamento, receita, pôsteres, datas de lançamento, idiomas, empresas de produção, países, contagens de votos TMDB e média de votos".\cite{kaggle2017}\par
+            Foi escolhida como fonte de dados para o trabalho a database "The Movies Dataset", da plataforma Kaggle. Trata-se de um conjunto incluindo metadados para todos os 45.000 filmes listados no conjunto Full MovieLens. O conjunto de dados consiste em filmes lançados em ou antes de julho de 2017. Os dados incluem elenco, equipe, palavras-chave do enredo, orçamento, receita, pôsteres, datas de lançamento, idiomas, empresas de produção, países, contagens de votos TMDB e média de votos".\cite{kaggle2017}\par
 
             A base de dados 'The Oscar Award, 1927 - 2020' foi utilizada para complementar os metadados, adicionando a eles as informações de indicações e vitórias na premiação.\cite{kaggle2019}\newline
 
             \textbf{Limpeza e tratamento dos dados}\par
-
-            O primeiro desafio relacionado à limpeza e tratamento dos dados aparece na base \citeonline{kaggle2019}. Embora a base esteja bastante completa em todas os outras colunas, a coluna 'film' - justamente a que traz o nome do filme relacionado àquela premiação - está nula em 304 linhas.
-
+            
             \begin{figure}[htb]
             	\caption{\label{faltantes_film}Dados faltantes na coluna film}
             	\begin{center}
@@ -85,6 +93,8 @@
             	\end{center}
             	\legend{Fonte: trabalho nosso}
             \end{figure}
+
+            O primeiro desafio relacionado à limpeza e tratamento dos dados aparece na base \citeonline{kaggle2019}. Embora a base esteja bastante completa em todas os outras colunas, a coluna 'film' - justamente a que traz o nome do filme relacionado àquela premiação - está nula em 304 linhas  (ver figura \ref{faltantes_film}).
 
             Em algumas dessas categorias, nota-se que se trata de prêmios honorários, humanitários ou de conjunto da obra. Esses dados foram desconsiderados, já que não se referem a um filme específico.
 
@@ -103,7 +113,7 @@
 
             Para análise dos anos, foi criada no dataset de metadados uma coluna 'release\_year', extraindo o ano da coluna 'release\_date'. Esse valor será comparado com a coluna 'year\_film' do dataset do Oscar.
             
-            A coluna release\_date também será eliminada em favor de uma coluna com um valor inteiro: release\_day, o número de dias desde o começo do ano até o dia em que o filme foi lançado (indo de 1 a 366). O motivo dessa transformação é o conceito corrente no senso comum (e confirmado na análise de \citeonline{hdsr2020}) que filmes lançados perto do final do ano têm maiores chances de indicação às premiações.
+            A coluna release\_date também será eliminada em favor de uma coluna com um valor inteiro: release\_day, o número de dias desde o começo do ano até o dia em que o filme foi lançado (indo de 1 a 366). O motivo dessa transformação é a percepção comum de que filmes lançados perto do final do ano têm maiores chances de serem indicação às premiações \cite{hdsr2020}. 
 
             Mas para fazer essa união entre as duas tabelas, foi também necessário normalizar nomes nas duas tabelas, adicionando-se as colunas "normalized\_title" e "normalized\_original\_title". Alguns dos desafios encontrados nesse estágio foram:
 
@@ -142,7 +152,7 @@
 
             Para esses casos, foi realizada uma análise de similaridade entre os títulos não encontrados nas duas tabelas, utilizando a biblioteca nativa difflib do Python, e uma análise caso a caso.
 
-            Nessa análise, foram encontradas outras 11 correspondências, que tiveram seus anos e nomes ajustados na tabela do Oscar. São os títulos abaixo:\newline
+            Nessa análise, foram encontradas outras 11 correspondências, que tiveram seus anos e nomes ajustados na tabela do Oscar (figura \ref{corresp}):\newline
 
             Após essa normalização e integração de instâncias, conseguimos localizar na tabela de metadados 771 dos 942 filmes do Oscar. As informações dos demais 168 serão ignoradas.
 
@@ -200,13 +210,13 @@
             	\legend{Fonte: trabalho nosso}
             \end{figure}
 
-            \begin{figure}[htb]
-            	\caption{\label{vencedores_efeitos}Filmes vencedores do Oscar de Efeitos Visuais no dataset analisado}
-            	\begin{center}
-            		\includegraphics[scale=0.7]{vencedores_efeitos.png}
-            	\end{center}
-            	\legend{Fonte: trabalho nosso}
-            \end{figure}
+            % \begin{figure}[htb]
+            % 	\caption{\label{vencedores_efeitos}Filmes vencedores do Oscar de Efeitos Visuais no dataset analisado}
+            % 	\begin{center}
+            % 		\includegraphics[scale=0.7]{vencedores_efeitos.png}
+            % 	\end{center}
+            % 	\legend{Fonte: trabalho nosso}
+            % \end{figure}
 
             \begin{figure}[htb]
             	\caption{\label{colunas_influentes_1}Colunas que mais aparecem nas correlações altas (inclui indicações)}
@@ -216,29 +226,29 @@
             	\legend{Fonte: trabalho nosso}
             \end{figure}
 
-            \begin{figure}[htb]
-            	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4 - inclui indicações}
-            	\begin{center}
-            		\includegraphics[scale=0.7]{corrs0.4.png}
-            	\end{center}
-            	\legend{Fonte: trabalho nosso}
-            \end{figure}
+            % \begin{figure}[htb]
+            % 	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4 - inclui indicações}
+            % 	\begin{center}
+            % 		\includegraphics[scale=0.7]{corrs0.4.png}
+            % 	\end{center}
+            % 	\legend{Fonte: trabalho nosso}
+            % \end{figure}
             
-            \begin{figure}[htb]
-            	\caption{\label{colunas_influentes_2}Colunas que mais aparecem nas correlações altas (inclui indicações)}
-            	\begin{center}
-            		\includegraphics[scale=0.7]{colunas_influentes_2.png}
-            	\end{center}
-            	\legend{Fonte: trabalho nosso}
-            \end{figure}
+            % \begin{figure}[htb]
+            % 	\caption{\label{colunas_influentes_2}Colunas que mais aparecem nas correlações altas (inclui indicações)}
+            % 	\begin{center}
+            % 		\includegraphics[scale=0.7]{colunas_influentes_2.png}
+            % 	\end{center}
+            % 	\legend{Fonte: trabalho nosso}
+            % \end{figure}
 
-            \begin{figure}[htb]
-            	\caption{\label{corrs0.15}Correlação entre colunas com valor mínimo de 0.15 - não inclui indicações}
-            	\begin{center}
-            		\includegraphics[scale=0.7]{corrs0.4.png}
-            	\end{center}
-            	\legend{Fonte: trabalho nosso}
-            \end{figure}
+            % \begin{figure}[htb]
+            % 	\caption{\label{corrs0.15}Correlação entre colunas com valor mínimo de 0.15 - não inclui indicações}
+            % 	\begin{center}
+            % 		\includegraphics[scale=0.7]{corrs0.15.png}
+            % 	\end{center}
+            % 	\legend{Fonte: trabalho nosso}
+            % \end{figure}
             
             \begin{figure}[htb]
             	\caption{\label{pca_2}Análise de componente principal em 2 dimensões - vencedores x não-vencedores}
@@ -248,10 +258,66 @@
             	\legend{Fonte: trabalho nosso}
             \end{figure}
             
+            % \begin{figure}[htb]
+            % 	\caption{\label{pca_3}Análise de componente principal em 3 dimensões - vencedores x não-vencedores}
+            % 	\begin{center}
+            % 		\includegraphics[scale=0.7]{pca_3.png}
+            % 	\end{center}
+            % 	\legend{Fonte: trabalho nosso}
+            % \end{figure}
+            
             \begin{figure}[htb]
-            	\caption{\label{pca_3}Análise de componente principal em 3 dimensões - vencedores x não-vencedores}
+            	\caption{\label{outliers}Análise de outliers nos atributos numéricos}
             	\begin{center}
-            		\includegraphics[scale=0.7]{pca_3.png}
+            		\includegraphics[scale=0.7]{outliers.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{roc1}Curva ROC do modelo de predição de indicação na categoria Best Picture}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{roc1.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{roc2}Curva ROC do modelo de predição de vitória na categoria Best Picture}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{roc2.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{confusao_1}Matriz de confusão do modelo de predição de indicações}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{confusao_1.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{confusao_2}Matriz de confusão do modelo de predição de vitórias}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{confusao_2.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{coefs_1}Coeficientes do modelo de predição de indicações}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{coefs_1.png}
+            	\end{center}
+            	\legend{Fonte: trabalho nosso}
+            \end{figure}
+            
+            \begin{figure}[htb]
+            	\caption{\label{coefs_2}Coeficientes do modelo de predição de vitórias}
+            	\begin{center}
+            		\includegraphics[scale=0.7]{coefs_2.png}
             	\end{center}
             	\legend{Fonte: trabalho nosso}
             \end{figure}
@@ -270,51 +336,55 @@
             
             \item A correlação entre orçamento de um filme e a renda gerada por ele também é muito alta.
 
-            \item Existe grande correlação envolvendo a arrecadação de um filme é a indicação na categoria de efeitos visuais ('nominated\_visual\_effects'). Reforçamos a existência dessa relação entre arrecadação e efeitos visuais ao ver que 12 dos 16 vencedores do oscar de efeitos visuais no nosso dataset final estão na lista de 200 maiores bilheterias da história (ver \citeonline{mojo2021} e figura \ref{vencedores_efeitos});
+            \item Existe grande correlação envolvendo a arrecadação de um filme é a indicação na categoria de efeitos visuais ('nominated\_visual\_effects'). Reforçamos a existência dessa relação entre arrecadação e efeitos visuais ao ver que 12 dos 16 vencedores do oscar de efeitos visuais no nosso dataset final estão na lista de 200 maiores bilheterias da história \cite{mojo2021};
 
             \item O atributo mais presente nas altas correlações é a coluna 'nominated\_best\_picture'. Há uma grande relação entre filmes indicados ao Oscar de melhor filme, a principal categoria da premiação, e a indicação e vitória em outras categorias.
 
             \item 10 correlações envolvem as colunas relacionadas ao prêmio de melhor direção ('nominated\_directing' e 'won\_directing').
 
-            \item 17 colunas podem ser consideradas as mais "influentes" nas correlações (figuras \ref{colunas_influentes_1} e \ref{corrs0.4}). Para realizar essa análise, desconsideramos as colunas de vitória em categorias ('won\_***'), que serão usadas sempre como classe e nunca como atributo.
+            \item 17 colunas podem ser consideradas as mais "influentes" nas correlações (figura \ref{colunas_influentes_1}). Para realizar essa análise, desconsideramos as colunas de vitória em categorias ('won\_***'), que serão usadas sempre como classe e nunca como atributo.
             
             \end{itemize}
             
             Como se pode ver, as colunas que representam indicações ('nominated\_*') foram dominantes nessa análise. Mas é preciso levar em consideração que elas serão utilizadas como classe em uma das versões definidas do problema. Por isso, foi feita uma segunda versão da análise, desconsiderando essas colunas, para entender quais são as outras colunas que apresentam grande correlação com os outros atributos.
             
-            Nessa versão, para limitar o número de correlações, foram analisadas as correlações superiores a 0.15 (ver figura . Dessa vez, as colunas relativas a gêneros ('genre\_*') foram predominantes (ver figuras \ref{colunas_influentes_2} e \ref{corrs0.15})).
+            Nessa versão, para limitar o número de correlações, foram analisadas as correlações superiores a 0.15 (ver figura . Dessa vez, as colunas relativas a gêneros ('genre\_*') foram predominantes.
 
             Realizamos também projeções, em duas e três dimensões, dos objetos do dataset, utilizando a técnica de Principal Component Analysis (PCA), utilizando cores para representar os filmes vitoriosos ou não.
             
             A representação em duas dimensões mostra um dado interessante: os filmes vitoriosos parecem se concentrar num ponto do espaço, o que pode significa uma maior chance de êxito na criação de superfícies de decisão que tragam uma resposta para o problema (ver figura \ref{pca_2}).
             
-            No entanto, a imagem em duas dimensões mostra uma superposição das classes de filmes com vitória e sem vitória. A análise em 3 dimensões (figura \ref{pca_3} parece indicar que uma separação é possível num espaço com mais dimensões, com os filmes vencedores de pelo menos um Oscar concentrados majoritariamente em uma mesma parte do espaço, onde há poucos pontos azuis.\newline
-            
             \textbf{Remoção de outliers}\par
-            Foi analisada a possibilidade de remoção de outliers nos atributos numéricos ('budget', 'popularity', 'revenue', 'runtime', 'vote\_average', 'vote\_count' e 'release\_day').
-            A comparação da proporção de indicados ao Oscar, nossa classe de interesse, entre os outliers em cada um desses atributos mostrou que a remoção de outliers afetaria significativamente a amostragem da classe de interesse, que já é baixa. Por esse motivo, optamos por manter os outliers. \newline
+            Foi analisada a possibilidade de remoção de outliers nos atributos numéricos ('budget', 'popularity', 'revenue', 'runtime', 'vote\_average', 'vote\_count' e 'release\_day'), considerando-se outliers os valores a mais de 3 desvios-padrão de distância - da média dos atributos.\par
+            
+            A comparação da proporção de indicados ao Oscar, nossa classe de interesse, entre os outliers em cada um desses atributos mostrou que a remoção de outliers afetaria significativamente a amostragem da classe de interesse, que já é baixa. Por esse motivo, optamos por manter os outliers (ver figura \ref{outliers}).
+
+            \textbf{Seleção de atributos}\par
+            
+            Para permitir a obtenção de melhores resultados, além de reduzir o custo computacional do treinamento dos modelos, o grande número de atributos do dataset nesse ponto foi reduzido com a ajuda a regressão por stepwise. Foram utilizados thresholds de inclusão de 0.01 e de exclusão de 0.7, resultando na redução dos 428 atributos para apenas 13: 'vote\_count', 'vote\_average', 'genre\_drama', 'release\_day', 'country\_US', 'spoken\_language\_XH', 'genre\_history', 'genre\_action', 'country\_FR', 'original\_language\_EN', 'spoken\_language\_SH', 'country\_IN' e 'country\_AT'.
+            
+            Dentre esses, optamos por excluir alguns que são representativos de um número muito pequeno de instâncias, e por isso, provavelmente estariam associados a overfitting.\newline
 
             \textbf{Criação de modelos}\par
-            Serão criados modelos de regressão para inferir a chance de premiação utilizando redes neurais.\newline
+            Foram criados dois modelos de regressão logística:
+            
+            \begin{itemize}
+                \item Modelo 1: para inferir a chance de indicação na categoria Melhor Filme ("Best Picture"), utilizando diferentes algoritmos, para todos os filmes;
+                \item Modelo 2: para inferir a chance de vitória apenas entre os filmes indicados à categoria "Best Picture";
+            \end{itemize}
+            
+            Ambos foram analisados por seus gráficos de curva ROC (figuras \ref{roc1} e \ref{roc2}). Como mostra a curva, o gráfico  do modelo 1 tem desempenho muito melhor que um classificador aleatório (ver \citeonline{mastery2021}). O mesmo não vale para o modelo 2, que em vários momentos tem desempenho pior que o modelo aleatório, e apenas para alguns thresholds apresenta desempenho pouquíssimo melhor.
 
             \textbf{Avaliação comparativa dos resultados}\par
-            Avaliação comparativa dos resultados usando as métricas de mean squared error, root mean squared error, e mean absolute error.\newline
+            Para seleção do melhor threshold, foi utilizada a métrica de score f1.
+            
+        \subsection{Resultados obtidos}
+            
+            O threshold com os melhores resultados para o modelo 1 foi de 0.15, com um f1 de 0.45. Com esse modelo, foi possível prever no conjunto de teste 7 verdadeiros positivos, com 11 falsos positivos e 9 falsos negativos, resultado bastante razoável num universo de 3454 instâncias de treinamento (figura \ref{confusao_1}).
+            
+            Já para o modelo 2, o melhor threshold encontrado foi de 0.33, com um f1 de 0.33. Com esse modelo, não foi possível prever no grupo de validação nenhum verdadeiro positivo, com 4 falsos positivos e 3 falsos negativos.(figura \ref{confusao_2})
 
             \textbf{Avaliação de importância dos metadados}\par
-            Avaliação da importância de cada fator (metadado) na previsão, baseando-se no feedback dos algoritmos testados.\newline
-
-            \textbf{Interpretação dos resultados}\par
-            Interpretação dos resultados para elaboração das conclusões com indicação das técnicas mais promissoras.\newline
-
-        \subsection{Resultados obtidos}
-
-% cola para inserir figura
-% \newpage
-% \begin{figure}[htb]
-% 	\caption{\label{fig_EstruturaTrabAcad}Estrutura do trabalho acadêmico}
-% 	\begin{center}
-% 		\includegraphics[scale=0.5]{USPSC-EstruturaTrabAcad.jpg}
-% 	\end{center}
-% 	\legend{Fonte: \citeonline{nbr14724}}
-% \end{figure}
-% \newline
+            A análise dos maiores coeficientes do modelo 1, em valor absoluto, revela a importância para o modelo de alguns critérios esperados, como data de lançamento, popularidade, média dos votos no MovieLens, orçamento e renda. Alguns fatores menos óbvios que tiveram impacto no treinamento foram duração, se o filme foi lançado em vídeo, o número de votos no Movie Lens e se o filme é adulto ou não.(ver figura \ref{coefs_1})\par
+            
+            Para o modelo 2, em valor absoluto, os fatores que mais influenciaram o modelo foram, nessa ordem: se o filme foi lançado em vídeo, duração, média dos votos no Movie Lens, renda, popularidade no Movie Lens, adulto ou não-adulto e. orçamento.(ver figura \ref{coefs_2})\par
