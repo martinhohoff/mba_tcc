@@ -5,7 +5,7 @@
     \section{Interpretação dos resultados}\par
         Os resultados talvez fossem melhores não fosse pelo pequeno número de instâncias a serem analisadas ou mesmo à difícil predição do caráter humano da premiação, que é afetada pelos temas de cada filme, tendências artísticas e de conteúdo de cada ano, além de outras nuances sutis. Há que se considerar ainda a hipótese de que um outro modelo, com parâmetros mais bem ajustados, ou outro critério de seleção de atributos, obtivesse melhor resultado.
         
-        Ainda que não sejam excelentes, os resultados apontam na direção de uma possibilidade de predição de filmes indicados ao Oscar. O modelo de regressão obteve um bom equilíbrio entre precisão e revocação, conseguindo prever um número considerável de verdadeiros positivos, sem incorrer em um grade número de falsos negativos ou falsos positivos.
+        Ainda que não sejam excelentes, os resultados apontam na direção de uma possibilidade de predição de filmes indicados ao Oscar. O modelo 2 obteve algum equilíbrio entre precisão e revocação, conseguindo prever um número considerável de verdadeiros positivos, sem incorrer em um grade número de falsos negativos ou falsos positivos.
         
         O modelo de predição de indicações ao Oscar condiz com a expectativa de que fatores conhecidos como data de lançamento, orçamento e renda tivessem grande influência, demonstrando ainda a importância de atributos menos esperados como duração, e se o filme é adulto ou não.
         
@@ -17,13 +17,13 @@
         
         A imprecisão de anos e nomes dos filmes, que utilizava formatos diferentes em cada dataset, e até mesmo inconsistentes dentro de um mesmo dataset, geraram grande dificuldade de associação entre os dados de um dataset e de outro. Por isso, a melhor hipótese talvez seja a criação e aprimoração de um dataset próprio para essa análise.
         
-        No campo da metodologia, um problema recorrente ao longo da pesquisa foi o de definição do problema. Eventualmente, notamos que se tratava de pelo menos dois problemas - chances de indicação e de premiação -, com a grande diferença de que os dados de indicação são classe alvo no primeiro problema e atributos no segundo problema.
+        No campo da metodologia, um problema recorrente ao longo da pesquisa foi o de definição do problema. Eventualmente, notamos que se tratava de pelo menos dois problemas - chances de indicação e de premiação -, com a grande diferença de que os dados de indicação são classe alvo no primeiro problema e atributos no segundo problema. Ainda por questões de complexidade, o objeto de estudo do trabalho se resumiu ao problema 1.
         
-        Como as categorias não são mutuamente excludentes, pretendíamos ainda dividir cada um desses 2 problemas em 23, que é o número de categorias do Oscar, tentando analisar as chances de um filme em cada uma dessas categorias. O tamanho desse problema revelou-se excessivamente desafiador para essa pesquisa, que preferiu manter-se nas chances de indicação e premiação em uma única categoria (Oscar de melhor filme).
+        Como as categorias não são mutuamente excludentes, pretendíamos ainda dividir cada um desses 2 problemas em 23, que é o número de categorias do Oscar, tentando analisar as chances de um filme em cada uma dessas categorias. O tamanho desse problema revelou-se excessivamente desafiador para essa pesquisa, que preferiu manter-se nas chances de indicação em uma única categoria (Oscar de melhor filme).
     
     \section[Próximas etapas da pesquisa]{Próximas etapas}
         Um subproduto possível da pesquisa é a criação do dataset unificado de metadados e indicações ao Oscar. A validação e consolidação desse dataset, ou a utilização de um dataset de metadados que já traga informações da premiação do Oscar, poderia gerar resultados melhores, e concentraria o esforço da pesquisa na possibilidade ou não de prever indicações, e com quais modelos.
         
-        Próximos passos possíveis para a pesquisa também incluem a análise da predição com outros algoritmos além da regressão logística, e com expansão do problema para as outras categorias além de melhor filme.
+        Próximos passos possíveis para a pesquisa também incluem a análise da predição com outros algoritmos além da regressão logística, e com expansão do problema para chances de vitória e para outras categorias além de melhor filme.
         
-        Os resultados mostram também um desempenho bastante consistente entre o modelo treinado com seleção stepwise de atributos e o treinado a partir da seleção manual de atributos que, intuitivamente, parecem relacionados às indicações. Uma investigação de subconjuntos possíveis dos atributos, e seus resultados, poderia revelar a existência de um ou mais atributos em comum que sejam determinantes na obtenção desses resultados.
+        Os resultados mostram também um desempenho ligeiramente inferior para o modelo treinado com seleção stepwise de atributos e melhor para o treinado a partir da seleção manual dos atributos que, intuitivamente, parecem relacionados às indicações. Uma investigação de subconjuntos possíveis dos atributos poderia revelar a existência de um ou mais subconjuntos que levem a resultados ainda melhores.

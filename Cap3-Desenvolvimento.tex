@@ -308,18 +308,16 @@
         	\legend{Fonte: trabalho nosso}
         \end{figure}
         
-        Todos os modelos foram analisados por seus gráficos de curva ROC (figuras \ref{roc1} e \ref{roc2}). Como mostra a curva, o gráfico  do modelo 1 tem desempenho muito melhor que um classificador aleatório (ver \citeonline{mastery2021}). O mesmo não vale para o modelo 2, que em vários momentos tem desempenho pior que o modelo aleatório, e apenas para alguns thresholds apresenta desempenho pouquíssimo melhor.
+        Ambos os modelos foram analisados por seus gráficos de curva ROC (figuras \ref{roc1} e \ref{roc2}). Como mostram as curvas, os gráfico dos dois modelos têm desempenho melhor que um classificador aleatório (ver \citeonline{mastery2021}). O modelo 2, com atributos manuais, apresenta desempenho consideravelmente melhor, com uma área sob a curva ROC de 0.82 contra 0.73 do modelo com seleção stepwise. Por isso, o modelo 2 será utilizado.
 
         \subsection{Avaliação comparativa dos resultados}\par
-        Para seleção do melhor threshold, foi utilizada a métrica de score f1. Incrementos de 0.01 foram feitos para thresholds entre 0 e 1, e o f1 score foi calculado para cada um dos thresholds. O threshold em que se obteve o melhor score f1 é considerado, em cada modelo, como o melhor threshold.
+        Para seleção do melhor threshold no melhor modelo, foi utilizada a métrica de score f1. Incrementos de 0.01 foram feitos para thresholds entre 0 e 1, e o f1 score foi calculado para cada um dos thresholds.
         
     \section{Resultados obtidos}
         
-        O threshold com os melhores resultados para o modelo 1 foi de 0.15, com um f1 de 0.45. Com esse modelo, foi possível prever no conjunto de teste 7 verdadeiros positivos, com 11 falsos positivos e 9 falsos negativos, resultado bastante razoável num universo de 3454 instâncias de treinamento (figura \ref{confusao_1}).
-        
-        Já para o modelo 2, o melhor threshold encontrado foi de 0.33, com um f1 de 0.33. Com esse modelo, não foi possível prever no grupo de validação nenhum verdadeiro positivo, com 4 falsos positivos e 3 falsos negativos.(figura \ref{confusao_2})
+        O threshold com os melhores resultados para o modelo 2 foi de 0.15, com um f1 de 0.39. Com esse modelo, foi possível prever no conjunto de teste 7 verdadeiros positivos, com 11 falsos positivos e 9 falsos negativos, resultado bastante razoável num universo de 3454 instâncias de treinamento (figura \ref{confusao_1}).
 
         \subsection{Avaliação de importância dos metadados}\par
-        A análise dos maiores coeficientes do modelo 1, em valor absoluto, revela a importância para o modelo de alguns critérios esperados, como data de lançamento, orçamento e renda. Alguns fatores menos óbvios que tiveram impacto no treinamento foram duração, se o filme foi lançado em vídeo, e se o filme é adulto ou não.(figura \ref{coefs_1})\par
+        A análise dos maiores coeficientes do melhor modelo (modelo 2), em valor absoluto, revela a ordem de importância dos atributos selecionados manualmente.
         
-        Para o modelo 2, em valor absoluto, os fatores que mais influenciaram o modelo foram, nessa ordem: se o filme foi lançado em vídeo, duração, média dos votos no Movie Lens, renda, popularidade no Movie Lens, adulto ou não-adulto e. orçamento.(figura \ref{coefs_2})\par
+        Para o modelo 2, em valor absoluto, os fatores que mais influenciaram o modelo foram, nessa ordem: duração do filme; data de lançamento; país de produção Estados Unidos; gênero drama; gênero histórico; e renda do filme (figura \ref{coefs_1}).\par
