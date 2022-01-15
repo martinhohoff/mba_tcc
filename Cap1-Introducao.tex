@@ -11,9 +11,9 @@ Detectar e prever tendências de mercado pode ser essencial para aumentar as cha
 
 Esse trabalho tem como objetivo investigar como os dados de orçamento, receita, data de lançamento, linguagens, país de produção e empresas produtoras, palavras-chave da trama, créditos de elenco e equipe, entre outros, influenciam nas chances de premiação no Oscar. Especificamente, objetiva-se:\par
 
-- detectar quais fatores são os mais preditivos com relação à chance de nomeação ou vitória de um filme no Oscar, e com qual grau de certeza é possível fazer essa previsão;\par
+- detectar quais fatores são os mais preditivos com relação à chance de nomeação de um filme no Oscar, e com qual grau de certeza é possível fazer essa previsão;\par
 - considerar dados adicionais que possam complementar a atividade preditiva;\par
-- analisar a importância individual dos fatores nas indicações e premiações;\par
+- analisar a importância individual dos fatores nas indicações;\par
 - extrapolar as conclusões, se possível, para fatores que influenciam e permitem o cálculo de chances de indicações e vitórias em outras premiações.\par
 \par
 
@@ -22,14 +22,13 @@ A metodologia para fazer essa investigação seguirá os seguintes passos:\par
 1. utilização de históricos de metadados de filmes e indicações ao Oscar obtidos na plataforma Kaggle;\par
 2. limpeza e tratamento dos dados, verificando-se por dados faltantes, espúrios, e extremos indicados por meio de análises de distribuição;\par
 3. criação de um arcabouço de análise exploratória em ambiente Python fazendo-se uso dos pacotes Pandas, Numpy, e Scikit Learn;\par
-4. criação de modelos de classificação para a chance de premiação utilizando diferentes algoritmos;\par
+4. criação de modelos de classificação para a chance de indicação utilizando regressão logística;\par
 5. avaliação comparativa dos resultados;\par
 6. avaliação da importância de cada fator (metadado) baseando-se no feedback dos modelos testados;\par
 7. interpretação dos resultados para elaboração das conclusões com indicação das técnicas mais promissoras.\par
 \par
 
-Entre os resultados esperados, pode-se destacar a descoberta dos melhores modelos de predição de indicações e vitórias que ajudem a gerar previsibilidade do desempenho de um filme em premiações, e a obtenção de um ou mais modelos a partir dos dados de orçamento, receita, data de lançamento, linguagens, país de produção e empresas produtoras, palavras-chave da trama, créditos de elenco e equipe, entre outros, para inferir:\par
+Entre os resultados esperados, pode-se destacar a descoberta dos melhores modelos de predição de indicações que ajudem a gerar previsibilidade do desempenho de um filme em premiações, e a obtenção de um ou mais modelos a partir dos dados de orçamento, receita, data de lançamento, linguagens, país de produção, entre outros, para inferir:\par
 
 a) a chance de que um filme seja indicado para o Oscar em uma determinada categoria;\par
-b) a chance de que o filme, se indicado, ganhe naquela categoria;\par
-d) a interpretação da importância de cada fator (metadado) nas chances de indicação e premiação.\par
+b) a interpretação da importância de cada fator (metadado) nas chances de indicação e premiação.\par

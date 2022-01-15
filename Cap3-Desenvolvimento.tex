@@ -2,18 +2,18 @@
 % ---
 \chapter[Desenvolvimento]{Desenvolvimento}
 % ---
-    \subsection{Considerações iniciais}
+    \section{Considerações iniciais}
     Este capítulo descreve as etapas de desenvolvimento dos modelos de previsão de chances de indicação e premiação no Oscar, detalhando as escolhas realizadas e os procedimentos adotados no processo.
 
-    \subsection{Atividades realizadas}
+    \section{Atividades realizadas}
 
-        \textbf{Obtenção dos dados}\par
+        \subsection{Obtenção dos dados}\par
 
         Foi escolhida como fonte de dados para o trabalho a database "The Movies Dataset", da plataforma Kaggle. Trata-se de um conjunto incluindo metadados para todos os 45.000 filmes listados no conjunto Full MovieLens. O conjunto de dados consiste em filmes lançados em ou antes de julho de 2017. Os dados incluem elenco, equipe, palavras-chave do enredo, orçamento, receita, pôsteres, datas de lançamento, idiomas, empresas de produção, países, contagens de votos TMDB e média de votos".\cite{kaggle2017}\par
 
-        A base de dados 'The Oscar Award, 1927 - 2020' foi utilizada para complementar os metadados, adicionando a eles as informações de indicações e vitórias na premiação.\cite{kaggle2019}\newline
+        A base de dados 'The Oscar Award, 1927 - 2020' foi utilizada para complementar os metadados, adicionando a eles as informações de indicações na premiação.\cite{kaggle2019}
 
-        \textbf{Limpeza e tratamento dos dados}\par
+        \subsection{Limpeza e tratamento dos dados}\par
         
         \begin{figure}[htb]
         	\caption{\label{faltantes_film}Dados faltantes na coluna film}
@@ -81,23 +81,23 @@
 
         Para esses casos, foi realizada uma análise de similaridade entre os títulos não encontrados nas duas tabelas, utilizando a biblioteca nativa difflib do Python, e uma análise caso a caso.
 
-        Nessa análise, foram encontradas outras 11 correspondências, que tiveram seus anos e nomes ajustados na tabela do Oscar (figura \ref{corresp}):\newline
+        Nessa análise, foram encontradas outras 11 correspondências, que tiveram seus anos e nomes ajustados na tabela do Oscar (figura \ref{corresp}).
 
         Após essa normalização e integração de instâncias, conseguimos localizar na tabela de metadados 771 dos 942 filmes do Oscar. As informações dos demais 168 serão ignoradas.
 
         Podemos finalmente adicionar as informações dos Oscars ao The Movies Dataset. Para isso, vamos criar colunas no formato one-hot encoding para inserir as informações de nomeação e vitória em cada categoria para cada filme, seguindo a codificação da figura \ref{cat_cods}.
 
-        Para cada um desses códigos, foram criadas duas colunas: '{codigo}\_nominated' e '{codigo}\_won', para designar indicação e vitória na categoria. Também foi adicionada uma coluna para indicar o ano da cerimônia em que participou o filme, com valor None como padrão.\newline
+        Para cada um desses códigos, foram criadas duas colunas: '{codigo}\_nominated' e '{codigo}\_won', para designar indicação e vitória na categoria. Também foi adicionada uma coluna para indicar o ano da cerimônia em que participou o filme, com valor None como padrão.
 
-        Após unificados os dados, pôde ser realizada análise exploratória com Pandas, Numpy, e Scikit Learn para conferir a natureza dos dados, a existência de dados faltantes ou inconsistentes e a existência de tendências que auxiliem na construção dos modelos.\newline
+        Após unificados os dados, pôde ser realizada análise exploratória com Pandas, Numpy, e Scikit Learn para conferir a natureza dos dados, a existência de dados faltantes ou inconsistentes e a existência de tendências que auxiliem na construção dos modelos.
 
-        A coluna 'genres' foi convertida em one-hot encoding, levando-se em consideração apenas gêneros que aparecem mais de uma vez na tabela, a saber: 'animation', 'comedy', 'family', 'adventure', 'fantasy', 'romance', 'drama', 'action', 'crime', 'thriller', 'horror', 'history', 'science\_fiction', 'mystery', 'war', 'foreign', 'music', 'documentary', 'western' e 'tv\_movie'.
+        A coluna 'genres' foi convertida em one-hot encoding, resultado nas colunas: 'animation', 'comedy', 'family', 'adventure', 'fantasy', 'romance', 'drama', 'action', 'crime', 'thriller', 'horror', 'history', 'science\_fiction', 'mystery', 'war', 'foreign', 'music', 'documentary', 'western' e 'tv\_movie'.
 
-        O mesmo processo foi aplicado nas colunas 'spoken\_languages' e 'original\_language', mas levando em consideração todas as linguagens existentes na tabela.
+        O mesmo processo foi aplicado nas colunas country, 'spoken\_languages' e 'original\_language', desconsiderando linguagens e países que aparecem em menos de 500 filmes.
 
         A coluna 'production\_companies' poderia trazer informações interessantes, já que um pequeno número de grandes produtoras detêm a maior parte das indicações e premiações \cite{argon2020}. No entanto, uma análise por one-hot encoding seria difícil nesse caso, já que mais de 15336 produtoras foram encontradas na coluna. Por conta disso, optou-se por remover também esse atributo.
 
-        Alguns tratamentos pontuais foram realizados para modificar e padronizar os valores de algumns atributos: as colunas 'adult' (que indica se um filme é adulto), 'video' (que aponta lançamentos feitos direto para o video), 'budget' (orçamento) e 'popularity' (a métrica de popularidade do MovieLens) foram transformadas em float.
+        Alguns tratamentos pontuais foram realizados para modificar e padronizar os valores de algumns atributos: as colunas 'adult' (que indica se um filme é adulto), 'video' (que aponta lançamentos feitos direto para o video) e 'budget' (orçamento) foram transformadas em float.
         
         Foram localizados também 3 filmes com valores float (NaN) na coluna 'title'. Essas três instâncias parecem ter o mesmo problema: colunas desalinhadas pela falta de algum valor. Na impossibilidade de confirmar exatamente quais dados pertencem a quais colunas, vamos eliminá-las.
         
@@ -121,7 +121,7 @@
             \item 'status' - diz se o filme está em pré-produção, foi finalizado, etc.
         \end{itemize}
 
-        \textbf{Arcabouço de análise exploratória}\par
+        \subsection{Arcabouço de análise exploratória}\par
 
         \begin{figure}[htb]
         	\caption{\label{corrs_graph}Número de correlações maiores que cada valor de threshold}
@@ -131,13 +131,13 @@
         	\legend{Fonte: trabalho nosso}
         \end{figure}
 
-        \begin{figure}[htb]
-        	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4}
-        	\begin{center}
-        		\includegraphics[scale=0.7]{corrs0.4.png}
-        	\end{center}
-        	\legend{Fonte: trabalho nosso}
-        \end{figure}
+        % \begin{figure}[htb]
+        % 	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4}
+        % 	\begin{center}
+        % 		\includegraphics[scale=0.7]{corrs0.4.png}
+        % 	\end{center}
+        % 	\legend{Fonte: trabalho nosso}
+        % \end{figure}
 
         % \begin{figure}[htb]
         % 	\caption{\label{vencedores_efeitos}Filmes vencedores do Oscar de Efeitos Visuais no dataset analisado}
@@ -147,13 +147,13 @@
         % 	\legend{Fonte: trabalho nosso}
         % \end{figure}
 
-        \begin{figure}[htb]
-        	\caption{\label{colunas_influentes_1}Colunas que mais aparecem nas correlações altas (inclui indicações)}
-        	\begin{center}
-        		\includegraphics[scale=0.7]{colunas_influentes_1.png}
-        	\end{center}
-        	\legend{Fonte: trabalho nosso}
-        \end{figure}
+        % \begin{figure}[htb]
+        % 	\caption{\label{colunas_influentes_1}Colunas que mais aparecem nas correlações altas (inclui indicações)}
+        % 	\begin{center}
+        % 		\includegraphics[scale=0.7]{colunas_influentes_1.png}
+        % 	\end{center}
+        % 	\legend{Fonte: trabalho nosso}
+        % \end{figure}
 
         % \begin{figure}[htb]
         % 	\caption{\label{corrs0.4}Correlação entre colunas com valor mínimo de 0.4 - inclui indicações}
@@ -195,74 +195,24 @@
         % 	\legend{Fonte: trabalho nosso}
         % \end{figure}
         
-        \begin{figure}[htb]
-        	\caption{\label{outliers}Análise de outliers nos atributos numéricos}
-        	\begin{center}
-        		\includegraphics[scale=0.7]{outliers.png}
-        	\end{center}
-        	\legend{Fonte: trabalho nosso}
-        \end{figure}
-        
-        \begin{figure}[htb]
-        	\caption{\label{roc1}Curva ROC do modelo de predição de indicação na categoria Best Picture}
-        	\begin{center}
-        		\includegraphics[scale=0.7]{roc1.png}
-        	\end{center}
-        	\legend{Fonte: trabalho nosso}
-        \end{figure}
-        
-        \begin{figure}[htb]
-        	\caption{\label{roc2}Curva ROC do modelo de predição de vitória na categoria Best Picture}
-        	\begin{center}
-        		\includegraphics[scale=0.7]{roc2.png}
-        	\end{center}
-        	\legend{Fonte: trabalho nosso}
-        \end{figure}
-        
-        \begin{figure}[htb]
-        	\caption{\label{confusao_1}Matriz de confusão do modelo de predição de indicações}
-        	\begin{center}
-        		\includegraphics[scale=0.7]{confusao_1.png}
-        	\end{center}
-        	\legend{Fonte: trabalho nosso}
-        \end{figure}
-        
-        \begin{figure}[htb]
-        	\caption{\label{confusao_2}Matriz de confusão do modelo de predição de vitórias}
-        	\begin{center}
-        		\includegraphics[scale=0.7]{confusao_2.png}
-        	\end{center}
-        	\legend{Fonte: trabalho nosso}
-        \end{figure}
-        
-        \begin{figure}[htb]
-        	\caption{\label{coefs_1}Coeficientes do modelo de predição de indicações}
-        	\begin{center}
-        		\includegraphics[scale=0.7]{coefs_1.png}
-        	\end{center}
-        	\legend{Fonte: trabalho nosso}
-        \end{figure}
-        
-        \begin{figure}[htb]
-        	\caption{\label{coefs_2}Coeficientes do modelo de predição de vitórias}
-        	\begin{center}
-        		\includegraphics[scale=0.7]{coefs_2.png}
-        	\end{center}
-        	\legend{Fonte: trabalho nosso}
-        \end{figure}
+        % \begin{figure}[htb]
+        % 	\caption{\label{outliers}Análise de outliers nos atributos numéricos}
+        % 	\begin{center}
+        % 		\includegraphics[scale=0.7]{outliers.png}
+        % 	\end{center}
+        % 	\legend{Fonte: trabalho nosso}
+        % \end{figure}
 
-        Como primeiro ponto da análise exploratória dos dados, foram analisadas as correlações entre as colunas do dataframe. Por se tratar de um grande número de atributos - aproximadamente 240, gerando um número de correlações n**2 de aproximadamente 60000 -, foi necessário experimentar valores mínimos arbitrários para as correlações.
+        Como primeiro ponto da análise exploratória dos dados, foram analisadas as correlações entre as colunas do dataframe. Por se tratar de um grande número de atributos - aproximadamente 52, gerando um número de correlações n**2 de aproximadamente 60000 -, foi necessário experimentar valores mínimos arbitrários para as correlações.
 
         Também ignoramos as correlações entre países de produção. Mesmo as altas entre elas não acrescentavam dados à nossa análise. A coluna que indica filmes produzidos nas Antilhas Holandesas ('country\_AN'), por exemplo, tem correlação perfeita com a coluna que marca filmes produzidos na Polinésia Francesa ('country\_FP').\par
 
-        Levando em conta a viabilidade da análise, decidimos nos limitar às correlações maiores do que 0.4. Correlações maiores do que 0.3 já gerariam uma lista com cerca de 100 itens (figuras \ref{corrs_graph} e \ref{corrs0.4}). \par
+        Levando em conta a viabilidade da análise, decidimos nos limitar às correlações maiores do que 0.4. Correlações maiores do que 0.3 já gerariam uma lista com cerca de 100 itens (figura \ref{corrs_graph}). \par
 
         Algumas das correlações interessantes reveladas por essa análise, e que podem ajudar na construção dos modelos, ou indicar parâmetros importantes:
 
         \begin{itemize}
 
-        \item a mais alta correlação encontrada é entre os atributos 'vote\_count' (o número total de votos que um filme recebeu no site MovieLens) e a arrecadação do filme ('revenue'). Pode indicar que filmes muito assistidos recebem muitos votos no site;
-        
         \item A correlação entre orçamento de um filme e a renda gerada por ele também é muito alta.
 
         \item Existe grande correlação envolvendo a arrecadação de um filme é a indicação na categoria de efeitos visuais ('nominated\_visual\_effects'). Reforçamos a existência dessa relação entre arrecadação e efeitos visuais ao ver que 12 dos 16 vencedores do oscar de efeitos visuais no nosso dataset final estão na lista de 200 maiores bilheterias da história \cite{mojo2021};
@@ -270,12 +220,10 @@
         \item O atributo mais presente nas altas correlações é a coluna 'nominated\_best\_picture'. Há uma grande relação entre filmes indicados ao Oscar de melhor filme, a principal categoria da premiação, e a indicação e vitória em outras categorias.
 
         \item 10 correlações envolvem as colunas relacionadas ao prêmio de melhor direção ('nominated\_directing' e 'won\_directing').
-
-        \item 17 colunas podem ser consideradas as mais "influentes" nas correlações (figura \ref{colunas_influentes_1}). Para realizar essa análise, desconsideramos as colunas de vitória em categorias ('won\_***'), que serão usadas sempre como classe e nunca como atributo.
         
         \end{itemize}
         
-        Como se pode ver, as colunas que representam indicações ('nominated\_*') foram dominantes nessa análise. Mas é preciso levar em consideração que elas serão utilizadas como classe em uma das versões definidas do problema. Por isso, foi feita uma segunda versão da análise, desconsiderando essas colunas, para entender quais são as outras colunas que apresentam grande correlação com os outros atributos.
+        As colunas que representam indicações ('nominated\_*') foram dominantes nessa análise. Mas é preciso levar em consideração que elas serão utilizadas como classe em uma das versões definidas do problema. Por isso, foi feita uma segunda versão da análise, desconsiderando essas colunas, para entender quais são as outras colunas que apresentam grande correlação com os outros atributos.
         
         Nessa versão, para limitar o número de correlações, foram analisadas as correlações superiores a 0.15. Dessa vez, as colunas relativas a gêneros ('genre\_*') foram predominantes.
 
@@ -283,45 +231,95 @@
         
         A representação em duas dimensões mostra um dado interessante: os filmes vitoriosos parecem se concentrar num ponto do espaço, o que pode significa uma maior chance de êxito na criação de superfícies de decisão que tragam uma resposta para o problema (figura \ref{pca_2}).
         
-        \textbf{Remoção de outliers}\par
-        Foi analisada a possibilidade de remoção de outliers nos atributos numéricos ('budget', 'popularity', 'revenue', 'runtime', 'vote\_average', 'vote\_count' e 'release\_day'), considerando-se outliers os valores a mais de 3 desvios-padrão de distância - da média dos atributos.\par
+        \subsection{Remoção de outliers}\par
+        Foi analisada a possibilidade de remoção de outliers nos atributos numéricos ('budget', 'revenue', 'runtime', e 'release\_day'), considerando-se outliers os valores a mais de 3 desvios-padrão de distância - da média dos atributos.\par
         
-        A comparação da proporção de indicados ao Oscar, nossa classe de interesse, entre os outliers em cada um desses atributos mostrou que a remoção de outliers afetaria significativamente a amostragem da classe de interesse, que já é baixa. Por esse motivo, optamos por manter os outliers (figura \ref{outliers}).
+        A comparação da proporção de indicados ao Oscar, nossa classe de interesse, entre os outliers em cada um desses atributos mostrou que a remoção de outliers afetaria significativamente a amostragem da classe de interesse, que já é baixa. Por esse motivo, optamos por manter os outliers.
 
-        \textbf{Seleção de atributos}\par
+        \subsection{Seleção de atributos}\par
         
-        Para permitir a obtenção de melhores resultados, além de reduzir o custo computacional do treinamento dos modelos, o grande número de atributos do dataset nesse ponto foi reduzido com a ajuda a regressão por stepwise. Foram utilizados thresholds de inclusão de 0.01 e de exclusão de 0.7, resultando na redução dos 428 atributos para apenas 13: 'vote\_count', 'vote\_average', 'genre\_drama', 'release\_day', 'country\_US', 'spoken\_language\_XH', 'genre\_history', 'genre\_action', 'country\_FR', 'original\_language\_EN', 'spoken\_language\_SH', 'country\_IN' e 'country\_AT'.
+        Para permitir a obtenção de melhores resultados, além de reduzir o custo computacional do treinamento dos modelos, foi testada a redução d grande número de atributos do dataset pela regressão por stepwise. Foram utilizados thresholds de inclusão de 0.01 e de exclusão de 0.7, resultando na redução dos 97 atributos para apenas 12: 'revenue', 'release\_day', 'genre\_drama', 'country\_US', 'runtime', 'genre\_history', 'genre\_action', 'spoken\_language\_FR', 'genre\_family', 'original\_language\_EN', 'country\_FR', 'country\_IN'.
         
-        Dentre esses, optamos por excluir alguns que são representativos de um número muito pequeno de instâncias, e poderiam gerar overfitting. Por esse motivo, foram desconsiderados os atributos "spoken\_language\_XH", "country\_FR", "spoken\_language\_SH", "country\_IN" e "country\_AT".\newline
+        Uma segunda versão do modelo foi treinada com atributos selecionados manualmente: 'revenue', 'release\_day', 'genre\_drama', 'country\_US', 'runtime'.
 
-        \textbf{Separação em conjuntos de treinamento, validação e teste}\par
+        \subsection{Separação em conjuntos de treinamento, validação e teste}\par
         
         Os dois modelos foram treinados e avaliados seguindo a mesma lógica de separação dos dados: 70\% são usados para treinamento dos modelos; 15\% são utilizados para validar os modelos tentar obter os melhores resultados; e os 15\% finais são guardados para sem utilizados apenas no teste final dos modelos escolhidos.
         
-        Para criação desses conjuntos, foi utilizada a função "train\_test\_split" da biblioteca Scikit-learn. A função é aplicada uma vez para separação dos 70\% de treinamento e uma segunda vez para dividir os conjuntos de teste e validação.\newline
+        Para criação desses conjuntos, foi utilizada a função "train\_test\_split" da biblioteca Scikit-learn. A função é aplicada uma vez para separação dos 70\% de treinamento, e uma segunda vez para dividir os 30 \% restantes em conjuntos em teste e validação.\newline
         
         Como os dados possuem classes desbalanceadas (uma fração muito pequena dos filmes é indicada ou vence o Oscar), todas essas operações utilizaram o parametro 'stratify'. Com esse argumento recebendo o valor True, garantimos que todos os subconjuntos criados tenham a mesma proporção de cada positivos e negativos.
 
-        \textbf{Criação de modelos}\par
-        Foram criados dois modelos de regressão logística:
+        \subsection{Criação de modelos}\par
+        Foram criados os seguintes modelos de regressão logística:
         
         \begin{itemize}
-            \item Modelo 1: para inferir a chance de indicação na categoria Melhor Filme ("Best Picture"), utilizando diferentes algoritmos, para todos os filmes;
-            \item Modelo 2: para inferir a chance de vitória apenas entre os filmes indicados à categoria "Best Picture";
+            \item Modelo 1: para inferir a chance de indicação na categoria Melhor Filme ("Best Picture"), treinado a partir de atributos selecionados automaticamente pelo método stepwise;
+            
+            \item Modelo 2: para inferir a chance de indicação na categoria Melhor Filme ("Best Picture"), treinado a partir de atributos selecionados manualmente;
+
         \end{itemize}
         
-        Ambos foram analisados por seus gráficos de curva ROC (figuras \ref{roc1} e \ref{roc2}). Como mostra a curva, o gráfico  do modelo 1 tem desempenho muito melhor que um classificador aleatório (ver \citeonline{mastery2021}). O mesmo não vale para o modelo 2, que em vários momentos tem desempenho pior que o modelo aleatório, e apenas para alguns thresholds apresenta desempenho pouquíssimo melhor.
-
-        \textbf{Avaliação comparativa dos resultados}\par
-        Para seleção do melhor threshold, foi utilizada a métrica de score f1.
+        \begin{figure}[htb]
+        	\caption{\label{roc1}Curva ROC do modelo de predição de indicação, com seleção stepwise de atributos}
+        	\begin{center}
+        		\includegraphics[scale=0.7]{roc1.png}
+        	\end{center}
+        	\legend{Fonte: trabalho nosso}
+        \end{figure}
         
-    \subsection{Resultados obtidos}
+        \begin{figure}[htb]
+        	\caption{\label{roc2}Curva ROC do modelo de predição de indicação, com seleção manual de atributos}
+        	\begin{center}
+        		\includegraphics[scale=0.7]{roc2.png}
+        	\end{center}
+        	\legend{Fonte: trabalho nosso}
+        \end{figure}
+        
+        % \begin{figure}[htb]
+        % 	\caption{\label{roc3} Curva ROC do modelo de predição de vitória na categoria Best Picture, com seleção stepwise}
+        % 	\begin{center}
+        % 		\includegraphics[scale=0.7]{roc3.png}
+        % 	\end{center}
+        % 	\legend{Fonte: trabalho nosso}
+        % \end{figure}
+        
+        % \begin{figure}[htb]
+        % 	\caption{\label{roc4}Curva ROC do modelo de predição de vitória na categoria Best Picture, com seleção manual de atributos}
+        % 	\begin{center}
+        % 		\includegraphics[scale=0.7]{roc4.png}
+        % 	\end{center}
+        % 	\legend{Fonte: trabalho nosso}
+        % \end{figure}
+        
+        \begin{figure}[htb]
+        	\caption{\label{confusao_1}Matriz de confusão do melhor modelo de predição de indicações}
+        	\begin{center}
+        		\includegraphics[scale=0.7]{confusao_1.png}
+        	\end{center}
+        	\legend{Fonte: trabalho nosso}
+        \end{figure}
+        
+        \begin{figure}[htb]
+        	\caption{\label{coefs_1}Coeficientes do melhor modelo de predição de indicações}
+        	\begin{center}
+        		\includegraphics[scale=0.7]{coefs_1.png}
+        	\end{center}
+        	\legend{Fonte: trabalho nosso}
+        \end{figure}
+        
+        Todos os modelos foram analisados por seus gráficos de curva ROC (figuras \ref{roc1} e \ref{roc2}). Como mostra a curva, o gráfico  do modelo 1 tem desempenho muito melhor que um classificador aleatório (ver \citeonline{mastery2021}). O mesmo não vale para o modelo 2, que em vários momentos tem desempenho pior que o modelo aleatório, e apenas para alguns thresholds apresenta desempenho pouquíssimo melhor.
+
+        \subsection{Avaliação comparativa dos resultados}\par
+        Para seleção do melhor threshold, foi utilizada a métrica de score f1. Incrementos de 0.01 foram feitos para thresholds entre 0 e 1, e o f1 score foi calculado para cada um dos thresholds. O threshold em que se obteve o melhor score f1 é considerado, em cada modelo, como o melhor threshold.
+        
+    \section{Resultados obtidos}
         
         O threshold com os melhores resultados para o modelo 1 foi de 0.15, com um f1 de 0.45. Com esse modelo, foi possível prever no conjunto de teste 7 verdadeiros positivos, com 11 falsos positivos e 9 falsos negativos, resultado bastante razoável num universo de 3454 instâncias de treinamento (figura \ref{confusao_1}).
         
         Já para o modelo 2, o melhor threshold encontrado foi de 0.33, com um f1 de 0.33. Com esse modelo, não foi possível prever no grupo de validação nenhum verdadeiro positivo, com 4 falsos positivos e 3 falsos negativos.(figura \ref{confusao_2})
 
-        \textbf{Avaliação de importância dos metadados}\par
-        A análise dos maiores coeficientes do modelo 1, em valor absoluto, revela a importância para o modelo de alguns critérios esperados, como data de lançamento, popularidade, média dos votos no MovieLens, orçamento e renda. Alguns fatores menos óbvios que tiveram impacto no treinamento foram duração, se o filme foi lançado em vídeo, o número de votos no Movie Lens e se o filme é adulto ou não.(figura \ref{coefs_1})\par
+        \subsection{Avaliação de importância dos metadados}\par
+        A análise dos maiores coeficientes do modelo 1, em valor absoluto, revela a importância para o modelo de alguns critérios esperados, como data de lançamento, orçamento e renda. Alguns fatores menos óbvios que tiveram impacto no treinamento foram duração, se o filme foi lançado em vídeo, e se o filme é adulto ou não.(figura \ref{coefs_1})\par
         
         Para o modelo 2, em valor absoluto, os fatores que mais influenciaram o modelo foram, nessa ordem: se o filme foi lançado em vídeo, duração, média dos votos no Movie Lens, renda, popularidade no Movie Lens, adulto ou não-adulto e. orçamento.(figura \ref{coefs_2})\par
